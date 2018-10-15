@@ -17,8 +17,10 @@ if ($conn === true) {
 
 $name = mysqli_real_escape_string($conn,$_REQUEST['name']);
 $email = mysqli_real_escape_string($conn,$_REQUEST['email']);
-$sql = "INSERT INTO Student(Name,Email) VALUES ('$name','$email')";
+//$sql = "INSERT INTO Student(Name,Email) VALUES ('$name','$email')";
 
+
+//if sql worked properly 
 
 if (mysqli_query($conn,$sql)) {
     echo "New record created successfully";
@@ -28,5 +30,3 @@ if (mysqli_query($conn,$sql)) {
 
 mysqli_close($conn);
 ?>
-
-
