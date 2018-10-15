@@ -1,5 +1,7 @@
 <?php
 
+
+session_start();
 //database connection
 
 $host = "localhost";
@@ -15,7 +17,7 @@ mysqli_select_db($db);
       $uname =$_POST['uname'];
       $password = $_POST['pword'];
 
-      $sqli = "select * from users where uname='""'AND pword='".$password"' limit 1  ";
+      $sqli = "select * from users where uname= '" "' AND pword= '".$password"' limit 1 ' ";
 // login validation
       $result = mysqli_query($sqli);
 
@@ -62,8 +64,9 @@ mysqli_select_db($db);
     }
     ?> -->
 
-//login form
-    <form action="interests.php" method="post" >
+<!--Log in form-->
+
+    <form action= "loggedin.php" method="post" >
       <table>
         <tr>
           <th colspan="2"><h2 align='center'>Login</h2> </th>
@@ -84,17 +87,5 @@ mysqli_select_db($db);
       </table>
     </form>
 
-<a href="signup.php">Want to Sign - Up?</a>
-
-
-    <?php
-
-
-    echo "<h2>Your Input:</h2>";
-    echo $name;
-    echo "<br>";
-    echo $email;
-
-    ?>
   </body>
 </html>
