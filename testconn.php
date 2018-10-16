@@ -5,8 +5,8 @@
 // Create connection
 //$conn = mysqli_connect("localhost","admin","monarch", "University");
 $host = "localhost";
-$user = "root";
-$password="";
+$user = "admin";
+$password="monarchs";
 $db= "university";
 $conn = mysqli_connect($host,$user,$password,$db);
 

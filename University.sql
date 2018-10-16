@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15.10
--- https://www.phpmyadmin.net
+-- version 4.8.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Sep 29, 2018 at 03:54 PM
--- Server version: 5.5.60-MariaDB
--- PHP Version: 5.4.16
+-- Host: 127.0.0.1
+-- Generation Time: Oct 16, 2018 at 11:00 PM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,19 +19,31 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `University`
+-- Database: `university`
 --
-CREATE DATABASE IF NOT EXISTS `University` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `University`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `EVENT`
+-- Table structure for table `accounts`
 --
 
-DROP TABLE IF EXISTS `EVENT`;
-CREATE TABLE IF NOT EXISTS `EVENT` (
+CREATE TABLE `accounts` (
+  `idKey` int(11) NOT NULL,
+  `uname` tinytext NOT NULL,
+  `fname` tinytext NOT NULL,
+  `lname` tinytext NOT NULL,
+  `email` tinytext NOT NULL,
+  `pword` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event`
+--
+
+CREATE TABLE `event` (
   `EventID` varchar(20) NOT NULL,
   `EventName` varchar(20) NOT NULL,
   `EventDate` date NOT NULL,
@@ -39,11 +53,10 @@ CREATE TABLE IF NOT EXISTS `EVENT` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Members`
+-- Table structure for table `members`
 --
 
-DROP TABLE IF EXISTS `Members`;
-CREATE TABLE IF NOT EXISTS `Members` (
+CREATE TABLE `members` (
   `GRPID` int(11) NOT NULL,
   `FNAME` varchar(20) NOT NULL,
   `LNAME` varchar(20) NOT NULL,
@@ -53,11 +66,10 @@ CREATE TABLE IF NOT EXISTS `Members` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `MESSAGE`
+-- Table structure for table `message`
 --
 
-DROP TABLE IF EXISTS `MESSAGE`;
-CREATE TABLE IF NOT EXISTS `MESSAGE` (
+CREATE TABLE `message` (
   `MESSAGEId` int(11) NOT NULL,
   `MESSAGE` text NOT NULL,
   `Date` date NOT NULL,
@@ -67,20 +79,19 @@ CREATE TABLE IF NOT EXISTS `MESSAGE` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Student`
+-- Table structure for table `student`
 --
 
-DROP TABLE IF EXISTS `Student`;
-CREATE TABLE IF NOT EXISTS `Student` (
+CREATE TABLE `student` (
   `Name` varchar(20) NOT NULL,
   `Email` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Student`
+-- Dumping data for table `student`
 --
 
-INSERT INTO `Student` (`Name`, `Email`) VALUES
+INSERT INTO `student` (`Name`, `Email`) VALUES
 ('Jackson', 'jackson@odu.edu'),
 ('Bisi', 'bisi28ade@gmail.com'),
 ('Bisi', '#'),
@@ -90,45 +101,100 @@ INSERT INTO `Student` (`Name`, `Email`) VALUES
 ('besi', 'kkkk'),
 ('besi', 'kkkk');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(100) NOT NULL,
+  `fname` char(25) NOT NULL,
+  `lname` char(25) NOT NULL,
+  `uname` varchar(12) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `pword` varchar(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `fname`, `lname`, `uname`, `email`, `pword`) VALUES
+(1, 'Doc', 'Hudson', '@doc', 'hornet@rsprings.gov', 'dhudson'),
+(2, 'Finn', 'McMissile', '@mcmissile', 'topsercet@agent.org', 'fmcmissile'),
+(3, 'Lightning', 'McQueen', '@mcqueen', 'kachow@rusteze.com', 'lmcqueen'),
+(4, 'Sally', 'Carrera', '@sally', 'porsche@rsprings.gov', 'sallyc'),
+(5, 'Tom', 'Mater', '@mater', 'mater@rsprings.gov', 'matert');
+
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `EVENT`
+-- Indexes for table `accounts`
 --
-ALTER TABLE `EVENT`
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`idKey`);
+
+--
+-- Indexes for table `event`
+--
+ALTER TABLE `event`
   ADD PRIMARY KEY (`EventID`(10)),
   ADD KEY `GRPID` (`GRPID`);
 
 --
--- Indexes for table `Members`
+-- Indexes for table `members`
 --
-ALTER TABLE `Members`
+ALTER TABLE `members`
   ADD PRIMARY KEY (`GRPID`);
 
 --
--- Indexes for table `MESSAGE`
+-- Indexes for table `message`
 --
-ALTER TABLE `MESSAGE`
+ALTER TABLE `message`
   ADD PRIMARY KEY (`MESSAGEId`),
   ADD KEY `GRPID` (`GRPID`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `idKey` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `EVENT`
+-- Constraints for table `event`
 --
-ALTER TABLE `EVENT`
-  ADD CONSTRAINT `EVENT_ibfk_1` FOREIGN KEY (`GRPID`) REFERENCES `Members` (`GRPID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `event`
+  ADD CONSTRAINT `EVENT_ibfk_1` FOREIGN KEY (`GRPID`) REFERENCES `members` (`GRPID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `MESSAGE`
+-- Constraints for table `message`
 --
-ALTER TABLE `MESSAGE`
-  ADD CONSTRAINT `MESSAGE_ibfk_1` FOREIGN KEY (`GRPID`) REFERENCES `Members` (`GRPID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `message`
+  ADD CONSTRAINT `MESSAGE_ibfk_1` FOREIGN KEY (`GRPID`) REFERENCES `members` (`GRPID`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
