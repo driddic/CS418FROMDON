@@ -28,6 +28,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `accounts`
 --
 
+create database `university`;
+use `university`;
+
 CREATE TABLE `accounts` (
   `idKey` int(11) NOT NULL,
   `uname` tinytext NOT NULL,

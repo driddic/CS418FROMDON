@@ -1,36 +1,31 @@
 <?php
     session_start();
 
-    if (isset($_SESSION['userID'])) {
-      echo '<p class = "login-status"> Your logged in</p>';
-    }
-    else {
-      echo '<p class = "login-status"> Your logged out</p>';
-    }
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
     if (isset($_POST['submit'])) {
-        require 'testconn.php';
-        require ' loggingin.php';
-     }
-else {
+       //require 'testconn.php';
+       require 'index.php';
+       require 'login.php';
+    }
 
-    echo mysqli_connect_error($conn);
-
+    if (isset($_SESSION['uname'])) {
+        echo 'Your are login in';
+        echo '<a href="logout.php?signout">Logout</a>';
       }
- ?>
+      else {
+        echo ' You never logged in bro';
+      //  header("Location: index.php");
+      }
 
 
 
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Home</title>
-  </head>
-  <body>
-      <!-- <p>Logged in</p> -->
 
-
-
-  </body>
-</html>
+// else {
+//
+//     echo mysqli_connect_error($conn);
+//
+//       }
+//

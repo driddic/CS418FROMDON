@@ -1,37 +1,8 @@
 <?php
 
-
 session_start();
-//database connection
 
-// $host = "localhost";
-// $user = "root";
-// $password="";
-// $db= "university";
-//
-// mysqli_connect($host,$user,$password);
-// mysqli_select_db($db);
-//
-//     if (isset($_POST['username'])) {
-//
-//       $uname =$_POST['uname'];
-//       $password = $_POST['pword'];
-//
-//     //  $sqli = "select * from users where uname= '" "' AND pword= '".$password"' limit 1 ' ";
-// // login validation
-//       $result = mysqli_query($sqli);
-//
-//       if (mysqli_num_rows($result)==1)
-//       {
-//           echo "You have logged in!";
-//
-//       }
-//       else{
-//         echo "You've got the wrong password";
-//       }
-//
-//     }
- ?>
+?>
 
 
 <!DOCTYPE html>
@@ -42,7 +13,7 @@ session_start();
   </head>
   <body>
 
-    <!-- <?php
+    <!--
     // echo ($_POST["uname"]);
     // // define variables and set to empty values
     // $name = $email = "";
@@ -62,7 +33,7 @@ session_start();
     // return $data;
     //
     // }
-    ?> -->
+     -->
 
 <!--Log in form-->
 <h1>Log In</h1>
@@ -78,10 +49,10 @@ session_start();
 // }
  ?>
 
-    <form action= "loggingin.php" method="post" >
+    <form action= "homepage.php" method="post" >
       <table>
         <tr>
-          <th colspan="2"><h2 align='center'>Login</h2> </th>
+          <th colspan="2"><h3 align='center'>Enter Creds</h3> </th>
         </tr>
         <tr>
         <td>Username:</td>
@@ -90,7 +61,7 @@ session_start();
         </tr>
         <tr>
         <td>Password:</td>
-        <td><input type="password" name="password" id="pword" placeholder="..."></td>
+        <td><input type="password" name="password" id="pword" placeholder="Password"></td>
 
         </tr>
         <tr>
