@@ -29,7 +29,7 @@ $password = $_POST['password'];
 
 if (empty($uname) || empty($password)) {  //error handling for emtypy fields
   header("Location: index.php?error=emptyfields");
-  exit();
+ exit();
 
 }
 
@@ -41,8 +41,9 @@ else {    // if we can result database against empty fields
           {
                       //if true start a session here
                     //session_start();
-                    //$_SESSION['userID'] = $row['idKey'];
-                    $_SESSION['username'] = $_POST['uname'];
+                    $_SESSION['uname'] = $uname;
+
+                    //$_SESSION['logged_in']= true;
                     header("Location: homepage.php");
                     exit();
 

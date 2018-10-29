@@ -1,8 +1,4 @@
-<?php
 
-session_start();
-
-?>
 
 
 <!DOCTYPE html>
@@ -49,7 +45,7 @@ session_start();
 // }
  ?>
 
-    <form action= "homepage.php" method="post" >
+    <form action= "login.php" method="post" >
       <table>
         <tr>
           <th colspan="2"><h3 align='center'>Enter Creds</h3> </th>

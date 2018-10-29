@@ -1,13 +1,13 @@
 <?php
 
-session_start();
+    session_start();
 
-if (isset($_GET['logout'])) {
-  session_unset();
-  session_destroy();
-  header("Location:index.php");
-  // code...
-}
+    if (isset($_GET['logout'])) {
+      //session_unset();
+      session_destroy();
+      header("Location:index.php?successlogout");
+
+    }
 
 
 
