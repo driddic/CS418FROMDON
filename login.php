@@ -9,9 +9,9 @@ if(isset ($_POST['submit']))
 {
                   $servername = 'localhost';
                   $user = 'admin';
-                  $password='';
+                  $password='monarchs';
                   $db= 'university';
-                  $conn = mysqli_connect("localhost","root","","university") OR die("Server Connection error");
+                  $conn = mysqli_connect("localhost","root","monarchs","university") OR die("Server Connection error");
                   mysqli_select_db($conn,"university") OR die("DB error");
 
 
