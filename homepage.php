@@ -20,7 +20,7 @@
                  <li><a href="signup.php">Groups</a></li>
                  <li><a href="help.html">Help</a></li>
                  <li style = "float:right" ><a href="#home">goODU</a></li>
-                  <li style = "float:right" ><a href="logout.php?success">Log - Out</a></li>
+                  <li style = "float:right" ><a href="index.php?logoutsuccess">Log - Out</a></li>
 
                </ul>
              </nav>

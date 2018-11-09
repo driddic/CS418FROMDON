@@ -49,7 +49,8 @@ elseif ($password !== $passwordagain) {
 }
 
 else {    // if we can result database against empty fields
-   $sql = "SELECT * FROM users WHERE uname ='$uname'";
+
+   $sql = "SELECT * FROM users WHERE uname ='".$uname."'";
            // $result = mysqli_query($conn,$sql);
           if (mysqli_num_rows($sql) > 0) {
 
@@ -58,8 +59,8 @@ else {    // if we can result database against empty fields
           }
 
           else {
-            $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-            mysqli_query("INSERT INTO users (fname, lname, uname, email, pword) VALUES ('$fname', '$lname', '$uname', '$email', '$hashedPwd')");
+            $hashedPwd = password_hash($password, PASSWORD_DEFAULT)
+            mysqli_query("INSERT INTO users (fname, lname, uname, email, pword) VALUES ('".$fname."', '".$lname."', '".$uname."', '".$email."', '".$hashedPwd."')");
             header("location: index.php?succes=signup");
             exit();
           }
