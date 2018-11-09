@@ -1,21 +1,55 @@
 <?php
     session_start();
+?>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>goODU</title>
+    <link rel="stylesheet" type="text/css" href="./assets/home.css">
+  </head>
+  <body>
 
-            if (isset($_SESSION['uname'])) {
+         <header>
+           <div class="container">
 
-              //  $_SESSION['username'] = $_POST;
-              echo "Hello ". $_SESSION['uname'];
-              echo '<a href="logout.php?logout">Logout</a>';
+             <nav>
+               <ul>
+                 <li class="sansserif"><a href="homepage.php">Home</a></li>
+                 <li><a href="index.php">Profile</a></li>
+                 <li><a href="signup.php">Groups</a></li>
+                 <li><a href="help.html">Help</a></li>
+                 <li style = "float:right" ><a href="#home">goODU</a></li>
+                  <li style = "float:right" ><a href="logout.php?success">Log - Out</a></li>
 
-              }
-
-              else {
-                echo "You never logged in bro";
-                header("Location: index.php");
-              }
+               </ul>
+             </nav>
+           </div>
 
 
+         </header>
 
+
+         <?php
+
+                   if (isset($_SESSION['uname'])) {
+
+                     //  $_SESSION['username'] = $_POST;
+                     echo "Hello ". $_SESSION['uname'];
+                    // echo '<a href="logout.php?logout">Logout</a>';
+
+                     }
+
+                     else {
+                       echo "You never logged in bro";
+                       header("Location: index.php");
+                     }
+
+       ?>
+  </body>
+</html>
+
+<!--
               // ini_set('display_errors', 1);
               // ini_set('display_startup_errors', 1);
               // error_reporting(E_ALL);
@@ -36,4 +70,4 @@
 //     echo mysqli_connect_error($conn);
 //
 //       }
-//
+// -->

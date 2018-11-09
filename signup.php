@@ -1,95 +1,88 @@
-<?php
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to goODU</title>
+    <link rel="stylesheet" type="text/css" href="./assets/index.css">
+  </head>
+  <body>
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-if(isset ($_POST['submit'])){
-  $servername = 'localhost';
-  $user = 'admin';
-  $password='';
-  $db= 'university';
-    $conn =   mysqli_connect("localhost","root","","university") OR die("Server Connection error");
-      mysqli_select_db($conn,"university") OR die("DB error");
+<!-- <h1>Log In</h1> -->
 
 
-  // $servername = 'localhost';
-  // $user = 'admin';
-  // $password='';
-  // $db= 'university';
-  // //establish connection
-  // $conn = mysqli_connect($servername,$user,$password,$db);
+     <header>
+       <div class="container">
 
-  //Check connection
-  if (!$conn) {
-    header("Location: index.php?error=noconn");
-    exit();
-  } else{
-      echo "Connected";
-    // header("Location: index.php?error=emptyfields");
-    // exit();
-  }
+         <nav>
+           <ul>
 
-//check this out from the video
-$uname = $_POST['username'];
-$password = $_POST['password'];
-
-if (empty($uname) || empty($password)) {  //error handling for emtypy fields
-  header("Location: index.php?error=emptyfields");
-  exit();
-  echo "1.1";
-}
-
-else {
-          $sql = "SELECT * FROM users WHERE uname='".$uname."'";  // if we can result database against empty fields
-          //echo "1.2";
-          $stmt = mysqli_stmt_init($conn);
-            if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: index.php?error=sqlerror");
-            exit();
-          //  echo "1.3";
-            }
-//Problem Child
-            else { //purpose is in 1:27:00
-            mysqli_stmt_bind_param($stmt,"s", $uname, $uname);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-
-                    //checking if there is a hit
-                      if ($row = mysqli_fetch_assoc($result))
-                      {
-                                    //checking password, do passwords match
-
-                                    $pwdCheck = password_verify($password, $row['pword']);
-
-                                    if($pwdCheck == false){
-                                      header("Location: index.php?error=wrongpwd");
-                                      exit();}
-
-                                        elseif ($pwdCheck == true) {
-                                              //if true start a session here
-                                            session_start();
-                                            $_SESSION['userID'] = $row['idKey'];
-                                            $_SESSION['username'] = $row['uname'];
-
-                                            header("Location: index.php?login=success");
-                                        }
-                                        else { //incase of a mistake , safe case
-                                            header("Location: index.php?error=wrongpwd");
-                                              exit();
-                                            }
-                      }
-                      else {
-                        header("Location: index.php?error=noacct");
-                                exit();
-                              }
-                  }
-}
+             <li class="sansserif"><a href="index.php">Home</a></li>
+             <li><a href="index.php">Log-In</a></li>
+             <li><a href="signup.php">Sign-Up</a></li>
+             <li><a href="help.html">Help</a></li>
+             <li style = "float:right" ><a href="#home">goODU</a></li>
 
 
+           </ul>
+         </nav>
+       </div>
 
-}
 
-else {
-  header("Location: homepage.php");
-}
+     </header>
+
+    <form action= "register.php" method="post" >
+      <div id="login-box">
+
+        <!-- <div class="left-box">
+          <h1>Login</h1>
+
+
+              <h3>Enter Creds</h3>
+                <input type="text" name="username" id="uname" placeholder="@user">
+                <input type="password" name="password" id="pword" placeholder="Password">
+                <input type="submit" name="submit" value="Submit">
+
+
+        </div> -->
+
+        <div class="right-box" align="center">
+              <h1>Sign Up</h1>
+
+            <input type="text" name="username" id="uname" placeholder="@username">
+
+              <input type="password" name="password" id="pword" placeholder="Password">
+
+            <input type="password" name="password-rep" id="pword" placeholder="Retype Password">
+
+              <input type="text" name="Email" id="email" placeholder="Email">
+
+              <input type="text" name="firstname" id="fname" placeholder="First Name">
+
+              <input type="text" name="lastname" id="lname" placeholder="Last Name">
+              <input type="submit" name="su-submit" value="Submit">
+
+        </div>
+      </div>
+    </form>
+
+  </body>
+</html>
+<!--
+      <table>
+        <tr>
+          <th colspan="2"><h3 align='center'>Enter Creds</h3> </th>
+        </tr>
+        <tr>
+        <td>Username:</td>
+        <td><input type="text" name="username" id="uname" placeholder="@user"></td>
+
+        </tr>
+        <tr>
+        <td>Password:</td>
+        <td><input type="password" name="password" id="pword" placeholder="Password"></td>
+
+        </tr>
+        <tr>
+          <td align = "right" colspan="2"><input type="submit" name="submit" value="Submit"></td>
+        </tr>
+      </table> -->

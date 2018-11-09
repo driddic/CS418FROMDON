@@ -1,0 +1,101 @@
+    body {
+            background-color: lightblue;
+          }
+    ul {
+            position : fixed;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: white;
+
+      }
+    li{
+            float : left;
+            border-right: 1px solid #bbb;
+       }
+    li a {
+            display : block;
+            width: 100px;
+            background-color: grey;
+            color: lightblue;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+         }
+    p.sansserif {
+
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+
+    }
+
+    #login-box{
+
+        position: relative;
+        margin: 5% auto;
+        height: 600px;
+        width: 1200px;
+        background: gray;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+        background-image: url(./sports.jpg);
+        background-position: center;
+        background-size: cover;
+
+    }
+
+    .left-box{
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+      padding: 40px;
+      width: 300px;
+      height: 400px;
+
+    }
+
+
+
+    h1{
+      margin: 0 0 20px 0;
+      font-weight: 300;
+      font-size: 28px;
+
+    }
+
+    input{
+
+      display: block;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      padding:4px;
+      width: 220px;
+      height: 32px;
+      border: none;
+      outline:none;
+      border-bottom: 1px solid navy;
+      font-family: sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      transition: 0.2s ease;
+
+    }
+
+    .right-box{
+
+     position: absolute;
+     top: 50% auto;
+     left: 50% auto;
+     box-sizing: border-box;
+     padding: 40px;
+     width: 300px;
+     height: 400px;
+     background-image: image(sports.jpg);
+
+
+
+   }
