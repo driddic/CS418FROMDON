@@ -23,7 +23,6 @@ if(isset ($_POST['su-submit']))
                       echo "Connected";
                   }
 
-//check this out from the video
 $uname = $_POST['username'];
 $password = $_POST['password'];
 $passwordagain =$_POST['password-rep'];
@@ -33,6 +32,7 @@ $lname =$_POST['lastname'];
 
 if (empty($uname) || empty($password) ||empty($email) || empty($fname) || empty($lname)) {  //error handling for emtypy fields
   header("Location: signup.php?error=emptyfields");
+  echo "h1";
  exit();
 
 }
@@ -40,11 +40,13 @@ if (empty($uname) || empty($password) ||empty($email) || empty($fname) || empty(
 elseif (!filter_var($email,FILTER_VALIDATE_EMAIL)) {
 
   header("Location: signup.php?error=bademail");
+  echo "h2";
  exit();
 }
 
 elseif ($password !== $passwordagain) {
   header("Location: signup.php?error=badpwdmatch");
+  echo "h3";
   exit();
 }
 
@@ -55,6 +57,7 @@ else {    // if we can result database against empty fields
           if (mysqli_num_rows($sql) > 0) {
 
             header("Location: signup.php?error=usertaken");
+            echo "h4";
             exit();
           }
 
@@ -62,6 +65,7 @@ else {    // if we can result database against empty fields
             $hashedPwd = password_hash($password, PASSWORD_DEFAULT)
             mysqli_query("INSERT INTO users (fname, lname, uname, email, pword) VALUES ('".$fname."', '".$lname."', '".$uname."', '".$email."', '".$hashedPwd."')");
             header("location: index.php?succes=signup");
+            echo "h5";
             exit();
           }
 
