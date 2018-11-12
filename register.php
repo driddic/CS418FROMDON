@@ -8,10 +8,10 @@ error_reporting(E_ALL);
 if(isset ($_POST['su-submit']))
 {
                   $servername = 'localhost';
-                  $user = 'root';
-                  $password='';
-                  $db= 'university';
-                  $conn = mysqli_connect("localhost","root","","university") OR die("Server Connection error");
+                  $user = 'admin';
+                  $password='monarchs';
+                  $db= 'University';
+                  $conn = mysqli_connect("localhost","admin","monarchs","University") OR die("Server Connection error");
                   mysqli_select_db($conn,"university") OR die("DB error");
 
 
