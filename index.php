@@ -7,7 +7,7 @@
   </head>
   <body>
 
-<!-- <h1>Log In</h1> -->
+
 
 
      <header>
@@ -28,7 +28,7 @@
 
      </header>
 
-    <form action= "login.php" method="post" >
+    <form action= "login.php" method="POST" >
       <div id="login-box">
 
         <div class="left-box">
@@ -43,44 +43,13 @@
 
         </div>
 
-        <!-- <div class="right-box">
-              <h1>Sign Up</h1>
 
-            <input type="text" name="username" id="uname" placeholder="@user">
-
-              <input type="password" name="password" id="pword" placeholder="Password">
-
-            <input type="password" name="passwordrep" id="pword" placeholder="Retype Password">
-
-              <input type="text" name="Email" id="email" placeholder="Email">
-
-              <input type="text" name="firstname" id="fname" placeholder="First Name">
-
-              <<input type="text" name="lastname" id="lname" placeholder="Last Name">
-              <input type="submit" name="submit" value="Submit">
-
-        </div> -->
       </div>
     </form>
 
+
+
+
+
   </body>
 </html>
-<!--
-      <table>
-        <tr>
-          <th colspan="2"><h3 align='center'>Enter Creds</h3> </th>
-        </tr>
-        <tr>
-        <td>Username:</td>
-        <td><input type="text" name="username" id="uname" placeholder="@user"></td>
-
-        </tr>
-        <tr>
-        <td>Password:</td>
-        <td><input type="password" name="password" id="pword" placeholder="Password"></td>
-
-        </tr>
-        <tr>
-          <td align = "right" colspan="2"><input type="submit" name="submit" value="Submit"></td>
-        </tr>
-      </table> -->

@@ -30,25 +30,15 @@
 
      </header>
 
-    <form action= "register.php" method="post" >
+    <form action= "register.php" method="POST" >
       <div id="login-box">
 
-        <!-- <div class="left-box">
-          <h1>Login</h1>
-
-
-              <h3>Enter Creds</h3>
-                <input type="text" name="username" id="uname" placeholder="@user">
-                <input type="password" name="password" id="pword" placeholder="Password">
-                <input type="submit" name="submit" value="Submit">
-
-
-        </div> -->
+      
 
         <div class="right-box" align="center">
               <h1>Sign Up</h1>
 
-            <input type="text" name="username" id="uname" placeholder="@username">
+            <input type="text" name="username" id="uname" placeholder="@Username">
 
               <input type="password" name="password" id="pword" placeholder="Password">
 
@@ -67,22 +57,3 @@
 
   </body>
 </html>
-<!--
-      <table>
-        <tr>
-          <th colspan="2"><h3 align='center'>Enter Creds</h3> </th>
-        </tr>
-        <tr>
-        <td>Username:</td>
-        <td><input type="text" name="username" id="uname" placeholder="@user"></td>
-
-        </tr>
-        <tr>
-        <td>Password:</td>
-        <td><input type="password" name="password" id="pword" placeholder="Password"></td>
-
-        </tr>
-        <tr>
-          <td align = "right" colspan="2"><input type="submit" name="submit" value="Submit"></td>
-        </tr>
-      </table> -->

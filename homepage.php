@@ -16,8 +16,8 @@
              <nav>
                <ul>
                  <li class="sansserif"><a href="homepage.php">Home</a></li>
-                 <li><a href="index.php">Profile</a></li>
-                 <li><a href="signup.php">Groups</a></li>
+                 <li><a href="profile.php">Profile</a></li>
+                 <li><a href="help.html">Groups</a></li>
                  <li><a href="help.html">Help</a></li>
                  <li style = "float:right" ><a href="#home">goODU</a></li>
                   <li style = "float:right" ><a href="index.php?logoutsuccess">Log - Out</a></li>
