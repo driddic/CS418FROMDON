@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2018 at 07:36 PM
+-- Generation Time: Nov 16, 2018 at 08:27 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `university`
 --
+CREATE DATABASE IF NOT EXISTS `university` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `university`;
 
 -- --------------------------------------------------------
 
@@ -30,8 +32,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `groups` (
   `grpID` int(11) NOT NULL,
-  `grpname` varchar(20) NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `grpname` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
