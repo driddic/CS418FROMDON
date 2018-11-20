@@ -27,7 +27,7 @@
        <a href="#" class="w3-bar-item w3-button w3-mobile">Profile</a>
        <a href="#" class="w3-bar-item w3-button w3-mobile">Groups</a>
        <a href="#" class="w3-bar-item w3-button w3-mobile">Help</a>
-       <a style = "float:right"href="#" class="w3-bar-item w3-button w3-mobile">Logout</a>
+       <a style = "float:right"href="logout.php" class="w3-bar-item w3-button w3-mobile">Logout</a>
 
        <form style = "float:right" action="" method="post">
        <input type="text" class="w3-bar-item w3-input w3-white w3-mobile" placeholder="Search Users and Groups..">
@@ -70,7 +70,7 @@
      </body>
    </main>
 
- 
+
 
 
  <!-- <nav>
