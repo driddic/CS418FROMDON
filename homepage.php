@@ -23,16 +23,16 @@
             <header>
               <div class="container">
                 <div class="w3-bar w3-light-grey w3-border w3-padding" >
-       <a href="#" class="w3-bar-item w3-button w3-mobile">Home</a>
-       <a href="#" class="w3-bar-item w3-button w3-mobile">Profile</a>
-       <a href="#" class="w3-bar-item w3-button w3-mobile">Groups</a>
-       <a href="#" class="w3-bar-item w3-button w3-mobile">Help</a>
-       <a style = "float:right"href="logout.php" class="w3-bar-item w3-button w3-mobile">Logout</a>
+                   <a href="homepage.php" class="w3-bar-item w3-button w3-mobile">Home</a>
+                   <a href="profile.php" class="w3-bar-item w3-button w3-mobile">Profile</a>
+                   <a href="#group.php" class="w3-bar-item w3-button w3-mobile">Groups</a>
+                   <a href="help.php" class="w3-bar-item w3-button w3-mobile">Help</a>
+                   <a style = "float:right" href="logout.php" class="w3-bar-item w3-button w3-mobile">Logout</a>
 
-       <form style = "float:right" action="" method="post">
-       <input type="text" class="w3-bar-item w3-input w3-white w3-mobile" placeholder="Search Users and Groups..">
-       <button class="w3-bar-item w3-button w3-grey w3-mobile">goODU</button>
-       </form>
+                   <form style = "float:right" action="" method="post">
+                   <input type="text" class="w3-bar-item w3-input w3-white w3-mobile" placeholder="Search Users and Groups..">
+                   <button class="w3-bar-item w3-button w3-grey w3-mobile">goODU</button>
+                   </form>
              </div>
             </div>
            </header>
