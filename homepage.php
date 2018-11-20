@@ -70,12 +70,10 @@
      </body>
    </main>
 
- }
+ 
 
 
- ?>
-
-// <!-- <nav>
+ <!-- <nav>
 //   <ul>
 //     <li class="sansserif"><a href="homepage.php">Home</a></li>
 //     <li><a href="profile.php">Profile</a></li>
@@ -93,7 +91,7 @@
 //
 //   </ul>
 // </nav> -->
-
+<!--
               // ini_set('display_errors', 1);
               // ini_set('display_startup_errors', 1);
               // error_reporting(E_ALL);
