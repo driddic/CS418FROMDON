@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2018 at 08:27 PM
+-- Generation Time: Nov 20, 2018 at 06:03 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -35,6 +35,14 @@ CREATE TABLE `groups` (
   `grpname` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `groups`
+--
+
+INSERT INTO `groups` (`grpID`, `grpname`) VALUES
+(1, 'Basketball'),
+(5, 'football');
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +54,13 @@ CREATE TABLE `members` (
   `userid` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `members`
+--
+
+INSERT INTO `members` (`grpID`, `userid`) VALUES
+(1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -54,6 +69,7 @@ CREATE TABLE `members` (
 
 CREATE TABLE `message` (
   `messID` int(11) NOT NULL,
+  `parent_commentID` int(11) NOT NULL,
   `text` text NOT NULL,
   `Date` date NOT NULL,
   `grpID` int(11) NOT NULL,
@@ -104,7 +120,8 @@ ALTER TABLE `groups`
 -- Indexes for table `members`
 --
 ALTER TABLE `members`
-  ADD PRIMARY KEY (`grpID`);
+  ADD PRIMARY KEY (`grpID`),
+  ADD KEY `grpID` (`grpID`);
 
 --
 -- Indexes for table `message`
@@ -127,7 +144,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `grpID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `grpID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `message`
