@@ -17,9 +17,7 @@ mysqli_select_db($conn,$db) OR die("DB error");
 if (!$conn) {
   header("Location: index.php?error=noconn");
   exit();
-} else{
-    echo "Connected";
-}
+} 
 //
 // $name = mysqli_real_escape_string($conn,$_REQUEST['uname']);
 // $password = mysqli_real_escape_string($conn,$_REQUEST['pword']);
