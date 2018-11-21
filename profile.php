@@ -1,52 +1,45 @@
 <?php
     session_start();
+    require 'testconn.php';
+    include 'header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>User Profile</title>
-      <link rel="stylesheet" type="text/css" href="./assets/home.css">
-  </head>
-  <body>
+<main>
 
-             <header>
-               <div class="container">
+      <div id = "login-box">
 
-                 <nav>
-                   <ul>
-                     <li class="sansserif"><a href="homepage.php">Home</a></li>
-                     <li><a href="profile.php">Profile</a></li>
-                     <li><a href="help.php">Groups</a></li>
-                     <li><a href="help.html">Help</a></li>
-                     <li style = "float:right" ><a href="#home">goODU</a></li>
-                      <li style = "float:right" ><a href="index.php?logoutsuccess">Log - Out</a></li>
+        <?php
+          $sql = "SELECT * FROM users;";
+          $result = mysqli_query($conn, $sql);
+          if(mysqli_fetch_assoc($result))
+          {
+            while ($row = mysqli_fetch_assoc($result))
+             {
+              $id = $row['userid'];
+              $sqlImg = "SELECT * FROM profileimg WHERE userid = '".$id."';";
+              $resultImg = mysqli_query($conn, $sqlImg);
+              while ($rowImg = mysqli_fetch_assoc($resultImg))
+              {
+                echo "<div>";
+                if($rowImg['status'] == 0)
+                {
+                  echo "<img src = 'assets/profile".$id.".jpg'>";
+                }
+                else {
+                  echo "<img src = 'assests/profile.png'>";
+                }
+                echo"<p>" .$row['uname']. "</p>";
+                echo "</div>";
+              }
+            }
+          }
 
-                   </ul>
-                 </nav>
-               </div>
+      ?>
 
+          <form align = center action="profile.php" method="post" enctype="multipart/form-data">
+          <?php echo "Select image to upload for " . $_SESSION['uname'];?>
+            <input type="file" name="picupload" value="picupload">
+            <input type="submit" name="submit" value="Upload">
+          </form>
 
-             </header>
-
-
-    <form class="" action="profile.php" method="post" enctype="multipart/form-data">
-    <?php echo "Select image to upload for " . $_SESSION['uname'];
-    ?>
-      <input type="file" name="picupload" value="picupload">
-      <input type="submit" name="submit" value="Upload">
-    </form>
-
-    <?php
-
-
-
-
-
-
-
-
-     ?>
-
-  </body>
-</html>
+      </div>
+</main>
