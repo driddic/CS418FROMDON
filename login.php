@@ -31,6 +31,7 @@ if(isset ($_POST['submit']))
                       {
                                   //if true start a session here
                                 //session_start();
+                                $_SESSION['userid'] = $userid;
                                 $_SESSION['uname'] = $uname;
                                 $_SESSION['password'] = $pwd;
 
@@ -52,36 +53,9 @@ if(isset ($_POST['submit']))
 }
 
 
-                        //change this part
-
-                      //  $pwdCheck = password_verify($password, $row['pword']);
-
-                        // if($pwdCheck == false){
-                        //   header("Location: index.php?error=wrongpwd");
-                        //   exit();}
-                        //
-                        //     elseif ($pwdCheck == true) {
-
-
           else {
             header("Location: index.php?error=noacct");
                     exit();
                   }
 
 ?>
-
-<!--
-
-          //echo "1.2";
-          // $stmt = mysqli_stmt_init($conn);
-          //   if (!mysqli_stmt_prepare($stmt, $sql)) {
-          //   header("Location: index.php?error=sqlerror");
-          //   exit();
-          //  echo "1.3";
-
-            // else { //purpose is in 1:27:00
-            // mysqli_stmt_bind_param($stmt,"s", $uname, $uname);
-            // mysqli_stmt_execute($stmt);
-            // $result = mysqli_stmt_get_result($stmt);
-
-                    //checking if there is a hit -->

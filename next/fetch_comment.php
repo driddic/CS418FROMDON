@@ -1,12 +1,7 @@
 <?php
 
 //fetch_comment.php
-$servername = 'localhost';
-$user = 'root';
-$password='';
-$db= 'university';
-$conn = mysqli_connect("localhost","root","","university") OR die("Server Connection error");
-mysqli_select_db($conn,$db) OR die("DB error");
+require 'testconn.php';
 
 $query = "SELECT * FROM message WHERE parent_commentID = '0' ORDER BY messID DESC";
 

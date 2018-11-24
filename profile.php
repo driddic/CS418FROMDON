@@ -35,7 +35,7 @@
 
       ?>
 
-          <form align = center action="profile.php" method="post" enctype="multipart/form-data">
+          <form align = center action="upload.php" method="post" enctype="multipart/form-data">
           <?php echo "Select image to upload for " . $_SESSION['uname'];?>
             <input type="file" name="picupload" value="picupload">
             <input type="submit" name="submit" value="Upload">

@@ -6,7 +6,7 @@ include 'homehead.php';
 <main>
   <form action= "login.php" method="POST" >
     <div id="login-box">
-      <div align = center class="right-box">
+      <div align = center >
               <h1>Login</h1>
               <input type="text" name="username" id="uname" placeholder="@Username">
               <input type="password" name="password" id="pword" placeholder="Password">

@@ -3,7 +3,7 @@ include 'homehead.php'; ?>
 <main>
   <form action= "register.php" method="POST" >
     <div id="login-box">
-      <div class="right-box" align="center">
+      <div align="center">
         <h1>Sign Up</h1>
           <input type="text" name="username" id="uname" placeholder="@Username">
           <input type="password" name="password" id="pword" placeholder="Password">

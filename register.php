@@ -20,7 +20,8 @@ if(isset ($_POST['su-submit']))
                   $lname = $_POST['lastname'];
 
 
-                          if (empty($uname) || empty($pwd) ||empty($email) || empty($fname) || empty($lname)) {  //error handling for emtypy fields
+                          if (empty($uname) || empty($pwd) ||empty($email) || empty($fname) || empty($lname))
+                           {  //error handling for emtypy fields
                             header("Location: signup.php?error=emptyfields");
                             echo "h1";
                            exit();
@@ -38,7 +39,8 @@ if(isset ($_POST['su-submit']))
                                    exit();
                                  }
 
-                                 elseif($pwd==$pwdagain){    // if we can result database against empty fields
+                                 elseif($pwd==$pwdagain)
+                                 {    // if we can result database against empty fields
                            //is the input user name on the database already
                                 $sql = " SELECT * FROM users WHERE uname ='".$uname."'; ";
                                 $result = mysqli_query($conn,$sql);
@@ -49,16 +51,28 @@ if(isset ($_POST['su-submit']))
 
                                    exit();
                                  }
-                                      }
+                                }
 
 
-                    $sqltwo= " INSERT INTO users (fname,lname,uname,email,pword )VALUES ('".$fname."', '".$lname."', '".$uname."', '".$email."', '".$pwd."'); ";
+                    $sqltwo= " INSERT INTO users (userid,fname,lname,uname,email,pword )
+                    VALUES ('','".$fname."', '".$lname."', '".$uname."', '".$email."', '".$pwd."'); ";
+                    //running sql query above
                     $score = mysqli_query($conn, $sqltwo);
-                    Header("location: index.php?signup=good");
 
-                    exit();
+                    echo "good insert: " .$score;
 
+                    if ($score)
+                     {
+                       $last_id = mysqli_insert_id($conn);
+                       echo "New record created successfully. Last inserted ID is: " . $last_id;
+                     }
+                     //'''place new users in global group automatically ''' 6 = sportscenter
+                     $sqlthr= "INSERT INTO membership (grpid,userid) VALUES (6,'".$last_id."');";
+                      echo "inserted membership";
+                     $scoreagain = mysqli_query($conn, $sqlthr);
+                      Header("location: index.php?signup=good");
 
+                      exit();
 
 }
     mysqli_close($conn);

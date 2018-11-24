@@ -23,7 +23,7 @@
     <div style="margin-left:15% ">
            <div class="w3-container w3-grey w3-center">
              <h1><?php echo "Group"; ?></h1>
-             <?php include 'loadmessage.php'; ?>
+             <?php include 'messages.php'; ?>
    </div>
   </body>
 </main>

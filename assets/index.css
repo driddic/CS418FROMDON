@@ -1,6 +1,15 @@
     body {
             background-color: lightblue;
+
           }
+   .sticky{
+     position: fixed;
+     top: 0;
+     width: 100%
+   }
+   .sticky + .content {
+  padding-top: 60px;
+}
     ul {
             position : fixed;
             position: sticky;
@@ -38,15 +47,14 @@
         margin: 5% auto;
         height: 600px;
         width: 1200px;
-        background: gray;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-        background-image: url(./sports.jpg);
+        background-image: url("odu.jpg");
         background-position: center;
         background-size: cover;
 
     }
 
-    .left-box{
+    /* .left-box{
 
       position: absolute;
       top: 0;
@@ -56,7 +64,8 @@
       width: 300px;
       height: 400px;
 
-    }
+
+    } */
 
 
 
@@ -64,6 +73,7 @@
       margin: 0 0 20px 0;
       font-weight: 300;
       font-size: 28px;
+      color: white;
 
     }
 
@@ -85,17 +95,14 @@
 
     }
 
-    .right-box{
+    /* .right-box{
 
      position: absolute;
      top: 50% auto;
-     left: 50% auto;
+     left: 0% auto;
      box-sizing: border-box;
      padding: 40px;
      width: 300px;
      height: 400px;
-     background-image: image(sports.jpg);
-
-
-
-   }
+      background-image: url("sport.jpg");
+   } */
