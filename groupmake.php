@@ -22,8 +22,8 @@ if (isset($_POST['groupsubmit'])) {
       header("location: group.php?empty=nogrpname");
     }
     //if group name is taken
-    elseif {
-      $grpcheck = "SELECT * FROM groups WHERE grpname = '".$groupname."';";
+    else(!empty($groupname)){
+      $grpcheck = "SELECT * FROM groups WHERE grpname = '$groupname'";
       $check = mysqli_query($conn,$sql);
       if(mysqli_num_rows($result) > 0) {
          header("Location: group.php?error=grptaken");

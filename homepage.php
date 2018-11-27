@@ -47,8 +47,7 @@
           // echo "be while";
            while ($results = mysqli_fetch_assoc($show)){
              echo "<div>
-
-                      <a href='globalgroup.php?groupid=".$results["grpid"]."' name ='".$results["grpid"]."' class='w3-bar-item w3-button'>  ".$results["grpname"]."</a>
+                  <a href='globalgroup.php?groupid=".$results["grpid"]."' name ='".$results["grpname"]."' class='w3-bar-item w3-button'>  ".$results["grpname"]."</a>
                     </div>";
            }
            // echo "pass while"; $grpclick = $_POST[$results["grpid"]];
@@ -64,10 +63,11 @@
     <div style="margin-left:15% ">
            <div id = "groupcontent" class="w3-container w3-grey w3-center">
              <?php
-              $results=mysqli_fetch_assoc($show);
-              //trying to show the same number in two different ways 
-               //echo "Group (group id) ". $results["grpid"];
-               echo "(current group)Group: ". $currentgroup;
+              // $results=mysqli_fetch_assoc($show);
+              // $currentgroup= $_GET['groupid'];
+              // //trying to show the same number in two different ways
+              //  //echo "Group (group id) ". $results["grpid"];
+              //  echo "(current group)Group: ". $currentgroup;
 
                include 'globalgroup.php';
 

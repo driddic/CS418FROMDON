@@ -17,8 +17,7 @@ if(isset ($_POST['submit']))
 
             if (empty($uname) || empty($pwd)) {  //error handling for emtypy fields
               header("Location: index.php?error=emptyfields");
-             exit();
-
+              exit();
             }
 
             else {

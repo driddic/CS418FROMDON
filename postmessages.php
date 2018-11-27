@@ -1,6 +1,6 @@
 <?php
 require 'testconn.php';
-session_start();
+//session_start();
 
 function setComments($conn)
 {
@@ -10,8 +10,10 @@ function setComments($conn)
     $date = $_POST['timestamp'];
     $comment =$_POST['comment'];
     $uid=$_SESSION['userid'];
+    $uname = $_POST['username'];
     $currentgroup =$_GET['groupid'];
-    $sql = " INSERT INTO messageroom (message, timestamp, userid, grpid) VALUES ('$comment','$date','$uid', '$currentgroup')";
+    $sql = " INSERT INTO messageroom (message, timestamp, userid, uname, grpid)
+            VALUES ('$comment','$date','$uid','$uname','$currentgroup',)";
     $rack = mysqli_query($conn, $sql);
   }
 }
