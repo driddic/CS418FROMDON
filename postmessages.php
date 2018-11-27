@@ -1,5 +1,5 @@
 <?php
-
+require 'testconn.php';
 session_start();
 
 function setComments($conn)
@@ -9,16 +9,24 @@ function setComments($conn)
 
     $date = $_POST['timestamp'];
     $comment =$_POST['comment'];
-    $uname=$_SESSION['uname'];
-    $sql = " INSERT INTO messageroom (message, timestamp, username) VALUES ('$comment','$date','$uname')";
+    $uid=$_SESSION['userid'];
+    $currentgroup =$_GET['groupid'];
+    $sql = " INSERT INTO messageroom (message, timestamp, userid, grpid) VALUES ('$comment','$date','$uid', '$currentgroup')";
     $rack = mysqli_query($conn, $sql);
   }
 }
 
-// function test_input($data)
+//test input for htmlspecialchars, removes backslashes and newlines, tabs, and extra space
+function test_input($data)
+{
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+//
+// function switchContent($value='')
 // {
-//   $data = trim($data);
-//   $data = stripslashes($data);
-//   $data = htmlspecialchars($data);
-//   return $data;
+//   // code...
 // }

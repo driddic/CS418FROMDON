@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2018 at 02:05 AM
+-- Generation Time: Nov 27, 2018 at 03:03 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -31,18 +31,49 @@ USE `university`;
 --
 
 CREATE TABLE `groups` (
-  `grpID` int(11) NOT NULL,
-  `grpname` varchar(20) NOT NULL
+  `grpid` int(11) NOT NULL,
+  `grpname` varchar(20) NOT NULL,
+  `owner` varchar(25) DEFAULT NULL,
+  `access` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `groups`
 --
 
-INSERT INTO `groups` (`grpID`, `grpname`) VALUES
-(1, 'Basketball'),
-(5, 'football'),
-(6, 'Sportscenter');
+INSERT INTO `groups` (`grpid`, `grpname`, `owner`, `access`) VALUES
+(1, 'Basketball', NULL, '0'),
+(5, 'Football', NULL, '0'),
+(6, 'SportsCenter', NULL, '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `member`
+--
+
+CREATE TABLE `member` (
+  `grpid` int(11) NOT NULL,
+  `userid` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `member`
+--
+
+INSERT INTO `member` (`grpid`, `userid`) VALUES
+(6, 1),
+(6, 2),
+(6, 3),
+(6, 4),
+(6, 5),
+(6, 9),
+(6, 1),
+(6, 2),
+(6, 3),
+(6, 4),
+(6, 5),
+(6, 9);
 
 -- --------------------------------------------------------
 
@@ -78,7 +109,9 @@ INSERT INTO `membership` (`grpid`, `userid`) VALUES
 (6, 3),
 (6, 4),
 (6, 5),
-(6, 22);
+(6, 22),
+(6, 9),
+(6, 9);
 
 -- --------------------------------------------------------
 
@@ -105,17 +138,57 @@ CREATE TABLE `messageroom` (
   `commentID` int(111) NOT NULL,
   `message` text NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `username` varchar(11) NOT NULL
+  `userid` varchar(11) NOT NULL,
+  `grpid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `messageroom`
 --
 
-INSERT INTO `messageroom` (`commentID`, `message`, `timestamp`, `username`) VALUES
-(1, 'yes\r\n', '2018-11-24 00:29:49', ''),
-(2, 'do it again', '2018-11-24 00:43:22', ''),
-(3, 'hello', '2018-11-24 01:00:35', 'admin');
+INSERT INTO `messageroom` (`commentID`, `message`, `timestamp`, `userid`, `grpid`) VALUES
+(1, 'yes\r\n', '2018-11-24 00:29:49', '', 0),
+(2, 'do it again', '2018-11-24 00:43:22', '', 0),
+(3, 'hello', '2018-11-24 01:00:35', 'admin', 0),
+(4, 'dance', '2018-11-24 15:50:58', '', 0),
+(5, 'dance', '2018-11-24 15:50:58', '', 0),
+(6, 'dance', '2018-11-24 15:50:58', '', 0),
+(7, 'dance', '2018-11-24 15:50:58', '', 0),
+(8, 'dance', '2018-11-24 15:50:58', '', 0),
+(9, 'dance', '2018-11-24 15:50:58', '', 0),
+(10, 'dance', '2018-11-24 15:50:58', '', 0),
+(11, 'dance', '2018-11-24 15:50:58', '', 0),
+(12, 'hola', '2018-11-24 20:17:38', '9', 0),
+(13, 'hola 2', '2018-11-24 20:21:46', '9', 0),
+(14, 'hola times two', '2018-11-24 20:31:01', '9', 0),
+(15, 'hola times two', '2018-11-24 20:31:01', '9', 0),
+(16, 'hello', '2018-11-24 20:33:55', '9', 0),
+(17, 'newest', '2018-11-24 20:43:30', '9', 0),
+(18, 'newest', '2018-11-24 20:43:38', '9', 0),
+(19, 'sc test', '2018-11-25 06:53:20', '1', 6),
+(20, 'sc test 2', '2018-11-25 06:53:32', '1', 6),
+(21, 'sc test 3', '2018-11-25 06:55:24', '9', 6),
+(22, '', '2018-11-27 04:34:59', '9', 6),
+(23, '', '2018-11-27 04:55:42', '9', 6),
+(24, '', '2018-11-27 04:55:42', '9', 6),
+(25, '', '2018-11-27 04:55:42', '9', 6),
+(26, '', '2018-11-27 04:55:42', '9', 6),
+(27, '', '2018-11-27 04:55:42', '9', 6),
+(28, '', '2018-11-27 04:55:42', '9', 6),
+(29, 'grp 1 test', '2018-11-27 19:33:34', '1', 0),
+(30, 'grp 1 test', '2018-11-27 19:33:34', '1', 0),
+(31, 'grp 1 post test', '2018-11-27 19:35:55', '1', 1),
+(32, 'grp 1 post test', '2018-11-27 19:35:55', '1', 1),
+(33, 'grp 1 post test', '2018-11-27 19:35:55', '1', 1),
+(34, 'grp 1 post test', '2018-11-27 19:35:55', '1', 1),
+(35, 'grp 1 post test', '2018-11-27 19:35:55', '1', 1),
+(36, 'grp 1 post test', '2018-11-27 19:35:55', '1', 1),
+(37, 'grp 5 post test', '2018-11-27 19:36:23', '1', 5),
+(38, 'grp 5 post test', '2018-11-27 19:36:23', '1', 5),
+(39, 'grp 5 post test', '2018-11-27 19:36:23', '1', 5),
+(40, 'grp 5 post test', '2018-11-27 19:36:23', '1', 5),
+(41, 'grp 5 post test', '2018-11-27 19:36:23', '1', 5),
+(42, 'grp 5 post test', '2018-11-27 19:36:23', '1', 5);
 
 -- --------------------------------------------------------
 
@@ -178,7 +251,7 @@ INSERT INTO `users` (`userid`, `fname`, `lname`, `uname`, `email`, `pword`) VALU
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
-  ADD PRIMARY KEY (`grpID`);
+  ADD PRIMARY KEY (`grpid`);
 
 --
 -- Indexes for table `message`
@@ -213,7 +286,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `grpID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `grpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -225,7 +298,7 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `messageroom`
 --
 ALTER TABLE `messageroom`
-  MODIFY `commentID` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `commentID` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `profileimage`
