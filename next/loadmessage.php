@@ -1,6 +1,6 @@
 <?php
 //session_start();  gets notice that session has been started so I don't need it
-require 'testconn.php';
+// require 'testconn.php';
 ?>
 <!DOCTYPE html>
 <html>
