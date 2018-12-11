@@ -2,7 +2,7 @@
 
 //fetch_comment.php
 
-$connect = new PDO('mysql:host=localhost;dbname=university', 'root', '');
+$connect = new PDO('mysql:host=localhost;dbname=university', 'admin', '');
 //$currentgroup= $_GET['groupid'];
 $query = "
 SELECT * FROM tbl_comment
