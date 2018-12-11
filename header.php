@@ -35,4 +35,5 @@
 {
   echo "not logged in";
   header("Location: index.php?error=loginfirst");
+  exit();
 }

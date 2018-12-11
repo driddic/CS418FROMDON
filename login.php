@@ -44,37 +44,6 @@ if(isset ($_POST['submit']))
                   }
 }
 
-
-
-
-                    // if we can result database against empty fields
-                    //  $sql = "SELECT * FROM users WHERE uname='".$uname."' and pword= '".$pwd."';";
-                      // $result = mysqli_query($conn, $sql);
-                      //
-                      //
-                      // if ($row = mysqli_fetch_assoc($result))
-                      //
-                      //
-                      //
-                      // {
-                      //             //if true start a session here
-                      //           session_start();
-                      //           $_SESSION['userid'] = $row['userid'];
-                      //           $_SESSION['uname'] = $row['uname'];
-                      //           $_SESSION['password'] = $row['pwd'];
-                      //
-                      //           //$_SESSION['logged_in']= true;
-                      //           header("Location: homepage.php");
-                      //           exit();
-                      //
-                      //
-                      //           // Change this portion
-                      // }
-
-
-
-
-
           else {
             header("Location: index.php?error=noclicksubmit");
                     exit();
@@ -119,6 +88,30 @@ elseif(mysqli_stmt_prepare($statement, $sql)) {
                              exit();// code...
                 } -->
 
+                <!--
+                                    // if we can result database against empty fields
+                                    //  $sql = "SELECT * FROM users WHERE uname='".$uname."' and pword= '".$pwd."';";
+                                      // $result = mysqli_query($conn, $sql);
+                                      //
+                                      //
+                                      // if ($row = mysqli_fetch_assoc($result))
+                                      //
+                                      //
+                                      //
+                                      // {
+                                      //             //if true start a session here
+                                      //           session_start();
+                                      //           $_SESSION['userid'] = $row['userid'];
+                                      //           $_SESSION['uname'] = $row['uname'];
+                                      //           $_SESSION['password'] = $row['pwd'];
+                                      //
+                                      //           //$_SESSION['logged_in']= true;
+                                      //           header("Location: homepage.php");
+                                      //           exit();
+                                      //
+                                      //
+                                      //           // Change this portion
+                                       // } -->
 <!--
 // if ($row = mysqli_fetch_assoc($result))
 //
