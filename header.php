@@ -31,9 +31,10 @@
 
 </body>
 </html>
-<?php  if (!isset($_SESSION['uname']))
+<?php  if (!isset($_SESSION['username']))
 {
   echo "not logged in";
   header("Location: index.php?error=loginfirst");
   exit();
 }
+?>
