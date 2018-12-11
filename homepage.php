@@ -69,7 +69,7 @@
               //  //echo "Group (group id) ". $results["grpid"];
               //  echo "(current group)Group: ". $currentgroup;
 
-               include 'globalgroup.php';
+               include 'next/index.php';
 
              ?>
 

@@ -5,7 +5,7 @@
 ?>
 <main>
 
-      <div id = "login-box">
+      <div id = "bigbox">
 
          <?php
          $sessname= $_SESSION['username'];

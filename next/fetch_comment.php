@@ -3,7 +3,7 @@
 //fetch_comment.php
 
 $connect = new PDO('mysql:host=localhost;dbname=university', 'root', '');
-
+//$currentgroup= $_GET['groupid'];
 $query = "
 SELECT * FROM tbl_comment
 WHERE parent_comment_id = '0'
@@ -33,7 +33,7 @@ echo $output;
 function get_reply_comment($connect, $parent_id = 0, $marginleft = 0)
 {
  $query = "
- SELECT * FROM tbl_comment WHERE parent_comment_id = '".$parent_id."'
+ SELECT * FROM tbl_comment WHERE groupid = '".$currentgroup."'
  ";
  $output = '';
  $statement = $connect->prepare($query);

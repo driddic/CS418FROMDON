@@ -5,6 +5,9 @@
     <title>Welcome to goODU</title>
     <link rel="stylesheet" type="text/css" href="./assets/index.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <!-- <script src='https://www.google.com/recaptcha/api.js?hl=es'></script> -->
+
   </head>
   <body>
      <header>

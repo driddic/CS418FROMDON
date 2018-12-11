@@ -12,25 +12,43 @@
  </head>
  <body>
   <br />
-  <h2 align="center"><a href="#">Comment System using PHP and Ajax</a></h2>
+   <?php
+   $sessname = $_SESSION['username'];
+   $sessid= $_SESSION['userid'];
+  $currentgroup= $_GET['groupid'];
+
+  // echo $currentgroup;
+  // echo $nameofgroup;
+  if (!$currentgroup) {
+    echo "Hello Pick a Group";
+  }
+
+  elseif ($currentgroup) {
+
+  echo "
   <br />
-  <div class="container">
-   <form method="POST" id="comment_form">
-    <div class="form-group">
-     <input type="text" name="comment_name" id="comment_name" class="form-control" placeholder="Enter Name" />
+  <div class='container'>
+   <form method='POST' id='comment_form'>
+    <div class='form-group'>
+     <input type='hidden' name='comment_name' id='comment_name' class='form-control' value='$sessname' />
     </div>
-    <div class="form-group">
-     <textarea name="comment_content" id="comment_content" class="form-control" placeholder="Enter Comment" rows="5"></textarea>
+    <div class='form-group'>
+     <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='5'></textarea>
     </div>
-    <div class="form-group">
-     <input type="hidden" name="comment_id" id="comment_id" value="0" />
-     <input type="submit" name="submit" id="submit" class="btn btn-info" value="Submit" />
+    <div class='form-group'>
+     <input type='hidden' name='comment_id' id='comment_id' value='0' />
+     <input type='submit' name='submit' id='submit' class='btn btn-info' value='Submit' />
     </div>
    </form>
-   <span id="comment_message"></span>
+   <span id='comment_message'></span>
    <br />
-   <div id="display_comment"></div>
-  </div>
+   <div id='display_comment'></div>
+  </div>";
+}
+  else {
+    echo "No Page!";
+  }
+   ?>
  </body>
 </html>
 
@@ -41,7 +59,7 @@ $(document).ready(function(){
   event.preventDefault();
   var form_data = $(this).serialize();
   $.ajax({
-   url:"add_comment.php",
+   url:"next/add_comment.php",
    method:"POST",
    data:form_data,
    dataType:"JSON",
@@ -63,7 +81,7 @@ $(document).ready(function(){
  function load_comment()
  {
   $.ajax({
-   url:"fetch_comment.php",
+   url:"next/fetch_comment.php",
    method:"POST",
    success:function(data)
    {

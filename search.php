@@ -9,9 +9,11 @@ include 'header.php';
         // changes characters used in html to their equivalents, for example: < to &gt;
         $query = mysqli_real_escape_string($conn, $query);
         // makes sure nobody uses SQL injection
+
         //inner join maybe
         //$sql = "SELECT users.uname, groups.grpname From groups INNER JOIN users WHERE (uname,grpname LIKE '%".$query."%')";
         $raw_results = mysqli_query($conn,"SELECT * FROM `users` WHERE (`uname` LIKE '%".$query."%')") or die(mysqli_error($conn));
+
       //  $raw_results_again = mysqli_query($conn, "SELECT * FROM `groups` WHERE (`grpname` = '%".$query."%')") or die(mysqli_error($conn));
         //test query
         // echo "this is query: " .$query;

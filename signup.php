@@ -11,6 +11,7 @@ include 'homehead.php'; ?>
           <input type="text" name="Email" id="email" placeholder="Email">
           <input type="text" name="firstname" id="fname" placeholder="First Name">
           <input type="text" name="lastname" id="lname" placeholder="Last Name">
+          <div class="g-recaptcha"  data-sitekey="6LcugX8UAAAAAKBN8xRtZk_IIC_zM5jJ0VXoCI1N"></div>
           <input type="submit" name="su-submit" value="Submit">
       </div>
     </div>
