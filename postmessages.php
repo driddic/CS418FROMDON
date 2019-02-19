@@ -13,11 +13,10 @@ function setComments($conn)
     $uname = $_POST['username'];
     $currentgroup =$_GET['groupid'];
     $sql = " INSERT INTO messageroom (message, timestamp, userid, uname, grpid)
-            VALUES ('$comment','$date','$uid','$uname','$currentgroup',)";
+            VALUES ('$comment','$date','$uid','$uname','$currentgroup')";
     $rack = mysqli_query($conn, $sql);
   }
 }
-
 //test input for htmlspecialchars, removes backslashes and newlines, tabs, and extra space
 function test_input($data)
 {

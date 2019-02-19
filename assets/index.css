@@ -37,8 +37,14 @@
          }
     p.sansserif {
 
-            font-family: "Trebuchet MS", Helvetica, sans-serif;
+      font-family: "Trebuchet MS", Helvetica, sans-serif;
 
+    }
+
+    #myreplysection{
+      width: 100%;
+      margin-top:20px;
+      display: none;
     }
 
     #login-box{
@@ -51,23 +57,28 @@
         background-image: url("odu.jpg");
         background-position: center;
         background-size: cover;
+        word-wrap: break-word;
+        word-wrap: normal;
 
     }
 
-    /* .left-box{
+    #bigbox{
+
+      position: relative;
+      margin: 5% auto;
+      height: auto;
+      width: 1200px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+      background-color: grey;
+      word-wrap: break-word;
+      word-wrap: normal;
+    }
+
+    .bigbox form {
 
       position: absolute;
-      top: 0;
-      left: 0;
-      box-sizing: border-box;
-      padding: 40px;
-      width: 300px;
-      height: 400px;
 
-
-    } */
-
-
+    }
 
     h1{
       margin: 0 0 20px 0;

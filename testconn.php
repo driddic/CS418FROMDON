@@ -5,10 +5,10 @@
 // Create connection
 //$conn = mysqli_connect("localhost","admin","monarch", "University");
 $servername = 'localhost';
-$user = 'admin';
-$password='monarchs';
+$user = 'root';
+$password='';
 $db= 'university';
-$conn = mysqli_connect("localhost","admin","monarchs","university") OR die("Server Connection error");
+$conn = mysqli_connect("localhost","root","","university") OR die("Server Connection error");
 mysqli_select_db($conn,$db) OR die("DB error");
 
 

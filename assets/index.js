@@ -1,4 +1,4 @@
-<script>
+<script type="text/javascript">
 window.onscroll = function() {myFunction()};
 
 var navbar = document.getElementById("navbar");
@@ -10,6 +10,6 @@ function myFunction() {
   } else {
     navbar.classList.remove("sticky");
   }
-}
+});
 
 </script>

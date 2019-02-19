@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title><?php echo $_SESSION['uname'];?> | goODU</title>
+    <title><?php echo $_SESSION['username'];?> | goODU</title>
     <script src="./assets/index.js"></script>
     <link rel="stylesheet" type="text/css" href="./assets/index.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -34,7 +34,7 @@
 <?php  if (!isset($_SESSION['username']))
 {
   echo "not logged in";
-  header("Location: index.php?error=loginfirst");
+  header("Location: index.php?error=loginfirsthdr");
   exit();
 }
 ?>

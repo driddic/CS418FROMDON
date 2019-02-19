@@ -1,5 +1,7 @@
 <?php
 //index.php
+//session_start();
+include 'testconn.php';
 
 ?>
 <!DOCTYPE html>
@@ -15,15 +17,15 @@
    <?php
    $sessname = $_SESSION['username'];
    $sessid= $_SESSION['userid'];
-  $currentgroup= $_GET['groupid'];
+  $currentgroup= $_GET['grpid'];
 
   // echo $currentgroup;
   // echo $nameofgroup;
-  if (!$currentgroup) {
+  if (!isset(($_POST[$currentgroup]))) {
     echo "Hello Pick a Group";
   }
 
-  elseif ($currentgroup) {
+  elseif (isset($_POST[$currentgroup])) {
 
   echo "
   <br />

@@ -2,8 +2,11 @@
 require 'group.php';
 
 $remotegrp=$results['grpid'];
-//query membership to validate
-
+///   query membership to validate
+///
+///   Adding member to Group from Group search
+///
+///
 if (isset($_POST['join'])) {
 
 $sql = " SELECT * FROM membership WHERE userid ='".$sessid."'; ";

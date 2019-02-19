@@ -1,4 +1,4 @@
-<?php
+ <?php
 //session_start();  gets notice that session has been started so I don't need it
 // require 'testconn.php';
 ?>
@@ -18,6 +18,7 @@
          <textarea name="comment_content" id="comment_content"
          class="form-control" placeholder="Enter Comment" rows="5">
        </textarea>
+       <!--No way to grab name-->
         </div>
         <div class="form-group">
          <input type="hidden" name="comment_id" id="comment_id" value="0" />

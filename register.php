@@ -103,6 +103,10 @@ if(isset ($_POST['su-submit'])){
        $sqlthr= "INSERT INTO membership (grpid,userid) VALUES (6,'".$last_id."');";
         echo "inserted membership";
        $scoreagain = mysqli_query($conn, $sqlthr);
+       //insert member into profileimage table on the db
+       $sqlfive = "INSERT INTO profileimage (userid, status) VALUES ('".$last_id."', 1);";
+       echo "image set";
+       $scored = mysqli_query($conn, $sqlfive);
         Header("location: index.php?signup=good");
 
         exit();
