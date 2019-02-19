@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2018 at 09:39 PM
+-- Generation Time: Feb 19, 2019 at 06:40 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -199,6 +199,40 @@ CREATE TABLE `profileimage` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `profileimage`
+--
+
+INSERT INTO `profileimage` (`picid`, `userid`, `status`) VALUES
+(1, 1, 0),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_comment`
+--
+
+CREATE TABLE `tbl_comment` (
+  `comment_id` int(11) NOT NULL,
+  `parent_comment_id` int(11) NOT NULL,
+  `comment` varchar(200) NOT NULL,
+  `comment_sender_name` varchar(40) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `grpid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_comment`
+--
+
+INSERT INTO `tbl_comment` (`comment_id`, `parent_comment_id`, `comment`, `comment_sender_name`, `date`, `grpid`) VALUES
+(1, 0, 'testing\r\n', 'don', '2018-11-28 23:01:14', 0),
+(2, 1, 'yo you still testing', 'donsreply', '2018-11-28 23:09:05', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -272,6 +306,12 @@ ALTER TABLE `profileimage`
   ADD PRIMARY KEY (`picid`);
 
 --
+-- Indexes for table `tbl_comment`
+--
+ALTER TABLE `tbl_comment`
+  ADD PRIMARY KEY (`comment_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -303,7 +343,13 @@ ALTER TABLE `messageroom`
 -- AUTO_INCREMENT for table `profileimage`
 --
 ALTER TABLE `profileimage`
-  MODIFY `picid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `picid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_comment`
+--
+ALTER TABLE `tbl_comment`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
