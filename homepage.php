@@ -47,7 +47,8 @@
     <div style="margin-left:15% ">
      <div id = "groupcontent" class="w3-container w3-grey w3-center">
        <?php
-         include 'next/index.php';
+         //include 'globalgroup.php?groupid='.$results["grpid"];
+         include 'globalgroup.php';
         ?>
    </div>
 <script type="text/javascript">
