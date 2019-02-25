@@ -36,14 +36,14 @@ if (!$currentgroup) {
 }
 elseif ($currentgroup){
   echo "
-  <br />
+
   <div class='container'>
    <form action= 'add_comment.php' method='POST' id='comment_form'>
     <div class='form-group'>
+    <input type='hidden' name='comment_number' id='comment_number' class='form-control' value= '$commentvalue' />
      <input type='hidden' name='comment_name' id='comment_name' class='form-control' value='$sessname' />
      <input type='hidden' name='group_num' id='group_num' class='form-control' value='$currentgroup' />
      <input type='hidden' name='comment_time' id='comment_time' class='form-control' value='$arrivalString' />
-     <input type='hidden' name='comment_id' id='comment_id' class='form-control' value= '$commentvalue' />
     </div>
     <div class='form-group'>
      <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='5'></textarea>
