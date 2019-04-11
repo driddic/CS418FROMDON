@@ -1,101 +1,129 @@
-<!DOCTYPE HTML>
-<html>
-<head><style>.error {color: #FF0000;}</style>
-</head>
-<body>
- <?php
-
+<?php
+      //Messenger Page
       //start php code
       session_start();
       date_default_timezone_set("America/New_York");
       require 'testconn.php';
+      include 'header.php';
+      //initialize variables
 
-      include 'postmessages.php';
-      //initializ variables
-      $comment = "";
-      $commenterror = "";
       $arrival = new DateTime();
       $arrivalString = $arrival->format("Y-m-d H:i:s");
+      $direct=$_GET["treadid"];
+      $sessname = $_SESSION['username'];
+      $sessid= $_SESSION['userid'];
+      $commentvalue = '';
 
-      //include_once 'homepage.php';
+?>
+      <!-- //with this file you will see how I grabbed info from the search bar to
+      //allow the user to direct message another user..
+
+      //I plan to make another table in the bd to -->
+      <div id= "bigbox">
+        <div align=center>
+          <h1>Messages</h1>
+          <?php
+          echo "Direct Messages";
+          //interesting query
+          $dmq = "SELECT DIstinct threadID
+                  FROM (messageroom Inner join users on messageroom.recip = users.userid
+                  OR messageroom.sender = users.userid)
+                  WHERE users.userid  = '$sessid'";
 
 
-      //something fancy
-      if ($_SERVER["REQUEST_METHOD"] == "POST")
-      {
-
-        //on form button click
-        if (isset($_POST['commentsSubmit'])) {
-
-          if (empty($_POST["comment"])) {//if field is empty post error message
-            $commenterror = "Comment is required";
-            header("location: homepage.php?error=noinput");
-            exit();
-          }
-
-          else {  //initialize and run function test input
-            $comment = test_input($_POST["comment"]);
+          $dmconn = mysqli_query($conn, $dmq);
+          if(mysqli_num_rows($dmconn) > 0){
+             // if one or more rows are returned do following
+          while ($results = mysqli_fetch_assoc($dmconn)){
+          echo "<div>
+               <a href='messages.php?treadid=".$results["threadID"]."'name ='".$results["threadID"]."'class='w3-bar-item w3-button'>  ".$results["threadID"]."</a>
+                 </div>";
               }
             }
-        }
+          if (!$direct) {
+            echo "Which chat would you like ?";
+          }
+          elseif ($direct) {
+
+            $reach = "SELECT * FROM messageroom WHERE threadID = '$direct' ORDER BY timestamp ASC ";
+            $reaching = mysqli_query($conn, $reach);
+
+            if (mysqli_num_rows($reaching) > 0) {
+              while ($toot = mysqli_fetch_array($reaching)) {
+              echo '<div class="panel panel-default">
+                 <div class="panel-heading"></div>
+                 <div class="panel-heading">By <b>'.$toot["sender"].'</b> on <i>'.$toot["timestamp"].'</i></div>
+                 <div class="panel-body">'.$toot["message"].'</div>
+                 <div class="panel-footer" align = "center">
+                 </div>';
+                 $receive = $toot["sender"];
+              }
+              // echo $receive;
+            echo "
+            <div class='container'>
+             <form action= 'postmessages.php' method='POST' id='comment_form'>
+              <div class='form-group'>
+              <input type='hidden' name='comment_number' id='comment_number' class='form-control' value= '$commentvalue' />
+               <input type='hidden' name='comment_name' id='comment_name' class='form-control' value='$sessid' />
+               <input type='hidden' name='comment_rec' id='comment_rec' class='form-control' value='$receive' />
+               <input type='hidden' name='thread_num' id='thread_num' class='form-control' value='$direct' />
+               <input type='hidden' name='comment_time' id='comment_time' class='form-control' value='$arrivalString' />
+              </div>
+              <div class='form-group'>
+               <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='5'></textarea>
+              </div>
+              <div class='form-group'>
+               <input type='submit' name='reply' value='Reply' />
+              </div>
+             </form>
+             <span id='comment_message'></span>
+             <br />
+             <div id='display_comment'></div>
+            </div>";
+            }
+
+          }
+
+            else {
+              echo "No group exist";
+            }
 
 
 
-  ?>
-  <!--form-->
-  <?php
-   {
-
-    echo "hello this is group number". $grpclick;
-
-    //on screen
-
-    // echo "<div><p><b>New post:<b> ".$comment."</p>
-    //           <p> at: ".$arrivalString." by: ".$sessname."</p>
-    //
-    // </div>";
 
 
-  }
 
-
-  echo "<form method='POST' action='".setComments($conn)."'>
-    <input type='hidden' name='user' value='".$_SESSION['userid']."'>
-    <input type='hidden' name='timestamp' value='".date('Y-m-d H:i:s')."'>
-    <input type='hidden' name='group' value='".$_GET['groupid']."'>
-     <textarea name='comment' rows='5' cols='80'></textarea>
-     <p><span class='error'>$commenterror</span></p>
-      <button align = center type='submit' name='commentsSubmit' value='Submit'>Post</button>
-  </form>
-  ";
-  ?>
-
+           ?>
+      </div>
+      <div align=center>
+        <h1>New Message</h1>
 
 <?php
-if (isset($_POST['commentsSubmit'])) {
+      if (isset($_POST['submit'])) {
+        //this is where based off what account the user
+        //has selected to message the account selected
+        //information will be filled in automatically
 
-  //on screen
+        //postmessages will be used to input info into the
+        //database
+        $coolid = $_POST['searchedid'];
+        $name = $_POST['searchedname'];
+        $sessid= $_SESSION['userid'];
 
-  // echo "<div><p><b>New post:<b> ".$comment."</p>
-  //           <p> at: ".$arrivalString." by: ".$sessname."</p>
-  //
-  // </div>";
+        echo "New message to ".$name. ""  .$coolid;
 
+        echo"<form action='postmessages.php' method = 'post'>
+        <textarea name='message_content' id='message_content' class='form-control' placeholder='Say Whats Up' rows='5'></textarea>
+        <div class='form-group'>
+        <input type= 'hidden' name='recip' value= ".$coolid.">
+        <input type= 'hidden' name= 'sender' value = ".$sessid.">
+        <input type='submit' name='send' value='Send' />
+       </div>
+       </form>";
 
-}
-//from db
-$chat= "SELECT * FROM messageroom ORDER BY timestamp DESC";
-$room = mysqli_query($conn, $chat);
-if(mysqli_num_rows($room) > 0){ // if one or more rows are returned do following
-    while($chatroom = mysqli_fetch_array($room)){
-      echo "<div><p>Post says: ".$chatroom['message']."</p>
-                <p> at: ".$chatroom['timestamp']." by: ".$chatroom['uname']."</p>
-                <a href= # name = reply> Reply</a>
+      }
 
-      </div>";
-    }
-  }
+      //create a place to send a message to any user
+
 ?>
-
-</body>
-</html>
+  </div>

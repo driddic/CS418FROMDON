@@ -1,6 +1,6 @@
 <?php
 //index.php
-//session_start();
+session_start();
 include 'testconn.php';
 
 ?>
@@ -17,35 +17,44 @@ include 'testconn.php';
    <?php
    $sessname = $_SESSION['username'];
    $sessid= $_SESSION['userid'];
-  $currentgroup= $_GET['grpid'];
-
+  $currentgroup= 6;
+  $comment = "";
+  $commenterror = "";
+  $commentvalue = '';
+  $arrival = new DateTime();
+  $arrivalString = $arrival->format("Y-m-d H:i:s");
+  //$currentgroup= $_GET['groupid'];
+  $results_by_page = 7;
+ //Testing
   // echo $currentgroup;
   // echo $nameofgroup;
-  if (!isset(($_POST[$currentgroup]))) {
-    echo "Hello Pick a Group";
+  if (!$currentgroup) {
+    echo "<h1>Hello, Pick a Group</h1>";
   }
 
-  elseif (isset($_POST[$currentgroup])) {
+  elseif ($currentgroup) {
 
-  echo "
-  <br />
-  <div class='container'>
-   <form method='POST' id='comment_form'>
-    <div class='form-group'>
-     <input type='hidden' name='comment_name' id='comment_name' class='form-control' value='$sessname' />
-    </div>
-    <div class='form-group'>
-     <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='5'></textarea>
-    </div>
-    <div class='form-group'>
-     <input type='hidden' name='comment_id' id='comment_id' value='0' />
-     <input type='submit' name='submit' id='submit' class='btn btn-info' value='Submit' />
-    </div>
-   </form>
-   <span id='comment_message'></span>
-   <br />
-   <div id='display_comment'></div>
-  </div>";
+    echo "
+    <div class='container'>
+     <form action= 'add_comment.php' method='POST' id='comment_form'>
+      <div class='form-group'>
+      <input type='hidden' name='comment_number' id='comment_number' class='form-control' value= '$commentvalue' />
+       <input type='hidden' name='comment_name' id='comment_name' class='form-control' value='@peach' />
+       <input type='hidden' name='comment_id' id='comment_id' class='form-control' value='6' />
+       <input type='hidden' name='group_num' id='group_num' class='form-control' value='$currentgroup' />
+       <input type='hidden' name='comment_time' id='comment_time' class='form-control' value='$arrivalString' />
+      </div>
+      <div class='form-group'>
+       <input name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='5'></textarea>
+      </div>
+      <div class='form-group'>
+       <input type='submit' name='submit' value='Submit' />
+      </div>
+     </form>
+     <span id='comment_message'></span>
+     <br />
+     <div id='display_comment'></div>
+    </div>";
 }
   else {
     echo "No Page!";
@@ -61,7 +70,7 @@ $(document).ready(function(){
   event.preventDefault();
   var form_data = $(this).serialize();
   $.ajax({
-   url:"next/add_comment.php",
+   url:"add_comment.php",
    method:"POST",
    data:form_data,
    dataType:"JSON",
@@ -83,7 +92,7 @@ $(document).ready(function(){
  function load_comment()
  {
   $.ajax({
-   url:"next/fetch_comment.php",
+   url:"fetch_comment.php",
    method:"POST",
    success:function(data)
    {
@@ -95,7 +104,7 @@ $(document).ready(function(){
  $(document).on('click', '.reply', function(){
   var comment_id = $(this).attr("id");
   $('#comment_id').val(comment_id);
-  $('#comment_name').focus();
+  $('#comment_content').focus();
  });
 
 });

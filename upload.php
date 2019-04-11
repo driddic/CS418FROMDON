@@ -25,7 +25,7 @@ if(isset($_POST['upload']))
               //change the status of the users profile image
               $file_name_new = "profile".$sessid.".".$fileActualExt;
               $file_destination = 'assets/'.$file_name_new;
-              $sqlupdate = "UPDATE profileimage SET status = 0 WHERE userid = '$sessid' ";
+              $sqlupdate = "UPDATE profileimage SET status = 0 and keep = 1 WHERE userid = '$sessid' ";
               $result = mysqli_query($conn, $sqlupdate);
               move_uploaded_file($file_tmp_name,$file_destination);
               header("Location: profile.php?uploadsuccess");
@@ -47,7 +47,26 @@ if(isset($_POST['upload']))
           //header("Location: profile.php?error_filetype");
         }
 }
- /////Graveyard
+
+if (isset($_POST['gravpick'])) {
+echo "in the form";
+  if(empty($_POST["option"])){
+   echo "No user id";
+  }else{
+  Echo $answer = $_POST["option"];
+  $name = $_POST["name"];
+  if ($answer == 'yes') {
+    // code...
+    $sqlone = "UPDATE profileimage SET status = 0 and keep = 0 WHERE userid = '$name' ";
+    $result = mysqli_query($conn, $sqlone);
+  }else {
+    $sqltwo = "UPDATE profileimage SET status = 0 and keep = 1 WHERE userid = '$name' ";
+    $result = mysqli_query($conn, $sqltwo);
+  }
+}
+}
+
+ /////*********Graveyard
  //
  // $target_dir = "assets/";
  // $target_file = $target_dir . basename($_FILES["picupload"]["name"]);

@@ -52,6 +52,10 @@ if (isset($_POST['groupsubmit'])) {
 
            exit();
 
+           ///these next few lines will be for the people
+           $admin= "INSERT INTO membership(grpid,userid,uname,active) VALUES('".$last_id."',9, 'admin', 0);"
+           $adminin = mysqli_query($conn,$admin);
+
     }
 
 // else(!isset($_POST['groupsubmit'])) {
