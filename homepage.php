@@ -6,6 +6,7 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+
 ?>
 <main>
   <head>
@@ -84,7 +85,7 @@ else {
        <?php
          $comment = "";
          $commenterror = "";
-         $commentvalue = '';
+         $commentvalue = "0";
          $arrival = new DateTime();
          $arrivalString = $arrival->format("Y-m-d H:i:s");
          $currentgroup= $_GET['groupid'];
@@ -93,16 +94,13 @@ else {
         if (!$currentgroup) {
           echo "pick a group fam";
         }else if($currentgroup) {
-
-
           //Enter Comment HERE
   echo "
   <div class='container'>
-   <form action= 'add_comment.php' method='POST' id='comment_form' enctype ='multipart/form-data'>
+   <form action= 'add_comment.php' method='POST' id='comment_form'>
     <div class='form-group'>
-    <input type='hidden' name='comment_number' id='comment_number' class='form-control' value= '$commentvalue' />
      <input type='hidden' name='comment_name' id='comment_name' class='form-control' value='$sessname' />
-     <input type='hidden' name='comment_id' id='comment_id' class='form-control' value='$sessid' />
+     <input type='hidden' name='user_id' id='user_id' class='form-control' value='$sessid' />
      <input type='hidden' name='group_num' id='group_num' class='form-control' value='$currentgroup' />
      <input type='hidden' name='comment_time' id='comment_time' class='form-control' value='$arrivalString' />
     </div>
@@ -110,21 +108,17 @@ else {
      <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='5'></textarea>
     </div>
     <div class='form-group'>
-    <input type='file' name='picupload' id = 'upload' class = 'form-control' value='picupload'>
-     <input type='submit' name='submit' value='Submit' />
+    <input type='hidden' name='comment_id' id='comment_id' value='0' />
+    <input type='submit' name='submit' value='Submit'/>
     </div>
    </form>
    <span id='comment_message'></span>
    <br />
    <div id='display_comment'></div>
-  </div>";
-
-
-          } else {
+    </div>";
+} else {
     echo "No group exist";
   }
-
-
    ?>
    </div>
   </body>
@@ -142,14 +136,14 @@ $(document).ready(function(){
    dataType:"JSON",
    success:function(data)
    {
-    if(data.error != '')
+     if(data.error != '')
     {
      $('#comment_form')[0].reset();
      $('#comment_message').html(data.error);
      $('#comment_id').val('0');
      load_comment();
-    }
    }
+        }
   })
  });
 
@@ -157,10 +151,13 @@ $(document).ready(function(){
 
  function load_comment()
  {
+  // var altCheck = $(this).find('$currentgroup');
   $.ajax({
    url:"fetch_comment.php",
-   method:"POST",
-   success:function(data)
+   method:"GET",
+   data:{groupajax: <?php echo $currentgroup ?>},
+    //dataType:"JSON",
+    success:function(data)
    {
     $('#display_comment').html(data);
    }
@@ -175,192 +172,3 @@ $(document).ready(function(){
 
 });
 </script>
-<?php
-//           $connect = new PDO('mysql:host=localhost;dbname=university', 'root', '');
-//                       // find out the number of results stored in database
-//             $sql="SELECT * FROM tbl_comment WHERE grpid = '$currentgroup' ORDER BY comment_id DESC";
-//             $result = mysqli_query($connect, $sql);
-//             $number_of_results = mysqli_num_rows($result);
-//             // determine number of total pages available
-//             $number_of_pages = ceil($number_of_results/$results_per_page);
-//             // determine which page number visitor is currently on
-//             if (!isset($_GET['page'])) {
-//               $page = 1;
-//             } else {
-//               $page = $_GET['page'];
-//             }
-//             // determine the sql LIMIT starting number for the results on the displaying page
-//             $this_page_first_result = ($page-1)*$results_per_page;
-//             // retrieve selected results from database and display them on page
-//              $sql="SELECT * FROM tbl_comment WHERE grpid = '$currentgroup' ORDER BY comment_id DESC LIMIT ' $this_page_first_result ','$results_per_page'";
-//              $result = mysqli_query($con, $sql);
-//             while($row = mysqli_fetch_array($result)) {
-//               echo '<div class="panel panel-default">
-//                         <div class="panel-heading">By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
-//                          <div class="panel-body">'.$row["message"].'</div>
-//                          <div class="panel-footer" align = "center">
-//                          <form action= "add_comment.php" method="POST" id="reply_form">
-//                            <input type="text"align="right" name="reply" placeholder="Type reply..." size ="30">
-//                            <button type="submit" align ="left "class="btn btn-default reply" id="'.$row["comment_id"].'">Reply</button>
-//                            </form>
-//                           <button type="button" align ="left" class="btn btn-default reply"id="'.$row["comment_id"].'">CHEER</button>
-//                            <button type="button" align="left" class="btn btn-default reply"id="'.$row["comment_id"].'">BOO</button></div>
-//
-//                         </div>';
-//             }
-//             // display the links to the pages
-//             for ($page=1;$page<=$number_of_pages;$page++) {
-//               echo '<a href="homepage.php?groupid='.$currentgroup.'?page=' . $page . '">' . $page . '</a> ';
-//             }
-//           //sort by groups
-//           //$query = "SELECT * FROM tbl_comment WHERE grpid = '$currentgroup' ORDER BY comment_id DESC";
-//
-//           $statement = $connect->prepare($sql);
-//           $statement->execute();
-//           //
-//
-//           //gathering results from $query to sort the feed/design
-//           $result = $statement->fetchAll();
-//           $output = '';
-//           foreach($result as $row){
-//
-//
-//             if ($sessid == 9) {
-//               $sumthing = $row["uid"];
-//               $sqlmg =" SELECT * FROM profileimage WHERE userid = '$sumthing' ";
-//               $resultmg = mysqli_query($conn, $sqlmg);
-//               while ($rowmg = mysqli_fetch_assoc($resultmg)){
-//
-//
-//                   if ($rowmg['status'] == 0) { //put a class on it
-//                           // echo "<img src = 'assets/profile".$sessid.".jpg' class='avatar'>";
-//                           // echo "<img src = 'assets/profile".$sessid.".png'class='avatar'>";
-//                 $output .= '<div class="panel panel-default">
-//                            <div class="panel-heading">
-//                            <img src = "assets/profile'.$sumthing.'.jpg" class="avatar">
-//                            <img src = "assets/profile'.$sumthing.'.png" class="avatar">
-//                            </div>
-//                            <div class="panel-heading">By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
-//                            <div class="panel-body">'.$row["message"].'</div>
-//                            <div class="panel-footer" align = "center">
-//                            <form action= "add_comment.php" method="POST" id="reply_form">
-//                              <input type="text"align="right" name="reply" placeholder="Type reply..." size ="30">
-//                              <button type="submit" align ="left "class="btn btn-default reply" id="'.$row["comment_id"].'">Reply</button>
-//                              </form>
-//
-//                              <button type="button" align ="left" class="btn btn-default reply"id="'.$row["comment_id"].'">CHEER</button>
-//                              <button type="button" align="left" class="btn btn-default reply"id="'.$row["comment_id"].'">BOO</button></div>
-//                              <form action= "setting.php" method="POST" id="admindelete">
-//                               <input type = "hidden" name="commid" id ="commid" value="'.$row["comment_id"].'"/>
-//                                <button type="submit" name ="delete" align ="left "class="btn btn-default reply" id="'.$row["comment_id"].'">Delete</button>
-//                                </form>
-//                           </div>';
-//                   }else {
-//                     // echo "<img src = 'assets/profile.png' class='avatar'>";
-//
-//                 $output .= '<div class="panel panel-default">
-//                              <div class="panel-heading">
-//                              <img src = "assets/profile.png" class="avatar">
-//                              </div>
-//                              <div class="panel-heading">By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
-//                              <div class="panel-body">'.$row["message"].'</div>
-//                              <div class="panel-footer" align = "center">
-//                              <form action= "add_comment.php" method="POST" id="reply_form">
-//                                <input type="text"align="right" name="reply" placeholder="Type reply..." size ="30">
-//                                <button type="submit" align ="left "class="btn btn-default reply" id="'.$row["comment_id"].'">Reply</button>
-//                                </form>
-//
-//                                <button type="button" align ="left" class="btn btn-default reply"id="'.$row["comment_id"].'">CHEER</button>
-//                                <button type="button" align="left" class="btn btn-default reply"id="'.$row["comment_id"].'">BOO</button></div>
-//                                <form action= "setting.php" method="POST" id="admindelete">
-//                                 <input type = "hidden" name="commid" id ="commid" value="'.$row["comment_id"].'"/>
-//                                  <button type="submit" name ="delete" align ="left "class="btn btn-default reply" id="'.$row["comment_id"].'">Delete</button>
-//                                  </form>
-//                             </div>';
-//                   }}
-//
-//               if($row["parent_comment_id"] == 0)
-//               {
-//                $marginleft = 0;
-//               }
-//               else
-//               {
-//                $marginleft = $marginleft + 66;
-//               }
-//              //displaying output
-//              echo $output;
-//            }
-//             else {
-//               $sumthing = $row["uid"];
-//
-//               $sqlmg =" SELECT * FROM profileimage WHERE userid = '$sumthing' ";
-//               $resultmg = mysqli_query($conn, $sqlmg);
-//               while ($rowmg = mysqli_fetch_assoc($resultmg)){
-//
-//
-//                   if ($rowmg['status'] == 0) { //put a class on it
-//                           // echo "<img src = 'assets/profile".$sessid.".jpg' class='avatar'>";
-//                           // echo "<img src = 'assets/profile".$sessid.".png'class='avatar'>";
-//                 $output .= '<div class="panel panel-default">
-//                            <div class="panel-heading">
-//                            <img src = "assets/profile'.$sessid.'.jpg" class="avatar">
-//                            <img src = "assets/profile'.$sessid.'.png" class="avatar">
-//                            </div>
-//                            <div class="panel-heading">By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
-//                            <div class="panel-body">'.$row["message"].'</div>
-//                            <div class="panel-footer" align = "center">
-//                            <form action= "add_comment.php" method="POST" id="reply_form">
-//                              <input type="text"align="right" name="reply" placeholder="Type reply..." size ="30">
-//                              <button type="submit" align ="left "class="btn btn-default reply" id="'.$row["comment_id"].'">Reply</button>
-//                              </form>
-//
-//                              <button type="button" align ="left" class="btn btn-default reply"id="'.$row["comment_id"].'">CHEER</button>
-//                              <button type="button" align="left" class="btn btn-default reply"id="'.$row["comment_id"].'">BOO</button></div>
-//
-//                           </div>';
-//                   }else {
-//                     // echo "<img src = 'assets/profile.png' class='avatar'>";
-//
-//                 $output .= '<div class="panel panel-default">
-//                              <div class="panel-heading">
-//                              <img src = "assets/profile.png" class="avatar">
-//                              </div>
-//                              <div class="panel-heading">By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
-//                              <div class="panel-body">'.$row["message"].'</div>
-//                              <div class="panel-footer" align = "center">
-//                              <form action= "add_comment.php" method="POST" id="reply_form">
-//                                <input type="text"align="right" name="reply" placeholder="Type reply..." size ="30">
-//                                <button type="submit" align ="left "class="btn btn-default reply" id="'.$row["comment_id"].'">Reply</button>
-//                                </form>
-//
-//                                <button type="button" align ="left" class="btn btn-default reply"id="'.$row["comment_id"].'">CHEER</button>
-//                                <button type="button" align="left" class="btn btn-default reply"id="'.$row["comment_id"].'">BOO</button></div>
-//
-//                             </div>';
-//                   }}
-//
-//
-//
-//
-//               if($row["parent_comment_id"] == 0)
-//               {
-//                $marginleft = 0;
-//               }
-//               else
-//               {
-//                $marginleft = $marginleft + 66;
-//               }
-//              //displaying output
-//              echo $output;
-//            }
-//          }//end of foreach
-// //     echo '<div class="pagination">
-// //   <a href="#">&laquo;</a>
-// //   <a class="active" href="#">1</a>
-// //   <a href="#">2</a>
-// //   <a href="#">3</a>
-// //   <a href="#">4</a>
-// //   <a href="#">5</a>
-// //   <a href="#">6</a>
-// //   <a href="#">&raquo;</a>
-// // </div>'; ?>
