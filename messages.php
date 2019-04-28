@@ -24,17 +24,22 @@
           <h1>Messages</h1>
           <?php
           echo "Direct Messages";
+          ?>
+          <br>
+          <br>
+          <?php
           //interesting query
-          $dmq = "SELECT DIstinct threadID
+          $dmq = "SELECT distinct threadID
                   FROM (messageroom Inner join users on messageroom.recip = users.userid
                   OR messageroom.sender = users.userid)
-                  WHERE users.userid  = '$sessid'";
+                  WHERE users.userid = '$sessid'";
 
 
           $dmconn = mysqli_query($conn, $dmq);
           if(mysqli_num_rows($dmconn) > 0){
              // if one or more rows are returned do following
           while ($results = mysqli_fetch_assoc($dmconn)){
+
           echo "<div>
                <a href='messages.php?treadid=".$results["threadID"]."'name ='".$results["threadID"]."'class='w3-bar-item w3-button'>  ".$results["threadID"]."</a>
                  </div>";
@@ -45,14 +50,14 @@
           }
           elseif ($direct) {
 
-            $reach = "SELECT * FROM messageroom WHERE threadID = '$direct' ORDER BY timestamp ASC ";
+            $reach = "SELECT * FROM (messageroom INNER JOIN users on messageroom.sender = users.userid) WHERE threadID = $direct ORDER BY timestamp ASC ";
             $reaching = mysqli_query($conn, $reach);
 
             if (mysqli_num_rows($reaching) > 0) {
               while ($toot = mysqli_fetch_array($reaching)) {
               echo '<div class="panel panel-default">
                  <div class="panel-heading"></div>
-                 <div class="panel-heading">By <b>'.$toot["sender"].'</b> on <i>'.$toot["timestamp"].'</i></div>
+                 <div class="panel-heading">By <b>'.$toot["uname"].'</b> on <i>'.$toot["timestamp"].'</i></div>
                  <div class="panel-body">'.$toot["message"].'</div>
                  <div class="panel-footer" align = "center">
                  </div>';

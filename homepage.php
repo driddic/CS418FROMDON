@@ -11,15 +11,63 @@
 <main>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <style media="screen">
-    .avatar {
-    vertical-align: middle;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    }
+.avatar {
+vertical-align: middle;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+code, samp, kbd {
+  font-family: "Courier New", Courier, monospace, sans-serif;
+  text-align: left;
+  color: #555;
+  }
+
+.image_upload > form > input
+{
+    display: none;
+  }
+
+.image_upload img
+{
+    width: 24px;
+    cursor: pointer;
+}
+.code_upload img
+{
+    width: 24px;
+    cursor: pointer;
+}
     </style>
   </head>
 <body>
@@ -36,10 +84,14 @@
                   header("Location: index.php?error=loginfirsthp");  }
            ?>
          </h3>
-    <?php
-      //listing groups the user is in
-      echo "Groups";
+         <form class="" action="homepage.php" method="post">
+           <input type="text" name="opensearch" placeholder="OpenSearch for all posts">
+             <input type="submit" name="opens" value="Search">
+           </form>
+      <!-- //listing groups the user is in -->
+      <h4>Groups</h4>
 
+      <?php
       if ($sessid == $adminNum) {
             $seegroup = "SELECT grpname, grpid FROM groups ";
             $show = mysqli_query($conn, $seegroup);
@@ -66,7 +118,7 @@
           echo "<div>
                <a href='homepage.php?groupid=".$results["grpid"]."'name ='".$results["grpname"]."'class='w3-bar-item w3-button'>  ".$results["grpname"]."</a>
                </div>";  // code...
-
+               $groupTitle = $results["grpname"];
             }
           }
 
@@ -91,40 +143,111 @@ else {
          $currentgroup= $_GET['groupid'];
          $results_by_page = 7;
 
+         //how i did openesearch
+         if (isset($_POST["opens"])) {
+          $search = $_POST["opensearch"];
+          $search = htmlspecialchars($search);
+          $search = mysqli_real_escape_string($conn, $search);
+          $raw_results = mysqli_query($conn,"SELECT * FROM tbl_comment WHERE MATCH(message) Against('$search')") or die(mysqli_error($conn));
+          if(mysqli_num_rows($raw_results) > 0){ // if one or more rows are returned do following
+            echo "<div id = 'bigbox'>
+                   <h1 align = center> Search Results</h1>";
+                   while($results = mysqli_fetch_array($raw_results)){
+                echo'  <div class="panel panel-default">
+                      <div class="panel-heading">By <b>'.$results["comment_sender_name"].'</b> on <i>'.$results["date"].'</i></div>
+                      <div class="panel-body">'.$results["message"].'</div>
+                      <div class="panel-footer" align="right">
+                      <button type="button" class="btn btn-default reply" id="'.$results["grpid"].'">'.$results["grpid"].'</button>
+
+                      </div>
+                     </div>';
+            }
+            echo "</div>";
+          }
+        }//end of open search stuff
+
         if (!$currentgroup) {
           echo "pick a group fam";
         }else if($currentgroup) {
           //Enter Comment HERE
-  echo "
+          ?>
+
   <div class='container'>
-   <form action= 'add_comment.php' method='POST' id='comment_form'>
+
+    <form method='POST' id='comment_form' enctype="multipart/form-data" >
     <div class='form-group'>
-     <input type='hidden' name='comment_name' id='comment_name' class='form-control' value='$sessname' />
-     <input type='hidden' name='user_id' id='user_id' class='form-control' value='$sessid' />
-     <input type='hidden' name='group_num' id='group_num' class='form-control' value='$currentgroup' />
-     <input type='hidden' name='comment_time' id='comment_time' class='form-control' value='$arrivalString' />
-    </div>
-    <div class='form-group'>
+     <input type="hidden" name='comment_name' id='comment_name' class='form-control' value='<?php echo $sessname?>' />
+     <input type="hidden" name='user_id' id='user_id' class='form-control' value='<?php echo $sessid?>' />
+     <input type="hidden" name="group_num" id='group_num' class='form-control' value='<?php echo $currentgroup?>' />
+     <input type="hidden" name="comment_time" id='comment_time' class='form-control' value='<?php echo $arrivalString?>' />
+     <input type="hidden" name="comment_id" id="comment_id" class='form-control' value='0' />
      <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='5'></textarea>
-    </div>
-    <div class='form-group'>
-    <input type='hidden' name='comment_id' id='comment_id' value='0' />
+     <input type="file" name="uploadFile" id="uploadFile" class='form-control'  />
+     <img id="blah" src="#" alt="img" width="200" height="200"/>
     <input type='submit' name='submit' value='Submit'/>
-    </div>
    </form>
+ </div>
    <span id='comment_message'></span>
-   <br />
-   <div id='display_comment'></div>
-    </div>";
+
+   <br>
+   <div id='pagination_data'></div>
+ <!-- <div id='display_comment'></div> -->
+<?php
+
+// If upload button is clicked ...
+if (isset($_POST['submit'])) {
+  // Get image name
+  $image = $_FILES['image']['name'];
+  // Get text
+  $image_text = mysqli_real_escape_string($conn, $_POST['image_text']);
+
+  // image file directory
+  $target = "images/".basename($image);
+
+  $sql = "INSERT INTO images (image, image_text) VALUES ('$image', '$image_text')";
+  // execute query
+  mysqli_query($conn, $sql);
+
+  if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+    $msg = "Image uploaded successfully";
+  }else{
+    $msg = "Failed to upload image";
+  }
+}
+
+ ?>
+
+</div>
+</div>
+    <?php
 } else {
     echo "No group exist";
   }
    ?>
-   </div>
   </body>
 </main>
 <script>
+
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#blah').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#uploadFile").change(function() {
+  readURL(this);
+});
+
 $(document).ready(function(){
+  $("#message").empty();
+  $('#loading').show();
 
  $('#comment_form').on('submit', function(event){
   event.preventDefault();
@@ -133,7 +256,6 @@ $(document).ready(function(){
    url:"add_comment.php",
    method:"POST",
    data:form_data,
-   dataType:"JSON",
    success:function(data)
    {
      if(data.error != '')
@@ -143,32 +265,67 @@ $(document).ready(function(){
      $('#comment_id').val('0');
      load_comment();
    }
-        }
+  }
   })
  });
 
+
+
  load_comment();
 
- function load_comment()
- {
-  // var altCheck = $(this).find('$currentgroup');
-  $.ajax({
+ function load_comment(page)
+ { $.ajax({
    url:"fetch_comment.php",
-   method:"GET",
-   data:{groupajax: <?php echo $currentgroup ?>},
-    //dataType:"JSON",
-    success:function(data)
-   {
-    $('#display_comment').html(data);
+   method:"POST",
+   data:{groupajax: <?php echo $currentgroup ?>,
+         page:page},
+    success:function(data){
+  //  $('#display_comment').html(data);
+    $('#pagination_data').html(data);
    }
   })
  }
-
+ $(document).on('click', '.pagination_link', function(){
+      var page = $(this).attr("id");
+      load_data(page);
+ });
  $(document).on('click', '.reply', function(){
   var comment_id = $(this).attr("id");
   $('#comment_id').val(comment_id);
   $('#comment_content').focus();
  });
 
+ $('#uploadFile').on('change', function(){
+  $('#uploadImage').ajaxSubmit({
+   target: "#comment_content",
+   resetForm: true
+  });
+ });
 });
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 </script>

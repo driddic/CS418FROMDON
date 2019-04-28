@@ -17,6 +17,17 @@ $fiveyes = mysqli_query($conn, $five);
      <main>
        <div id= "bigbox">
          <div align=center>
+           <h1>Recommended Groups</h1>
+           <br>
+           <?php
+            //Recommended by groups those in direct messages who are not in a group together
+
+            //SELECT groups.grpid,recip,grpname FROM ((`membership` INNER JOIN messageroom on membership.userid = messageroom.recip) INNER JOIN groups on membership.grpid = groups.grpid) WHERE messageroom.sender = '1'
+            $echo =
+
+
+
+            ?>
            <h1>Notifications</h1>
            <!-- If a user is invited to join a group the button to join will show here -->
            <?php
@@ -100,7 +111,7 @@ $fiveyes = mysqli_query($conn, $five);
                 $currentgroup= $_GET['groupid'];
                 if (!$currentgroup) {
                  echo "select a group";
-               }else if($currentgroup) {
+               }else if(isset($currentgroup)) {
                  //show members of group selected
                  echo "Group Settings";
                  echo "</br>";
@@ -164,28 +175,15 @@ $fiveyes = mysqli_query($conn, $five);
                     <br><br>
                   <input type="submit">
                   </form>
-
-
                     <?php
-                  //echo "<a href='groupsettings.php?groupid=".$currentgroup."'
-                  //>Invite More</a>";
-
-                  // echo "<div>
-                  //      <a href='group.php?groupid=".$results["grpid"]."'
-                  //name ='".$results["grpname"]."'class='w3-bar-item w3-button'>
-                  // ".$results["grpname"]."</a>
-                  //        </div>";
-                }
+                    }
 
          }else {
            echo "No group exist";
          }
-
-          //
-          //
+                //
           ///Archived Groups
-          ///
-          ///
+
             ?>
 
             <div align=center>
@@ -215,7 +213,7 @@ $fiveyes = mysqli_query($conn, $five);
 
 
 
-           <?php
+           <?php ///List results for groups searched
            if(mysqli_num_rows($rawresults) > 0){ // if one or more rows are returned do following
                while($results = mysqli_fetch_array($rawresults)){
                  if(!empty($_POST['grpsearch'])){

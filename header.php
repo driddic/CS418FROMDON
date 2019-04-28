@@ -10,33 +10,21 @@
     error_reporting(E_ALL); ?>
 
     <script src="./assets/index.js"></script>
-    <!-- <script>
-      $(document).ready(function(){
-        $("#search").keyup(function(){
-          $("#here").show();
-          var x = $(this).val();
-          $.ajax(
-            {
-                type:'GET',
-                url:'search.php',
-                data:'query='+x;
-                success:function(data)
-                {
-                  $("#here").html(data);
-                }
 
-            });
-        });
-      });
-
-    </script> -->
     <style media="screen">
     .avatar {
     vertical-align: middle;
     width: 50px;
     height: 50px;
     border-radius: 50%;
+
     }
+    
+    #help{
+      height: 500px;
+      width: 1000px;
+        }
+
     </style>
     <link rel="stylesheet" type="text/css" href="./assets/index.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -77,10 +65,9 @@ function showResult(str) {
              <a href="group.php" class="w3-bar-item w3-button w3-mobile">Groups</a>
              <a href="messages.php" class="w3-bar-item w3-button w3-mobile">Messenger</a>
              <a href="help.php" class="w3-bar-item w3-button w3-mobile">Help</a>
-             <a href="logout.php" style = "float:right" type = "logout" name = "logout"
-             class="w3-bar-item w3-button w3-mobile">Logout</a>
+             <a href="logout.php" style = "float:right" id = "logout" class="w3-bar-item w3-button w3-mobile">Logout</a>
              <!-- Live Search -->
-             <form align="right" style="float:right" action="search.php" method="POST" >
+             <form style="float:right" action="search.php" method="POST" >
              <input type="text" class="w3-bar-item w3-input w3-white"
               placeholder="Search Users.." size = "70" onkeyup="showResult(this.value)">
              <!-- <button type="submit" class="w3-bar-item w3-button w3-grey w3-mobile" >goODU</button> -->

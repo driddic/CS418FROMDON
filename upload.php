@@ -59,13 +59,26 @@ echo "in the form";
     // code...
     $sqlone = "UPDATE profileimage SET status = 0 and keep = 0 WHERE userid = '$name' ";
     $result = mysqli_query($conn, $sqlone);
+    header("Location:profile.php?uid=".$name);
   }else {
     $sqltwo = "UPDATE profileimage SET status = 0 and keep = 1 WHERE userid = '$name' ";
     $result = mysqli_query($conn, $sqltwo);
+    header("Location:profile.php?uid=".$name);
   }
 }
 }
-
+if(!empty($_FILES))
+{
+ if(is_uploaded_file($_FILES['uploadFile']['tmp_name']))
+ {
+  $_source_path = $_FILES['uploadFile']['tmp_name'];
+  $target_path = 'groups/' . $_FILES['uploadFile']['name'];
+  if(move_uploaded_file($_source_path, $target_path))
+  {
+   echo '<p><img src="'.$target_path.'" class="img-thumbnail" width="200" height="160" /></p><br />';
+  }
+ }
+}
  /////*********Graveyard
  //
  // $target_dir = "assets/";

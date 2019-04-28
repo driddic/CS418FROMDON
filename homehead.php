@@ -16,7 +16,7 @@
            <a href="index.php" class="w3-bar-item w3-button w3-mobile">Log-In</a>
            <a href="signup.php" class="w3-bar-item w3-button w3-mobile">Sign-Up</a>
            <a href="homehelp.php" class="w3-bar-item w3-button w3-mobile">Help</a>
-           <a href="index.php"style = "float:right" class="w3-bar-item w3-button w3-mobile">goODU</a>
+           <a href="index.php" style = "float:right" class="w3-bar-item w3-button w3-mobile">goODU</a>
          </div>
        </div>
      </header>
