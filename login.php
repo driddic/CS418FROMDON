@@ -33,7 +33,7 @@ if(isset ($_POST['submit']))
                                  $_SESSION['password'] = $row['pwd'];
 
                                  //$_SESSION['logged_in']= true;
-                                 header("Location: homepage.php");
+                                 header("Location: authenic.php");
                                  exit();
                        }
 
