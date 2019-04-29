@@ -57,11 +57,11 @@ echo "in the form";
   $name = $_POST["name"];
   if ($answer == 'yes') {
     // code...
-    $sqlone = "UPDATE profileimage SET status = 0 and keep = 0 WHERE userid = '$name' ";
+    $sqlone = "UPDATE profileimage SET keep = 0 WHERE userid = '$name' ";
     $result = mysqli_query($conn, $sqlone);
     header("Location:profile.php?uid=".$name);
   }else {
-    $sqltwo = "UPDATE profileimage SET status = 0 and keep = 1 WHERE userid = '$name' ";
+    $sqltwo = "UPDATE profileimage SET keep = 1 WHERE userid = '$name' ";
     $result = mysqli_query($conn, $sqltwo);
     header("Location:profile.php?uid=".$name);
   }

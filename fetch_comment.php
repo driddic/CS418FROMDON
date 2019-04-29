@@ -41,7 +41,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 
  $output .= '
  <div class="panel panel-default">
-  <div class="panel-heading">By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
+  <div class="panel-heading"><img class= "avatar" src = "assets/profile'.$row["uid"].'.png">
+  By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
   <div class="panel-body"><img src = "images/'.$row["image"].'"></div>
   <div class="panel-body">'.$row["message"].'</div>
   <div class="panel-footer" align="right">
@@ -57,8 +58,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 } for($i=1; $i<=$total_pages; $i++)
  {
-   echo '<a href="homepage.php?groupid='.$group.'?page=' . $i . '">' . $i . '</a> ';
-   //$output .= "<span class='pagination_link' style='cursor:pointer; padding:6px; border:1px solid #ccc;' id='".$i."'>".$i."</span>";
+   echo '<a href="homepage.php?groupid='.$group.'#' . $i . '">' . $i . '</a> ';
+//  $output .= "<span class='pagination_data' style='cursor:pointer; padding:6px; border:1px solid #ccc;' id='".$i."'>".$i."</span>";
  }
 echo $output;
 // display the links to the pages
@@ -79,7 +80,7 @@ echo $output;
      while ($row = mysqli_fetch_assoc($sabbathsec)) {
      $output .= '
      <div class="panel panel-default" style="margin-left:'.$marginleft.'px">
-      <div class="panel-heading">By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
+      <div class="panel-heading"><img class= "avatar" src = "assets/profile'.$row["uid"].'.png">By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
       <div class="panel-body">'.$row["message"].'</div>
       <div class="panel-footer" align="right"><button type="button" class="btn btn-default reply" id="'.$row["comment_id"].'">Reply</button></div>
      </div>

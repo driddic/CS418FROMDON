@@ -174,7 +174,7 @@ else {
 
   <div class='container'>
 
-    <form method='POST' id='comment_form' enctype="multipart/form-data" >
+    <form method='POST' id='comment_form' enctype="multipart/form-data" action="add_comment.php" >
     <div class='form-group'>
      <input type="hidden" name='comment_name' id='comment_name' class='form-control' value='<?php echo $sessname?>' />
      <input type="hidden" name='user_id' id='user_id' class='form-control' value='<?php echo $sessid?>' />
@@ -182,40 +182,33 @@ else {
      <input type="hidden" name="comment_time" id='comment_time' class='form-control' value='<?php echo $arrivalString?>' />
      <input type="hidden" name="comment_id" id="comment_id" class='form-control' value='0' />
      <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='5'></textarea>
+
      <input type="file" name="uploadFile" id="uploadFile" class='form-control'  />
      <img id="blah" src="#" alt="img" width="200" height="200"/>
     <input type='submit' name='submit' value='Submit'/>
    </form>
+
  </div>
    <span id='comment_message'></span>
+   <button id="myBtn">input code</button>
 
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+  <span class="close">&times;</span>
+  <form id="comment_form" action="add_comment.php" method="post">
+    <textarea name="name" rows="8" cols="80"></textarea>
+    <input type="submit" name="code_upload" value="Post Code">
+  </form>
+  </div>
+
+  </div>
    <br>
-   <div id='pagination_data'></div>
+   <span id='pagination_data'></span>
  <!-- <div id='display_comment'></div> -->
-<?php
 
-// If upload button is clicked ...
-if (isset($_POST['submit'])) {
-  // Get image name
-  $image = $_FILES['image']['name'];
-  // Get text
-  $image_text = mysqli_real_escape_string($conn, $_POST['image_text']);
-
-  // image file directory
-  $target = "images/".basename($image);
-
-  $sql = "INSERT INTO images (image, image_text) VALUES ('$image', '$image_text')";
-  // execute query
-  mysqli_query($conn, $sql);
-
-  if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-    $msg = "Image uploaded successfully";
-  }else{
-    $msg = "Failed to upload image";
-  }
-}
-
- ?>
 
 </div>
 </div>
@@ -256,6 +249,7 @@ $(document).ready(function(){
    url:"add_comment.php",
    method:"POST",
    data:form_data,
+        
    success:function(data)
    {
      if(data.error != '')

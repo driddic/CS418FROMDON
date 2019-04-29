@@ -119,16 +119,13 @@ if ($sessid == $pickid) {
         while ($rowImg = mysqli_fetch_assoc($resultImg)){
           echo "<h2 style='text-align:center'>User Profile</h2>
                 <div>";
-
-
-
             if ($rowImg['status'] == 0) { //put a class on it
               //gravatar code
               if ($rowImg['keep'] == 0) {
               //if user elects to keep the gravatar as default
               //show the gravatar
               $email = $results["email"];
-              $email;
+
               $default = 'assets/profile'.$sessid.'.png';
               $size = 180;
              $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
@@ -142,6 +139,7 @@ if ($sessid == $pickid) {
             }else {
               echo "<img src = 'assets/profile.png'>";
             }
+          }
             //reputation model formula votes, posts and groups
             //posts
             $sqlfive= "SELECT count(comment_id) FROM tbl_comment
@@ -188,7 +186,7 @@ if ($sessid == $pickid) {
         </form>
 
         <?php
-            }}}
+            }}
         else {
           echo "no users found";
         }
