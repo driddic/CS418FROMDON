@@ -2,21 +2,25 @@
     session_start();
     require_once 'testconn.php';
     include 'header.php';
-
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-
 ?>
 <main>
   <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+     <!--
+     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   -->
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+     <!--
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
+   -->
     <style media="screen">
 .avatar {
 vertical-align: middle;
@@ -38,7 +42,6 @@ border-radius: 50%;
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-
 /* Modal Content */
 .modal-content {
   background-color: #fefefe;
@@ -52,12 +55,10 @@ code, samp, kbd {
   text-align: left;
   color: #555;
   }
-
 .image_upload > form > input
 {
     display: none;
   }
-
 .image_upload img
 {
     width: 24px;
@@ -121,12 +122,10 @@ code, samp, kbd {
                $groupTitle = $results["grpname"];
             }
           }
-
       }
 else {
   echo "no code";
 }
-
       ?>
     </div>
 
@@ -142,7 +141,6 @@ else {
          $arrivalString = $arrival->format("Y-m-d H:i:s");
          $currentgroup= $_GET['groupid'];
          $results_by_page = 7;
-
          //how i did openesearch
          if (isset($_POST["opens"])) {
           $search = $_POST["opensearch"];
@@ -158,14 +156,12 @@ else {
                       <div class="panel-body">'.$results["message"].'</div>
                       <div class="panel-footer" align="right">
                       <button type="button" class="btn btn-default reply" id="'.$results["grpid"].'">'.$results["grpid"].'</button>
-
                       </div>
                      </div>';
             }
             echo "</div>";
           }
         }//end of open search stuff
-
         if (!$currentgroup) {
           echo "pick a group fam";
         }else if($currentgroup) {
@@ -174,42 +170,48 @@ else {
 
   <div class='container'>
 
-    <form method='POST' id='comment_form' enctype="multipart/form-data" action="add_comment.php" >
-    <div class='form-group'>
+    <form id='comment_form' enctype="multipart/form-data" >
+    <!-- <div class='form-group'>
+    </div> -->
+   <div class="form-group">
+     <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='5'></textarea>
+   </div>
+   <!-- <div class="form-group"> -->
+    <!-- <label>Enter Image Url</label>
+    <input type="text" name="image_url" id="image_url" class="form-control" />
+   </div>
+   <div class="form-group">
+    <input type="button" name="post_url" id="post_url" value="Upload" class="btn btn-info" />
+   </div>
+   <br />
+   <div id="result"><img src="upload/upload-image-from-url-using-php-with-ajax.png" class="img-thumbnail img-responsive" /></div>
+
+  <div style="clear:both"></div> -->
+
+   <div class="form-group">
+     <input type="file" name="uploadFile" id="uploadFile" class='form-control'/>
+     <img id="blah" src="#" alt="img" width="200" height="200"/>
+   </div>
+   <div class="form-group">
      <input type="hidden" name='comment_name' id='comment_name' class='form-control' value='<?php echo $sessname?>' />
      <input type="hidden" name='user_id' id='user_id' class='form-control' value='<?php echo $sessid?>' />
      <input type="hidden" name="group_num" id='group_num' class='form-control' value='<?php echo $currentgroup?>' />
      <input type="hidden" name="comment_time" id='comment_time' class='form-control' value='<?php echo $arrivalString?>' />
-     <input type="hidden" name="comment_id" id="comment_id" class='form-control' value='0' />
-     <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='5'></textarea>
 
-     <input type="file" name="uploadFile" id="uploadFile" class='form-control'  />
-     <img id="blah" src="#" alt="img" width="200" height="200"/>
-    <input type='submit' name='submit' value='Submit'/>
+     <input type="hidden" name="comment_id" id="comment_id" class='form-control' value='<?php echo $commentvalue ?>' />
+     <input type='submit' name='submit' value='Submit'/>
+     </div>
    </form>
-
- </div>
    <span id='comment_message'></span>
-   <button id="myBtn">input code</button>
 
-  <!-- The Modal -->
-  <div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-  <span class="close">&times;</span>
-  <form id="comment_form" action="add_comment.php" method="post">
-    <textarea name="name" rows="8" cols="80"></textarea>
-    <input type="submit" name="code_upload" value="Post Code">
-  </form>
-  </div>
-
-  </div>
    <br>
-   <span id='pagination_data'></span>
+   <div class="table-responsive" id="pagination_data">
+   </div>
  <!-- <div id='display_comment'></div> -->
 
 
+
+</div>
 </div>
 </div>
     <?php
@@ -220,28 +222,22 @@ else {
   </body>
 </main>
 <script>
-
 function readURL(input) {
-
   if (input.files && input.files[0]) {
     var reader = new FileReader();
-
     reader.onload = function(e) {
       $('#blah').attr('src', e.target.result);
     }
-
     reader.readAsDataURL(input.files[0]);
   }
 }
-
 $("#uploadFile").change(function() {
   readURL(this);
 });
-
 $(document).ready(function(){
   $("#message").empty();
   $('#loading').show();
-
+//bread and butter: upload and load comment
  $('#comment_form').on('submit', function(event){
   event.preventDefault();
   var form_data = $(this).serialize();
@@ -249,7 +245,7 @@ $(document).ready(function(){
    url:"add_comment.php",
    method:"POST",
    data:form_data,
-        
+   dataType:'JSON',
    success:function(data)
    {
      if(data.error != '')
@@ -262,11 +258,7 @@ $(document).ready(function(){
   }
   })
  });
-
-
-
  load_comment();
-
  function load_comment(page)
  { $.ajax({
    url:"fetch_comment.php",
@@ -279,47 +271,74 @@ $(document).ready(function(){
    }
   })
  }
+ //pagination switching
  $(document).on('click', '.pagination_link', function(){
       var page = $(this).attr("id");
-      load_data(page);
+      load_comment(page);
  });
+ //what happpens when reply
  $(document).on('click', '.reply', function(){
   var comment_id = $(this).attr("id");
   $('#comment_id').val(comment_id);
   $('#comment_content').focus();
  });
-
+ //thumbnail
  $('#uploadFile').on('change', function(){
   $('#uploadImage').ajaxSubmit({
    target: "#comment_content",
    resetForm: true
   });
  });
+
+ //url code
+ $('#').click(function(){
+  var image_url = $('#image_url').val();
+  if(image_url == '')
+  {
+   alert("Please enter image url");
+   return false;
+  }
+  else
+  {
+   $('#post_url').attr("disabled", "disabled");
+   $.ajax({
+    url:"post.php",
+    method:"POST",
+    data:{image_url:image_url},
+    dataType:"JSON",
+    beforeSend:function(){
+     $('#post_url').val("Processing...");
+    },
+    success:function(data)
+    {
+     $('#image_url').val('');
+     $('#post_url').val('Upload');
+     $('#post_url').attr("disabled", false);
+     $('#result').html(data.image);
+     alert(data.message);
+    }
+   })
+  }
+ });
 });
 // Get the modal
 var modal = document.getElementById('myModal');
-
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
-
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-
 // When the user clicks the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
 }
-
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
 }
-
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
-
 </script>

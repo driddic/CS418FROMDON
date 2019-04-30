@@ -2,6 +2,9 @@
 include 'testconn.php';
 session_start();
 $sessid = $_SESSION['userid'];
+//from main homepage
+
+
 
 //check for uploaded file
 if(isset($_POST['upload']))
