@@ -6,72 +6,129 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 ?>
-<main>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
   <head>
-     <!--
-     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-   -->
+    <meta charset="utf-8">
+    <title>homepage</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-     <!--
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
-   -->
-    <style media="screen">
-.avatar {
-vertical-align: middle;
-width: 50px;
-height: 50px;
-border-radius: 50%;
-}
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-code, samp, kbd {
-  font-family: "Courier New", Courier, monospace, sans-serif;
-  text-align: left;
-  color: #555;
-  }
-.image_upload > form > input
-{
-    display: none;
-  }
-.image_upload img
-{
-    width: 24px;
-    cursor: pointer;
-}
-.code_upload img
-{
-    width: 24px;
-    cursor: pointer;
-}
-    </style>
+      <!--
+    -->
+     <style media="screen">
+           .avatar {
+           vertical-align: middle;
+           width: 50px;
+           height: 50px;
+           border-radius: 50%;
+           }
+           /* The Modal (background) */
+           .modal {
+             display: none; /* Hidden by default */
+             position: fixed; /* Stay in place */
+             z-index: 1; /* Sit on top */
+             padding-top: 100px; /* Location of the box */
+             left: 0;
+             top: 0;
+             width: 100%; /* Full width */
+             height: 100%; /* Full height */
+             overflow: auto; /* Enable scroll if needed */
+             background-color: rgb(0,0,0); /* Fallback color */
+             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+           }
+           /* Modal Content */
+           .modal-content {
+             background-color: #fefefe;
+             margin: auto;
+             padding: 20px;
+             border: 1px solid #888;
+             width: 80%;
+           }
+           code, samp, kbd {
+             font-family: "Courier New", Courier, monospace, sans-serif;
+             text-align: left;
+             color: #555;
+             }
+           .image_upload > form > input
+           {
+               display: none;
+             }
+           .image_upload img
+           {
+               width: 24px;
+               cursor: pointer;
+           }
+           .code_upload img
+           {
+               width: 24px;
+               cursor: pointer;
+           }
+           .slider.round {
+             border-radius: 34px;
+           }
+
+           .slider.round:before {
+             border-radius: 50%;
+           }
+           .switch {
+             position: relative;
+             display: inline-block;
+             width: 60px;
+             height: 34px;
+           }
+
+           .switch input {
+             opacity: 0;
+             width: 0;
+             height: 0;
+           }
+
+           .slider {
+             position: absolute;
+             cursor: pointer;
+             top: 0;
+             left: 0;
+             right: 0;
+             bottom: 0;
+             background-color: #ccc;
+             -webkit-transition: .4s;
+             transition: .4s;
+           }
+
+           .slider:before {
+             position: absolute;
+             content: "";
+             height: 26px;
+             width: 26px;
+             left: 4px;
+             bottom: 4px;
+             background-color: white;
+             -webkit-transition: .4s;
+             transition: .4s;
+           }
+
+           input:checked + .slider {
+             background-color: #2196F3;
+           }
+
+           input:focus + .slider {
+             box-shadow: 0 0 1px #2196F3;
+           }
+
+           input:checked + .slider:before {
+             -webkit-transform: translateX(26px);
+             -ms-transform: translateX(26px);
+             transform: translateX(26px);
+           }
+     </style>
   </head>
-<body>
+  <body>
     <!-- SIDEBAR -->
     <div id= "sidebar" class="w3-sidebar s3 w3-dark-blue w3-bar-block" style= "width:15%">
       <h3 class ="w3-bar-item">
@@ -89,6 +146,7 @@ code, samp, kbd {
            <input type="text" name="opensearch" placeholder="OpenSearch for all posts">
              <input type="submit" name="opens" value="Search">
            </form>
+
       <!-- //listing groups the user is in -->
       <h4>Groups</h4>
 
@@ -169,48 +227,29 @@ else {
           ?>
 
   <div class='container'>
-
-    <form id='comment_form' enctype="multipart/form-data" >
-    <!-- <div class='form-group'>
-    </div> -->
+  <form id='comment_form' class="w3-form-post" enctype="multipart/form-data" >
    <div class="form-group">
-     <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='5'></textarea>
+     <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='5'>
+     </textarea>
    </div>
-   <!-- <div class="form-group"> -->
-    <!-- <label>Enter Image Url</label>
-    <input type="text" name="image_url" id="image_url" class="form-control" />
-   </div>
-   <div class="form-group">
-    <input type="button" name="post_url" id="post_url" value="Upload" class="btn btn-info" />
-   </div>
-   <br />
-   <div id="result"><img src="upload/upload-image-from-url-using-php-with-ajax.png" class="img-thumbnail img-responsive" /></div>
-
-  <div style="clear:both"></div> -->
-
-   <div class="form-group">
-     <input type="file" name="uploadFile" id="uploadFile" class='form-control'/>
-     <img id="blah" src="#" alt="img" width="200" height="200"/>
-   </div>
-   <div class="form-group">
-     <input type="hidden" name='comment_name' id='comment_name' class='form-control' value='<?php echo $sessname?>' />
-     <input type="hidden" name='user_id' id='user_id' class='form-control' value='<?php echo $sessid?>' />
-     <input type="hidden" name="group_num" id='group_num' class='form-control' value='<?php echo $currentgroup?>' />
-     <input type="hidden" name="comment_time" id='comment_time' class='form-control' value='<?php echo $arrivalString?>' />
-
-     <input type="hidden" name="comment_id" id="comment_id" class='form-control' value='<?php echo $commentvalue ?>' />
-     <input type='submit' name='submit' value='Submit'/>
+    <div class="form-group">
+     <input type="hidden" name='comment_name' id='comment_name' class='form-control' value='<?php echo $sessname?>' >
+     <input type="hidden" name='user_id' id='user_id' class='form-control' value='<?php echo $sessid?>' >
+     <input type="hidden" name="group_num" id='group_num' class='form-control' value='<?php echo $currentgroup?>' >
+     <input type="hidden" name="comment_time" id='comment_time' class='form-control' value='<?php echo $arrivalString?>' >
+     <div class="form-group" align="left">
+      Code: <input type="checkbox" name="code_upload" value="1">
+     </div>
+     <input type="hidden" name="comment_id" id="comment_id" class='form-control' value='<?php echo $commentvalue ?>' >
+     <input type='submit' name='submit' id='submit'   value='Post'>
      </div>
    </form>
    <span id='comment_message'></span>
 
    <br>
-   <div class="table-responsive" id="pagination_data">
-   </div>
+   <div class="table-responsive" id="pagination_data"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
  <!-- <div id='display_comment'></div> -->
-
-
-
 </div>
 </div>
 </div>
@@ -220,7 +259,8 @@ else {
   }
    ?>
   </body>
-</main>
+</html>
+
 <script>
 function readURL(input) {
   if (input.files && input.files[0]) {
@@ -237,7 +277,6 @@ $("#uploadFile").change(function() {
 $(document).ready(function(){
   $("#message").empty();
   $('#loading').show();
-//bread and butter: upload and load comment
  $('#comment_form').on('submit', function(event){
   event.preventDefault();
   var form_data = $(this).serialize();
@@ -245,7 +284,6 @@ $(document).ready(function(){
    url:"add_comment.php",
    method:"POST",
    data:form_data,
-   dataType:'JSON',
    success:function(data)
    {
      if(data.error != '')
@@ -271,54 +309,20 @@ $(document).ready(function(){
    }
   })
  }
- //pagination switching
  $(document).on('click', '.pagination_link', function(){
       var page = $(this).attr("id");
-      load_comment(page);
+      load_data(page);
  });
- //what happpens when reply
  $(document).on('click', '.reply', function(){
   var comment_id = $(this).attr("id");
   $('#comment_id').val(comment_id);
   $('#comment_content').focus();
  });
- //thumbnail
  $('#uploadFile').on('change', function(){
   $('#uploadImage').ajaxSubmit({
    target: "#comment_content",
    resetForm: true
   });
- });
-
- //url code
- $('#').click(function(){
-  var image_url = $('#image_url').val();
-  if(image_url == '')
-  {
-   alert("Please enter image url");
-   return false;
-  }
-  else
-  {
-   $('#post_url').attr("disabled", "disabled");
-   $.ajax({
-    url:"post.php",
-    method:"POST",
-    data:{image_url:image_url},
-    dataType:"JSON",
-    beforeSend:function(){
-     $('#post_url').val("Processing...");
-    },
-    success:function(data)
-    {
-     $('#image_url').val('');
-     $('#post_url').val('Upload');
-     $('#post_url').attr("disabled", false);
-     $('#result').html(data.image);
-     alert(data.message);
-    }
-   })
-  }
  });
 });
 // Get the modal
