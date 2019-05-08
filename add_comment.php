@@ -7,27 +7,64 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 $error = '';
 $comment_content = '';
-// If comment field is empty display this error or else
-// set whats in the comments to this variable
-if (empty($_FILES['image']['name'])) {
-echo "no photo";
-$tool = '';
-}else {
-  // code...
-echo  $image = $_FILES['image']['name'];
-  // Get text
-//  $image_text = mysqli_real_escape_string($db, $_POST['image_text']);
-  // image file directory
-  $target = "images/".basename($image);
-  echo "</br>";
-  echo $tool = basename($image);
-  echo "</br>";
-  if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-    echo "Image uploaded successfully";
-  }else{
-    $error .= "Failed to upload image";
+
+
+//picture stuff
+
+
+
+if (isset($_POST['postUpload'])) {
+  if($_FILES["file"]["name"] != '')
+  {
+   $test = explode('.', $_FILES["file"]["name"]);
+   $ext = end($test);
+   $name = rand(100, 999) . '.' . $ext;
+   $location = './upload/' . $name;
+   move_uploaded_file($_FILES["file"]["tmp_name"], $location);
+   echo '<img src="'.$location.'" height="150" width="225" class="img-thumbnail" />';
   }
+  // $file = $_FILES['image'];
+  // $file_name = $_FILES['image']['name'];
+  // $file_type = $_FILES['image']['type'];
+  // $file_tmp_name = $_FILES['image']['tmp_name'];
+  // $file_size = $_FILES['image']['size'];
+  // $file_error = $_FILES['image']['error'];
+  //
+  // $fileExt = explode('.', $file_name);
+  // $fileActualExt = strtolower(end($fileExt));
+  //
+  // $allowed = array('jpg','jpeg', 'png', 'gif');
+  //
+  // if (in_array($fileActualExt, $allowed)) {
+  //   if ($file_error == 0){
+  //     if ($file_size < 1000000) {
+  //       //change the status of the users profile image
+  //       $file_name_new = rand(100,999).time().".".$fileActualExt;
+  //       $file_destination = 'upload/'.$file_name_new;
+  //       move_uploaded_file($file_tmp_name,$file_destination);
+  //       echo "Good job";
+  //     }
+  //     else {
+  //       echo "Your file is too big!";
+  //     //  header("Location: profile.php?error_size");
+  //     }
+  //   }
+  //   else {
+  //     echo "There was an error uploading your file!";
+  //   //  header("Location: profile.php?error_upload");
+  //   }
+  // }
+  //
+  // else {
+  //
+  //   echo "You cannot upload files of this type!";
+  //   //header("Location: profile.php?error_filetype");
+  // }
+
 }
+
+
+
 
 if(empty($_POST["comment_content"])){
  $error .= '<p class="text-danger">Comment is required</p>';
@@ -63,6 +100,11 @@ $error .= '<p class="text-danger">No time input</p>';
 $dateandtime = $_POST["comment_time"];
 echo "go time";
 }
+if ($_POST["code_upload"] == 1) {
+  $code = $_POST["code_upload"];
+}else {
+  echo "no code";
+}
 $commentnum = $_POST["comment_id"];
 //   if(empty($_POST["comment_id"])){
 //     echo "</br>";
@@ -77,7 +119,7 @@ $commentnum = $_POST["comment_id"];
 //displaying the error message
       if($error == ''){
       echo  $query = "INSERT INTO tbl_comment(comment_id, parent_comment_id, message, image, uid, comment_sender_name, date, grpid, voteup, votedown, code )
-        VALUES (NULL,'$commentnum ', '$comment_content','$tool','$commentusid' ,'$commentuser', CURRENT_TIMESTAMP, $groupnum,'','','')";
+        VALUES (NULL,'$commentnum ', '$comment_content','$tool','$commentusid' ,'$commentuser', CURRENT_TIMESTAMP, $groupnum,'','','$code')";
         $score = mysqli_query($conn, $query);
         //header("Location:homepage.php?groupid='$groupnum'");
         //for debugging!!!!

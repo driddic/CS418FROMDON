@@ -263,6 +263,7 @@ else {
 
        <div class="form-group">
          <label>Enter Image Url</label>
+         <input type="hidden" name="mygroup" value="<?php echo $currentgroup; ?>">
          <input type="text" name="image_url" id="image_url" class="form-control" />
        </div>
        <div class="form-group">
@@ -281,7 +282,8 @@ else {
 
 $(document).ready(function(){
 $('#upload').click(function(){
-var mygroup = $('#group').val();
+// form_data.append('grouppic',<?php echo $currentgroup;  ?>);
+var groupid = $('#mygroup').val();
 var image_url = $('#image_url').val();
 if(image_url == '')
 {
@@ -294,7 +296,8 @@ else
  $.ajax({
   url:"upload.php",
   method:"POST",
-  data:{image_url:image_url},
+  data:{image_url:image_url,
+        groupid:<?php echo $currentgroup; ?>},
   dataType:"JSON",
   beforeSend:function(){
    $('#upload').val("Processing...");
@@ -332,7 +335,7 @@ else
        </form> -->
      <div class="container" style="width:700px;">
 
-   <label>Select Image then click Done</label>
+   <label>Select Image </label>
 
    <input type="hidden" name="grouppic" id="grouppic" value=" <?php $currentgroup;?>">
    <input type="file" name="file" id="file" />
@@ -343,7 +346,7 @@ else
    <span id="uploaded_image"></span>
    <form class="" action="post.php" method="post">
    <input type="hidden" name="grouppic" id="grouppic" value=" <?php $currentgroup;?>">
-   <button class="closetwo" type="submit" name="button">Done</button>
+   <!-- <button class="closetwo" type="submit" name="button">Done</button> -->
  </form>
 
  </div>

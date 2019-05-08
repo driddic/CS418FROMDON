@@ -35,32 +35,59 @@ for($i=1; $i<=$total_pages; $i++)
 }
 // <img class= "avatar" src = "assets/profile'.$row["uid"].'.png">
 while ($row = mysqli_fetch_assoc($result)) {
+  //if there is no photo
   if (empty($row['image'])) {
+//if there is code
+    if ($row['code'] == 1) {
        $output .= '
-     <div class="panel panel-default">
-      <div class="panel-heading">
-      By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
-      <div class="panel-body">'.$row["message"].'</div>
-      <div class="panel-footer" align="right">
-      <button type="button" class="btn btn-default reply" id="'.$row["comment_id"].'">Reply</button>
-       <form action = "add_vote.php" method = "post">
-       <input type="hidden" name="comment_name" id="comment_name" class="form-control" value="'. $sessname.'" />
-       <input type="hidden" name="user_id" id="user_id" class="form-control" value="'. $sessid.'" />
-       '.$row["voteup"].'
-      <button type="submit" class="btn btn-default reply" name = "up" value="'.$row["comment_id"].'">UP</button>
-      <button type="submit" class="btn btn-default reply" name = "down" value="'.$row["comment_id"].'">DOWN</button>
-    '.$row["votedown"].'
-      </form>
+        <div class="panel panel-default">
+         <div class="panel-heading">
+         By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
+         <div class="panel-body"></div>
+         <div class="panel-body"><pre>'.$row["message"].'</pre></div>
+         <div class="panel-footer" align="right">
+         <button type="button" class="btn btn-default reply" id="'.$row["comment_id"].'">Reply</button>
+          <form action = "add_vote.php" method = "post">
+          <input type="hidden" name="comment_name" id="comment_name" class="form-control" value="'. $sessname.'" />
+          <input type="hidden" name="user_id" id="user_id" class="form-control" value="'. $sessid.'" />
+          '.$row["voteup"].'
+         <button type="submit" class="btn btn-default reply" name = "up" value="'.$row["comment_id"].'">UP</button>
+         <button type="submit" class="btn btn-default reply" name = "down" value="'.$row["comment_id"].'">DOWN</button>
+       '.$row["votedown"].'
+         </form>
+         </div>
+        </div>
+        ';
+    }else{ //if there is no code in post
+      $output .= '
+      <div class="panel panel-default">
+       <div class="panel-heading">
+       By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
+       <div class="panel-body"></div>
+       <div class="panel-body">'.$row["message"].'</div>
+       <div class="panel-footer" align="right">
+       <button type="button" class="btn btn-default reply" id="'.$row["comment_id"].'">Reply</button>
+        <form action = "add_vote.php" method = "post">
+        <input type="hidden" name="comment_name" id="comment_name" class="form-control" value="'. $sessname.'" />
+        <input type="hidden" name="user_id" id="user_id" class="form-control" value="'. $sessid.'" />
+        '.$row["voteup"].'
+       <button type="submit" class="btn btn-default reply" name = "up" value="'.$row["comment_id"].'">UP</button>
+       <button type="submit" class="btn btn-default reply" name = "down" value="'.$row["comment_id"].'">DOWN</button>
+     '.$row["votedown"].'
+       </form>
+       </div>
       </div>
-     </div>
-     ';
-  }else {
-// <img class= "avatar" src = "assets/profile'.$row["uid"].'.png">
+      ';
+    }
+  }
+  //if there is a photo
+  else {
+
  $output .= '
  <div class="panel panel-default">
   <div class="panel-heading">
   By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
-  <div class="panel-body"><img src = "images/'.$row["image"].'"></div>
+  <div class="panel-body"><img src = "'.$row["image"].'" height="150" width="225"></div>
   <div class="panel-body">'.$row["message"].'</div>
   <div class="panel-footer" align="right">
   <button type="button" class="btn btn-default reply" id="'.$row["comment_id"].'">Reply</button>
@@ -76,6 +103,7 @@ while ($row = mysqli_fetch_assoc($result)) {
  </div>
  ';
 }
+
  $output .= get_reply_comment($conn,$row["comment_id"]);
 
 }

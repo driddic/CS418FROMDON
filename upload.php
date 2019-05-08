@@ -2,8 +2,56 @@
 include 'testconn.php';
 session_start();
 $sessid = $_SESSION['userid'];
+$sessname = $_SESSION["username"];
+
 //from main homepage
 
+if(isset($_POST["image_url"]))
+{
+
+  $group = $_POST['groupid'];
+ $message = '';
+ $image = '';
+ if(filter_var($_POST["image_url"], FILTER_VALIDATE_URL))
+ {
+  $allowed_extension = array("jpg", "png", "jpeg", "gif");
+
+   $url_array = explode("/", $_POST["image_url"]);
+
+   $image_name = end($url_array);
+   $image_array = explode(".", $image_name);
+   $extension = end($image_array);
+  if(in_array($extension, $allowed_extension))
+  {
+   $image_data = file_get_contents($_POST["image_url"]);
+   $new_image_path = "upload/url".rand(100,999)."." . $extension;
+   file_put_contents( $new_image_path, $image_data);
+   //dont touch it
+   // $location = './upload/' . $new_image_path;
+   // move_uploaded_file($new_image_path, $location);
+      ////cho $group;
+     $message = 'Image Uploaded';
+     $image = $new_image_path.'<img src="'.$new_image_path.'" height="150" width="225" class="img-responsive img-thumbnail">';
+     $how = "INSERT INTO tbl_comment(parent_comment_id, image, uid, comment_sender_name, grpid)
+             VALUES ('0','$new_image_path','$sessid','$sessname','$group')";
+             mysqli_query($conn,$how);
+
+  }
+  else
+  {
+   $message = "Image not found";
+  }
+ }
+ else
+ {
+  $message = 'Invalid Url';
+ }
+ $output = array(
+  'message' => $message,
+  'image'  => $image
+ );
+ echo json_encode($output);
+}
 
 
 //check for uploaded file
