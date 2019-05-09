@@ -23,7 +23,7 @@
      border-radius: 50%;
 
      }
-    
+
      #help{
        height: 500px;
        width: 1000px;
@@ -104,6 +104,8 @@
     <br>  <a href="#group">Create a Group</a>
     <br>  <a href="#invite">Invite people to Groups</a>
   <br><a href="#search">Searching Names and Groups</a>
+  <br><a href="#post">Updating Post</a>
+  <br><a href="#pictures">Posting Pictures</a>
   <br><br>
 
       <h2><a id="chat"></a>Access Group Chats</h2>
@@ -183,6 +185,18 @@
   <img src="assets/search.jpg" alt="" height="50" width="1200">
   <p>On the naviagation bar on the very top of the page <br>
   type in the name of a user. The live search will help you find an user.</p>
+
+  <h2><a id="post"></a>Updating Post</h2>
+  <p>Click in the textarea and type a message then click Post.</p><br>
+  <p>If you would like to post code click the checkbox for code.</p><br>
+
+
+  <h2><a id="pictures"></a>Posting Pictures</h2>
+  <p>To Post pictures click on either "Post Pictures using URL" or "Post Pictures"</p><br>
+  <p>Post Pictures using URL allows you to insert an URL into the textbox and upon submit your picture will be posted</p><br>
+  <p>Post Pictures will allow you to upload a local file photo to post as a status</p><br>
+  
+
 
   <a href="#top">Back to top</a>
 

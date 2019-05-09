@@ -2,7 +2,7 @@
 include 'homehead.php';
 ?>
 <main>
-  
+
   <div id="bigbox">
 
     <h2>Logging In</h2>
@@ -11,6 +11,7 @@ include 'homehead.php';
     <p>If you don't, you may not have the correct credentials</p>
     <br>
     <p>To log in enter your username and password, the same you used to sign up.</p>
+    <p>Download Google Authenicator app on mobile device to scan the barcode in order to sign in.</p>
     <br>
     <br>
     <h2>Signing Up</h2>
