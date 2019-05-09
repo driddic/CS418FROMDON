@@ -29,6 +29,7 @@ $page_query = "SELECT * FROM tbl_comment WHERE grpid = '$group' ORDER BY comment
 $page_result = mysqli_query($conn, $page_query);
 $total_records = mysqli_num_rows($page_result);
 $total_pages = ceil($total_records/$results_per_page);
+
 for($i=1; $i<=$total_pages; $i++)
 {
   $output .= '<span class="pagination_link" style="cursor:pointer; padding:6px; border:1px solid #ccc;" id="'.$i.'">'.$i.'</span>';

@@ -23,7 +23,7 @@ $fiveyes = mysqli_query($conn, $five);
             //Recommended by groups those in direct messages who are not in a group together
 
             //SELECT groups.grpid,recip,grpname FROM ((`membership` INNER JOIN messageroom on membership.userid = messageroom.recip) INNER JOIN groups on membership.grpid = groups.grpid) WHERE messageroom.sender = '1'
-            $echo =
+          
 
 
 
