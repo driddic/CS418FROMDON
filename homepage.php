@@ -15,15 +15,15 @@
     <!--
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
       <!--
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     -->
      <style media="screen">
            .avatar {
@@ -270,14 +270,14 @@ else {
          <input type="button" name="upload" id="upload" value="Upload" class="btn btn-info" />
        </div>
    <br />
-   <div id="result"><img src = "upload/" class="img-thumbnail img-responsive" /></div>
+   <div id="result"><img src = "#" class="img-thumbnail img-responsive" /></div>
   </div>
 </div>
   <div style="clear:both"></div>
-
+<!--
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" /> -->
   <script type="text/javascript">
 
 $(document).ready(function(){
@@ -324,7 +324,6 @@ else
     <!-- The Modal -->
     <div id="myModaltwo" class="modal">
      <!-- Modal content -->
-
      <div class="modal-content">
        <span class="closetwo">&times;</span>
        <p>Select a file to post</p>
@@ -397,17 +396,16 @@ $(document).ready(function(){
  });
 });
 </script>
-
     </div>
     </div>
    <span id='comment_message'></span>
    <br>
 
    <div class="table-responsive" id="pagination_data"></div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
  </div>
 </div>
-</div>
+<!-- </div> -->
     <?php
   } else {
     echo "No group exist";

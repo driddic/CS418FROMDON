@@ -33,8 +33,14 @@ for($i=1; $i<=$total_pages; $i++)
 {
   $output .= '<span class="pagination_link" style="cursor:pointer; padding:6px; border:1px solid #ccc;" id="'.$i.'">'.$i.'</span>';
 }
-// <img class= "avatar" src = "assets/profile'.$row["uid"].'.png">
+
+
 while ($row = mysqli_fetch_assoc($result)) {
+  $fubb = $row['uid'];
+  $photo = "SELECT * FROM profileimage WHERE userid = '$fubb' ";
+  $pic = mysqli_query($conn, $photo);
+  $duc=mysqli_fetch_assoc($pic);
+
   //if there is no photo
   if (empty($row['image'])) {
 //if there is code
@@ -42,6 +48,7 @@ while ($row = mysqli_fetch_assoc($result)) {
        $output .= '
         <div class="panel panel-default">
          <div class="panel-heading">
+         <img class= "avatar" src = "'.$duc["locate"].'">
          By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
          <div class="panel-body"></div>
          <div class="panel-body"><pre>'.$row["message"].'</pre></div>
@@ -62,6 +69,7 @@ while ($row = mysqli_fetch_assoc($result)) {
       $output .= '
       <div class="panel panel-default">
        <div class="panel-heading">
+       <img class= "avatar" src = "'.$duc["locate"].'">
        By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
        <div class="panel-body"></div>
        <div class="panel-body">'.$row["message"].'</div>
@@ -86,6 +94,7 @@ while ($row = mysqli_fetch_assoc($result)) {
  $output .= '
  <div class="panel panel-default">
   <div class="panel-heading">
+  <img class= "avatar" src = "'.$duc["locate"].'">
   By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
   <div class="panel-body"><img src = "'.$row["image"].'" height="150" width="225"></div>
   <div class="panel-body">'.$row["message"].'</div>
@@ -126,11 +135,17 @@ echo $output;
    $count= mysqli_num_rows($sabbathsec);
    $marginleft = $marginleft + 48;
    if($count > 0) {
-     // <img class= "avatar" src = "assets/profile'.$row["uid"].'.png">
+
      while ($row = mysqli_fetch_assoc($sabbathsec)) {
+       $fubb = $row['uid'];
+         $photo = "SELECT * FROM profileimage WHERE userid = '$fubb' ";
+         $pic = mysqli_query($conn, $photo);
+         $duc=mysqli_fetch_assoc($pic);
      $output .= '
      <div class="panel panel-default" style="margin-left:'.$marginleft.'px">
-      <div class="panel-heading">By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
+      <div class="panel-heading">
+      <img class= "avatar" src = "'.$duc["locate"].'">
+      By <b>'.$row["comment_sender_name"].'</b> on <i>'.$row["date"].'</i></div>
       <div class="panel-body">'.$row["message"].'</div>
       <div class="panel-footer" align="right"><button type="button" class="btn btn-default reply" id="'.$row["comment_id"].'">Reply</button></div>
       <form action = "add_vote.php" method = "post">

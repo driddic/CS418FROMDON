@@ -126,14 +126,15 @@ if ($sessid == $pickid) {
               //show the gravatar
               $email = $results["email"];
 
-              $default = 'assets/profile'.$sessid.'.png';
+              $default = $rowImg['locate'];
               $size = 180;
              $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
                     echo "<img src='$grav_url' alt='gravatar' />";
               }else {
                 // code...
-                    echo "<img src = 'assets/profile".$sessid.".jpg'>";
-                    echo "<img src = 'assets/profile".$sessid.".png'>";
+                echo "<img src = '".$rowImg['locate']."' width = '700' height = '700'>";
+                    // echo "<img src = 'assets/profile".$sessid.".jpg'>";
+                    // echo "<img src = 'assets/profile".$sessid.".png'>";
                   }
             //else (no image has been uploaded or gravatar option has not been selected)
             }else {
@@ -210,8 +211,8 @@ if ($sessid == $pickid) {
                 <div>";
 
             if ($rowmg['status'] == 0) { //put a class on it
-                    echo "<img src = 'assets/profile".$pickid.".jpg'>";
-                    echo "<img src = 'assets/profile".$pickid.".png'>";
+                    echo "<img src = '".$rowmg['locate']."' width = '700' height = '700'>";
+                    // echo "<img src = 'assets/profile".$pickid.".png'>";
 
             }else {
               echo "<img src = 'assets/profile.png'>";
