@@ -253,7 +253,7 @@ else {
      </div>
    </form>
    <!-- Trigger/Open The Modal -->
-    <button id="myBtn">Post Pictures Using URL</button>
+     <button id="myBtn">Post Pictures Using URL</button>
     <!-- The Modal -->
     <div id="myModal" class="modal">
      <!-- Modal content -->
@@ -274,15 +274,12 @@ else {
   </div>
 </div>
   <div style="clear:both"></div>
-<!--
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" /> -->
+
   <script type="text/javascript">
 
 $(document).ready(function(){
 $('#upload').click(function(){
-// form_data.append('grouppic',<?php echo $currentgroup;  ?>);
+//
 var groupid = $('#mygroup').val();
 var image_url = $('#image_url').val();
 if(image_url == '')
@@ -452,7 +449,8 @@ $(document).ready(function(){
  }
  $(document).on('click', '.pagination_link', function(){
       var page = $(this).attr("id");
-      load_data(page);
+      // load_data(page);
+      load_comment(page);
  });
  $(document).on('click', '.reply', function(){
   var comment_id = $(this).attr("id");
