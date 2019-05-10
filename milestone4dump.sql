@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2019 at 03:14 AM
+-- Generation Time: May 10, 2019 at 12:47 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -140,7 +140,9 @@ INSERT INTO `images` (`id`, `image`, `image_text`) VALUES
 (91, './upload/417.jpg', ''),
 (92, './upload/137.jpg', ''),
 (93, './upload/703.jpg', ''),
-(94, './upload/862.jpg', '');
+(94, './upload/862.jpg', ''),
+(95, './upload/918.jpg', ''),
+(96, './upload/470.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -269,7 +271,7 @@ INSERT INTO `profileimage` (`picid`, `locate`, `userid`, `status`, `keep`) VALUE
 (3, 'assets/profile.png', 3, 1, 0),
 (4, 'assets/profile.png', 4, 1, 0),
 (5, 'assets/profile.png', 5, 1, 0),
-(6, 'assets/profile9792.jpg', 9, 0, 1);
+(6, 'assets/profile9618.jpg', 9, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -363,11 +365,11 @@ INSERT INTO `tbl_comment` (`comment_id`, `parent_comment_id`, `message`, `image`
 (68, 0, 'hello', '', 1, '@doc', '2019-04-29 00:25:10', 5, 0, 0, 0),
 (69, 0, 'work', '', 1, '@doc', '2019-04-30 02:02:10', 5, 0, 0, 0),
 (70, 0, 'work', '', 1, '@doc', '2019-04-30 02:02:41', 5, 0, 0, 0),
-(71, 0, 'win', '', 1, '@doc', '2019-04-30 02:50:28', 5, 0, 0, 0),
+(71, 0, 'win', '', 1, '@doc', '2019-05-10 02:57:49', 5, 1, 0, 0),
 (72, 0, 'does this work', '', 9, 'admin', '2019-05-06 20:17:49', 6, 0, 0, 0),
 (73, 0, 'it does', '', 9, 'admin', '2019-05-06 20:18:30', 6, 0, 0, 0),
 (74, 0, 'hello world', '', 9, 'admin', '2019-05-06 21:59:43', 6, 0, 0, 1),
-(75, 0, 'look at this picture', '', 9, 'admin', '2019-05-06 22:57:46', 5, 0, 0, 0),
+(75, 0, 'look at this picture', '', 9, 'admin', '2019-05-10 10:20:15', 5, 2, -1, 0),
 (76, 0, 'look pic', '', 9, 'admin', '2019-05-06 23:11:22', 1, 0, 0, 0),
 (77, 0, 'see', '', 9, 'admin', '2019-05-06 23:24:32', 1, 0, 0, 0),
 (78, 0, '     helo', '', 9, 'admin', '2019-05-08 14:01:01', 6, 0, 0, 0),
@@ -389,9 +391,26 @@ INSERT INTO `tbl_comment` (`comment_id`, `parent_comment_id`, `message`, `image`
 (94, 0, '', './upload/417.jpg', 9, 'admin', '2019-05-08 20:10:37', 0, 0, 0, 0),
 (95, 0, '', './upload/137.jpg', 9, 'admin', '2019-05-08 20:20:26', 0, 0, 0, 0),
 (96, 0, '', './upload/703.jpg', 9, 'admin', '2019-05-08 21:12:57', 1, 0, 0, 0),
-(97, 0, '', './upload/862.jpg', 9, 'admin', '2019-05-08 21:17:50', 5, 0, 0, 0),
+(97, 0, '', './upload/862.jpg', 9, 'admin', '2019-05-10 10:17:00', 5, -1, 2, 0),
 (98, 0, '', 'upload/url355.jpg', 9, 'admin', '2019-05-08 23:44:27', 1, 0, 0, 0),
-(99, 0, '', 'upload/url679.jpg', 9, 'admin', '2019-05-09 01:09:30', 1, 0, 0, 0);
+(99, 0, '', 'upload/url679.jpg', 9, 'admin', '2019-05-09 01:09:30', 1, 0, 0, 0),
+(100, 0, '', './upload/918.jpg', 9, 'admin', '2019-05-10 10:39:17', 6, 1, 0, 0),
+(101, 0, '', 'upload/url867.jpg', 9, 'admin', '2019-05-09 01:33:29', 1, 0, 0, 0),
+(102, 0, '     1', '', 9, 'admin', '2019-05-09 01:40:25', 1, 0, 0, 0),
+(103, 0, '     2', '', 9, 'admin', '2019-05-09 01:40:28', 1, 0, 0, 0),
+(104, 0, '     3', '', 9, 'admin', '2019-05-09 01:40:32', 1, 0, 0, 0),
+(105, 0, '     4', '', 9, 'admin', '2019-05-09 01:40:36', 1, 0, 0, 0),
+(106, 0, '     5', '', 9, 'admin', '2019-05-09 01:40:42', 1, 0, 0, 0),
+(107, 0, '     6', '', 9, 'admin', '2019-05-09 01:40:45', 1, 0, 0, 0),
+(108, 0, '     7', '', 9, 'admin', '2019-05-09 01:40:49', 1, 0, 0, 0),
+(109, 0, '     turned into 3 pages after 7', '', 9, 'admin', '2019-05-09 01:41:16', 1, 0, 0, 0),
+(110, 109, '     yes', '', 9, 'admin', '2019-05-09 01:41:43', 1, 0, 0, 0),
+(111, 0, '     hi', '', 9, 'admin', '2019-05-09 23:39:25', 1, 0, 0, 0),
+(112, 111, '     you', '', 9, 'admin', '2019-05-09 23:39:36', 1, 0, 0, 0),
+(113, 0, '     hello world;', '', 9, 'admin', '2019-05-09 23:40:06', 1, 0, 0, 1),
+(114, 0, '     hello world', '', 9, 'admin', '2019-05-09 23:40:16', 1, 0, 0, 0),
+(115, 0, '', './upload/470.jpg', 9, 'admin', '2019-05-09 23:42:24', 1, 0, 0, 0),
+(116, 0, '', 'upload/url322.png', 9, 'admin', '2019-05-10 02:53:58', 1, 7, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -430,17 +449,31 @@ INSERT INTO `users` (`userid`, `fname`, `lname`, `uname`, `email`, `pword`) VALU
 CREATE TABLE `voter` (
   `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
-  `commentid` int(11) NOT NULL
+  `commentid` int(11) NOT NULL,
+  `up` int(11) NOT NULL,
+  `down` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `voter`
 --
 
-INSERT INTO `voter` (`id`, `userid`, `commentid`) VALUES
-(1, 6, 400),
-(2, 9, 38),
-(3, 9, 44);
+INSERT INTO `voter` (`id`, `userid`, `commentid`, `up`, `down`) VALUES
+(1, 6, 400, 0, 0),
+(2, 9, 38, 0, 0),
+(3, 9, 44, 0, 0),
+(4, 9, 116, 0, 0),
+(5, 9, 44, 0, 0),
+(6, 9, 116, 0, 0),
+(7, 9, 116, 0, 0),
+(8, 9, 116, 0, 0),
+(9, 9, 116, 0, 0),
+(10, 9, 116, 0, 0),
+(11, 9, 116, 0, 0),
+(12, 9, 71, 0, 0),
+(13, 1, 97, -1, 2),
+(14, 1, 75, 2, -1),
+(15, 1, 100, 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -510,7 +543,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -534,7 +567,7 @@ ALTER TABLE `profileimage`
 -- AUTO_INCREMENT for table `tbl_comment`
 --
 ALTER TABLE `tbl_comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -546,7 +579,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `voter`
 --
 ALTER TABLE `voter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
