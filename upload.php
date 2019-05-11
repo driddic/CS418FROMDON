@@ -115,6 +115,23 @@ echo "in the form";
     // code...
     $sqlone = "UPDATE profileimage SET keep = 0 WHERE userid = '$name' ";
     $result = mysqli_query($conn, $sqlone);
+
+    //storing gravatar url in db
+
+    $peace= "SELECT * From users where userid = '$name'";
+    $wow = mysqli_query($conn,$peace);
+    $results = mysqli_fetch_assoc($wow);
+    $email = $results["email"];
+    //now for current locate
+    $next = "SELECT * FROM profileimage WHERE userid = '$name'";
+    //run query
+    $bam = mysqli_query($conn,$next);
+    $rowImg = mysqli_fetch_assoc($bam);
+    $default = $rowImg['locate'];
+    $size = 180;
+   $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
+    $sqlagain = " UPDATE profileimage set locate = '$grav_url' WHERE userid = ' $name '";
+    $places = mysqli_query($conn,$sqlagain);
     header("Location:profile.php?uid=".$name);
   }else {
     $sqltwo = "UPDATE profileimage SET keep = 1 WHERE userid = '$name' ";

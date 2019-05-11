@@ -43,7 +43,7 @@ if (isset($_POST['groupsubmit'])) {
        //place the group creator in the group the user made.
 
           $last_id = mysqli_insert_id($conn);
-          echo "New record created successfully. Last inserted ID is: " . $last_id;
+          // echo "New record created successfully. Last inserted ID is: " . $last_id;
 
           $sqlagain= "INSERT INTO membership (grpid,userid) VALUES ('".$last_id."','".$sessid."');";
            $userin = mysqli_query($conn, $sqlagain);
@@ -53,7 +53,7 @@ if (isset($_POST['groupsubmit'])) {
            exit();
 
            ///these next few lines will be for the people
-           $admin= "INSERT INTO membership(grpid,userid,uname,active) VALUES('".$last_id."',9, 'admin', 0);"
+           $admin= "INSERT INTO membership(grpid,userid,uname,active) VALUES('".$last_id."',9, 'admin', 0)";
            $adminin = mysqli_query($conn,$admin);
 
     }
