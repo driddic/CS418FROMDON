@@ -14,8 +14,7 @@ $comment_content = '';
 
 
 if (isset($_POST['postUpload'])) {
-  if($_FILES["file"]["name"] != '')
-  {
+  if($_FILES["file"]["name"] != '')  {
    $test = explode('.', $_FILES["file"]["name"]);
    $ext = end($test);
    $name = rand(100, 999) . '.' . $ext;
@@ -23,44 +22,6 @@ if (isset($_POST['postUpload'])) {
    move_uploaded_file($_FILES["file"]["tmp_name"], $location);
    echo '<img src="'.$location.'" height="150" width="225" class="img-thumbnail" />';
   }
-  // $file = $_FILES['image'];
-  // $file_name = $_FILES['image']['name'];
-  // $file_type = $_FILES['image']['type'];
-  // $file_tmp_name = $_FILES['image']['tmp_name'];
-  // $file_size = $_FILES['image']['size'];
-  // $file_error = $_FILES['image']['error'];
-  //
-  // $fileExt = explode('.', $file_name);
-  // $fileActualExt = strtolower(end($fileExt));
-  //
-  // $allowed = array('jpg','jpeg', 'png', 'gif');
-  //
-  // if (in_array($fileActualExt, $allowed)) {
-  //   if ($file_error == 0){
-  //     if ($file_size < 1000000) {
-  //       //change the status of the users profile image
-  //       $file_name_new = rand(100,999).time().".".$fileActualExt;
-  //       $file_destination = 'upload/'.$file_name_new;
-  //       move_uploaded_file($file_tmp_name,$file_destination);
-  //       echo "Good job";
-  //     }
-  //     else {
-  //       echo "Your file is too big!";
-  //     //  header("Location: profile.php?error_size");
-  //     }
-  //   }
-  //   else {
-  //     echo "There was an error uploading your file!";
-  //   //  header("Location: profile.php?error_upload");
-  //   }
-  // }
-  //
-  // else {
-  //
-  //   echo "You cannot upload files of this type!";
-  //   //header("Location: profile.php?error_filetype");
-  // }
-
 }
 
 
@@ -69,7 +30,21 @@ if (isset($_POST['postUpload'])) {
 if(empty($_POST["comment_content"])){
  $error .= '<p class="text-danger">Comment is required</p>';
 }else{
- $comment_content = mysqli_real_escape_string($conn, $_POST["comment_content"]);
+  // $comment_content = htmlentities($_POST["comment_content"]);
+
+  $comment_content = html_entity_decode($_POST["comment_content"]);
+  $contest = mb_substr($comment_content,1,6,"UTF-8");
+  echo "mb_substr: ". $contest;
+  echo "<br>";
+  $example = explode(" ",$comment_content);
+  echo "explode: ". $example[0]; //test command
+  echo "<br>";
+  echo "explode 2: ". $example[1]; //command variable
+  echo "<br>";
+
+
+ //  $comment_content = htmlspecialchars($_POST["comment_content"]);
+ // $comment_content = mysqli_real_escape_string($conn, $_POST["comment_content"]);
  echo "go comment_content";
 }
   echo "</br>";

@@ -7,9 +7,18 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+if(isset($_POST['git'])){
+  require "init.php";
+
+  //this will redirect user to github authorization page
+  goToAuthUrl();
+
+
+  //if no redirection occur then following shows.
+  echo "operation failed.";
+}
 if(isset ($_POST['submit']))
 {
-
 
 //check this out from the video
             $uname = $_POST['username'];
@@ -27,13 +36,17 @@ if(isset ($_POST['submit']))
 
                        if ($row = mysqli_fetch_assoc($result))   {
                                    //if true start a session here
-                                 //session_start();
+                                 //
+                                 session_start();
                                  $_SESSION['userid'] = $row['userid'];
                                  $_SESSION['username'] = $row['uname'];
                                  $_SESSION['password'] = $row['pwd'];
 
                                  //$_SESSION['logged_in']= true;
-                                 header("Location: authenic.php");
+                                 //for testing
+                                 header("Location: homepage.php");
+                                 //for real
+                                 // header("Location: authenic.php");
                                  exit();
                        }
 
@@ -47,5 +60,6 @@ if(isset ($_POST['submit']))
             header("Location: index.php?error=noclicksubmit");
                     exit();
                   }
+
 
 ?>

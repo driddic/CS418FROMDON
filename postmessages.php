@@ -6,6 +6,14 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+function test_input($data)
+{
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
 if (isset($_POST['send'])) {
 
 
@@ -17,24 +25,35 @@ if (isset($_POST['send'])) {
   }else{
 
    $comment_content = $_POST["message_content"];
+   $comment_content = test_input($comment_content);
    echo $comment_content;
    echo "</br>";
-   $theid = $_POST["recip"];
-   $messid = $_POST["sender"];
+   // $theid = $_POST["recipID"];
+    $theguy = $_POST["recip"];
+   $messid = $_POST["senderID"];
+   $messguy = $_POST["sender"];
    $rand = rand(1,1000);
 
 
-   $sql = "INSERT INTO messageroom(commentID, message, timestamp, recip, sender, threadID)
-   VALUES (NULL,'$comment_content',CURRENT_TIMESTAMP ,'$theid','$messid','$rand') ";
-   $yes=mysqli_query($conn, $sql);
+   $sql = "INSERT INTO messageroom(commentID, message, timestamp, senderID,fromUser, threadID)
+   VALUES (NULL,'$comment_content',CURRENT_TIMESTAMP ,'$messid','$messguy','$rand') ";
+
+   $querie = " INSERT INTO messagecontrol (threadId, userOne, userTwo)
+               VALUES ('$rand','$theguy','$messguy' )";
+   mysqli_query($conn, $sql);
+   mysqli_query($conn, $querie);
+
    header("Location:messages.php?notice=sentmessage");
    exit();
 
    echo $sql;
-  }
+   echo "</br>";
+   echo $querie;
 
+  }
 }
 
+//Reply in Messager Page
 if (isset($_POST['reply'])) {
 
   if(empty($_POST["comment_content"])){
@@ -44,55 +63,30 @@ if (isset($_POST['reply'])) {
   }else{
 
    $dm_content = $_POST["comment_content"];
+   $dm_content = test_input($dm_content);
    echo $dm_content;
    echo "</br>";
-   $theid = $_POST["comment_rec"];
-   $messid = $_POST["comment_name"];
+   $messid = $_POST["comment_send_id"];
+   $messname = $_POST["comment_send"];
    $dm_id= $_POST["thread_num"];
 
-
-
-   $sql = "INSERT INTO messageroom(commentID, message, timestamp, recip, sender, threadID)
-   VALUES (NULL,'$dm_content',CURRENT_TIMESTAMP ,'$theid','$messid','$dm_id') ";
-   $yes=mysqli_query($conn, $sql);
+   $sql = "INSERT INTO messageroom(commentID, message, timestamp, senderID, fromUser, threadID)
+   VALUES (NULL,'$dm_content',CURRENT_TIMESTAMP ,'$messid','$messname','$dm_id') ";
+   mysqli_query($conn, $sql);
    header("Location:messages.php?notice=sentmessage");
    exit();
 
    echo $sql;
   }
-
 }
 
 
 
-
-
-function setComments($conn)
-{
-
-  if (isset($_POST['commentsSubmit'])) {
-
-    $date = $_POST['timestamp'];
-    $comment =$_POST['comment'];
-    $uid=$_SESSION['userid'];
-    $uname = $_POST['username'];
-    $currentgroup =$_GET['groupid'];
-    $sql = " INSERT INTO messageroom (message, timestamp, userid, uname, grpid)
-            VALUES ('$comment','$date','$uid','$uname','$currentgroup')";
-    $rack = mysqli_query($conn, $sql);
-  }
-}
 //test input for htmlspecialchars, removes backslashes and newlines, tabs, and extra space
-function test_input($data)
-{
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
-
-//
-// function switchContent($value='')
+// function test_input($data)
 // {
-//   // code...
+//   $data = trim($data);
+//   $data = stripslashes($data);
+//   $data = htmlspecialchars($data);
+//   return $data;
 // }

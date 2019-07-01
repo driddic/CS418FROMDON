@@ -1,8 +1,11 @@
 <?php
 
 include 'testconn.php';
-include 'group.php';
-//session_start();
+//include 'group.php';
+session_start();
+$sessname =$_SESSION['username'];
+$sessid = $_SESSION['userid'];
+
 ///
 ///
 /// Group Creation
@@ -35,26 +38,34 @@ if (isset($_POST['groupsubmit'])) {
          header("Location: group.php?error=grptaken");
          exit();
        }
+
        $sql= "INSERT INTO groups(grpname, owner, access)
        VALUES('".$groupname."','".$sessname."', '".$access."')";
        $grpmake = mysqli_query($conn, $sql);
 
-       // echo "good insert: " ;
+        echo "good insert: " ;
        //place the group creator in the group the user made.
 
           $last_id = mysqli_insert_id($conn);
-          // echo "New record created successfully. Last inserted ID is: " . $last_id;
+           echo "New record created successfully. Last inserted ID is: " . $last_id;
 
-          $sqlagain= "INSERT INTO membership (grpid,userid) VALUES ('".$last_id."','".$sessid."');";
+          $sqlagain= "INSERT INTO membership (grpid,userid, uname) VALUES ('".$last_id."','".$sessid."','".$sessname."');";
            $userin = mysqli_query($conn, $sqlagain);
            echo "inserted membership";
-           Header("location: group.php?group=allgood");
-
-           exit();
-
+           if (!$sessname == 'admin') {
+             // code...
            ///these next few lines will be for the people
            $admin= "INSERT INTO membership(grpid,userid,uname,active) VALUES('".$last_id."',9, 'admin', 0)";
            $adminin = mysqli_query($conn,$admin);
+           Header("location: group.php?group=allgood");
+
+           exit();
+         }else {
+           echo "user is admin";
+           Header("location: group.php?group=allgood");
+
+           exit();
+         }
 
     }
 

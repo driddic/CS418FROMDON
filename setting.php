@@ -10,11 +10,13 @@ error_reporting(E_ALL);
 // invite users to groups
 // archive groups
 // edit membership
+// deleting posts
 
 if (isset($_POST['delete'])) {
-    $cid = $_POST["commid"];
+    $cid = $_POST["delete"];
     $sql = "DELETE FROM tbl_comment
             WHERE comment_id = '$cid'";
+          //  echo $sql;
     mysqli_query($conn, $sql);
     header("Location: homepage.php?goodremove");
     exit();
@@ -28,7 +30,7 @@ if (isset($_POST['remove'])) {
              WHERE  grpid = '$group'
              AND uname = '$cname'";
      mysqli_query($conn, $sql);
-    header("Location: group.php?goodtake");
+    header("Location: group.php?removedfromgroup");
     exit();
 }
 if (isset($_POST['archive'])) {

@@ -18,7 +18,6 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-
     }
 
     #help{
@@ -119,7 +118,7 @@ if ($sessid == $pickid) {
         while ($rowImg = mysqli_fetch_assoc($resultImg)){
           echo "<h2 style='text-align:center'>User Profile</h2>
                 <div>";
-            if ($rowImg['status'] == 0) { //put a class on it
+            if ($rowImg['status'] == 0) {
               //gravatar code
               if ($rowImg['keep'] == 0) {
               //if user elects to keep the gravatar as default
@@ -138,7 +137,13 @@ if ($sessid == $pickid) {
                   }
             //else (no image has been uploaded or gravatar option has not been selected)
             }else {
-              echo "<img src = 'assets/profile.png'>";
+              if ($rowImg['keep'] == 1) {
+                echo "<img class = avatar src = 'assets/profile.png'>";
+
+              }else {
+                echo "<img class = avatar src = 'assets/profile.png'>";
+                // code...
+              }
             }
           }
             //reputation model formula votes, posts and groups
@@ -147,21 +152,31 @@ if ($sessid == $pickid) {
                        WHERE comment_sender_name = '".$sessname."'" ;
             $actResults=mysqli_query($conn,$sqlfive);
             $find = mysqli_fetch_assoc($actResults);
+
+            // echo "this is find: ".print_r($find);
+            // echo "<br>";
             //groups
             $grp = "SELECT COUNT(grpid) FROM `membership`
                     WHERE uname = '".$sessname."' and active = '0'";
             $howMany = mysqli_query($conn,$grp);
-            //$grab = mysqli_fetch_assoc($howMany);
+            $grab = mysqli_fetch_array($howMany);
+            // echo "this is grab: ";
+            // print_r($grab);
+            // echo "<br>";
+
             //votes
             $vote = "SELECT COUNT(id) FROM `voter` WHERE userid = '".$sessid."'";
             $thisMany = mysqli_query($conn, $vote);
-            //$get = mysqli_fetch_assoc($thisMany);
+            $get = mysqli_fetch_row($thisMany);
+
+            // echo "this is get: ".print_r($get);
+            // echo "<br>";
             //echo the name of user out
             echo "<h1>".$results['fname']." ".$results['lname']." </h1>";
             //Now, the average
             $collection = ($thisMany+$actResults+$howMany / 3) ;
 
-            echo "<p> Activity: ".round($collection)." Rating </p>";
+            echo "<p> Activity: ".$collection." Rating </p>";
             if ($collection <= 5){echo "Rookie";}
             elseif ($collection <=20 || $collection >= 6 ) {echo "Star";}
             elseif ($collection <=50 || $collection >=21) {echo "All-Star";}

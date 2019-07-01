@@ -104,9 +104,62 @@ if(isset ($_POST['su-submit'])){
         echo "inserted membership";
        $scoreagain = mysqli_query($conn, $sqlthr);
        //insert member into profileimage table on the db
-       $sqlfive = "INSERT INTO profileimage (userid, status) VALUES ('".$last_id."', 1);";
+       $sqlfive = "INSERT INTO profileimage (locate,userid, status) VALUES ('assets/profile.png','$last_id', '1');";
        echo "image set";
        $scored = mysqli_query($conn, $sqlfive);
+
+       //update the xml user file for up to date user logs
+       function createXMLfile($usersArray){
+
+          $filePath = 'names.xml';
+          $dom     = new DOMDocument('1.0', 'utf-8');
+          $root      = $dom->createElement('users');
+          for($i=0; $i<count($usersArray); $i++){
+
+            $bookId        =  $usersArray[$i]['userid'];
+            $bookName = htmlspecialchars($usersArray[$i]['fname']);
+            $bookAuthor    =  $usersArray[$i]['lname'];
+            $bookPrice     = $usersArray[$i]['uname'];
+
+            $book = $dom->createElement('user');
+            $bid     = $dom->createElement('id', $bookId);
+            $book->appendChild($bid);
+            $name     = $dom->createElement('Firstname', $bookName);
+            $book->appendChild($name);
+            $author   = $dom->createElement('Lastname', $bookAuthor);
+            $book->appendChild($author);
+            $price    = $dom->createElement('Username', $bookPrice);
+            $book->appendChild($price);
+            // $isbn     = $dom->createElement('ISBN', $bookISBN);
+            // $book->appendChild($isbn);
+            // $category = $dom->createElement('category', $bookCategory);
+            // $book->appendChild($category);
+
+            $root->appendChild($book);
+          }
+          $dom->appendChild($root);
+          $dom->save($filePath);
+        }
+        $query = "SELECT * FROM users";
+       $usersArray = array();
+       if ($result = $conn->query($query)) {
+           /* fetch associative array */
+           while ($row = $result->fetch_assoc()) {
+              array_push($usersArray, $row);
+           }
+
+           if(count($usersArray)){
+                createXMLfile($usersArray);
+            }
+           /* free result set */
+           $result->free();
+       }
+       /* close connection */
+       $conn->close();
+
+
+
+
         Header("location: index.php?signup=good");
 
         exit();

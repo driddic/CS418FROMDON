@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commands>
+  <command>
+    <id>1</id>
+    <slash>/archive</slash>
+    <example>/archive</example>
+    <work>archive current group</work>
+  </command>
+  <command>
+    <id>2</id>
+    <slash>/msg</slash>
+    <example>/msg [@user]</example>
+    <work>starts a message to user</work>
+  </command>
+  <command>
+    <id>3</id>
+    <slash>/invite</slash>
+    <example>/invite [@user]</example>
+    <work>invites user to current group</work>
+  </command>
+  <command>
+    <id>4</id>
+    <slash>/who</slash>
+    <example>/who </example>
+    <work>generates list of cureent users in group</work>
+  </command>
+</commands>

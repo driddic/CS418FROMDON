@@ -1,12 +1,17 @@
 <?php
 
+$str = "A 'quote' <!-- is <b>bold</b>";
 
+// Outputs: A 'quote' is &lt;b&gt;bold&lt;/b&gt;
+echo htmlentities($str);
+echo "<br>";
+// Outputs: A &#039;quote&#039; is &lt;b&gt;bold&lt;/b&gt;
+echo htmlentities($str, ENT_QUOTES);
 
-session_start();
-include_once 'header.php';
+$fire = "what does <!-- means";
 
+echo "<br>";
 
-get_photo($conn);
-
+echo htmlspecialchars($fire);
 
  ?>

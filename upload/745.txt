@@ -1,0 +1,31 @@
+1) register @justin and set image use to "gravatar":
+     jfbrunel@odu.edu
+
+2) DM @mater:
+     Doc has 3 piston cups!
+
+3) Upload a new image and change avatar for @justin:
+     peterbilt.jpeg (from https://i.ytimg.com/vi/57UoSf9Lp5g/hqdefault.jpg)
+
+4) Upload a text file into the default channel:
+     script4.txt
+
+5) Upload an image file into the default channel:
+     http://i.kinja-img.com/gawker-media/image/upload/t_original/phkzflqjy9wuzxfwjpwe.jpg
+
+6) Log in as @mater
+
+7) Change mater's avatar to the "site default"
+
+8) DM @justin:
+     he did what in his cup?!
+
+9) if we haven't seen the captcha, demonstrate your captcha integration
+
+10) Demonstrate github:
+      create user @jbrunelle -- jbrunelle@cs.odu.edu
+      log in with jbrunelle's git credentials
+
+11) Explain your grad project/extra credit *including* libraries used
+
+

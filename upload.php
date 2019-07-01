@@ -88,20 +88,25 @@ if(isset($_POST['upload']))
             }
             else {
               echo "Your file is too big!";
-            //  header("Location: profile.php?error_size");
+             header("Location: profile.php?error_size");
+             exit();
             }
           }
           else {
             echo "There was an error uploading your file!";
-          //  header("Location: profile.php?error_upload");
+           header("Location: profile.php?error_upload");
+           exit();
+
           }
         }
 
         else {
 
           echo "You cannot upload files of this type!";
-          //header("Location: profile.php?error_filetype");
-        }
+          header("Location: profile.php?error_filetype");
+          exit();
+
+          }
 }
 
 if (isset($_POST['gravpick'])) {
@@ -115,6 +120,8 @@ echo "in the form";
     // code...
     $sqlone = "UPDATE profileimage SET keep = 0 WHERE userid = '$name' ";
     $result = mysqli_query($conn, $sqlone);
+    $sqlonG = "UPDATE profileimage SET status = 0 WHERE userid = '$name' ";
+    $result = mysqli_query($conn, $sqlonG);
 
     //storing gravatar url in db
 
@@ -122,7 +129,7 @@ echo "in the form";
     $wow = mysqli_query($conn,$peace);
     $results = mysqli_fetch_assoc($wow);
     $email = $results["email"];
-    //now for current locate
+    //now for current location
     $next = "SELECT * FROM profileimage WHERE userid = '$name'";
     //run query
     $bam = mysqli_query($conn,$next);
@@ -130,12 +137,17 @@ echo "in the form";
     $default = $rowImg['locate'];
     $size = 180;
    $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
-    $sqlagain = " UPDATE profileimage set locate = '$grav_url' WHERE userid = ' $name '";
+    $sqlagain = " UPDATE profileimage set locate = '$grav_url' WHERE userid = '$name'";
     $places = mysqli_query($conn,$sqlagain);
     header("Location:profile.php?uid=".$name);
-  }else {
+  }else { //not making gravatar default
     $sqltwo = "UPDATE profileimage SET keep = 1 WHERE userid = '$name' ";
     $result = mysqli_query($conn, $sqltwo);
+    $defaultpic = 'assets/profile.png';
+    $sqlagain = " UPDATE profileimage set locate = '$defaultpic' WHERE userid = '$name' ";
+    echo $sqlagain;
+    mysqli_query($conn, $sqlagain);
+
     header("Location:profile.php?uid=".$name);
   }
 }

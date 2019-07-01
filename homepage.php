@@ -25,6 +25,31 @@
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     -->
+    <script src="./assets/index.js"></script>
+
+    <script>
+function showResult(str) {
+  if (str.length==0) {
+    document.getElementById("slashcommand").innerHTML="";
+    document.getElementById("slashcommand").style.border="0px";
+    return;
+  }
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else {  // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("slashcommand").innerHTML=this.responseText;
+      document.getElementById("slashcommand").style.border="1px solid #A5ACB2";
+    }
+  }
+  xmlhttp.open("GET","slashcommand.php?q="+str,true);
+  xmlhttp.send();
+}
+ </script>
      <style media="screen">
            .avatar {
            vertical-align: middle;
@@ -54,10 +79,15 @@
              border: 1px solid #888;
              width: 80%;
            }
-           code, samp, kbd {
+           code{
              font-family: "Courier New", Courier, monospace, sans-serif;
-             text-align: left;
+             text-align: justify;
              color: #555;
+             }
+             pre{
+             font-family: "Courier New", Courier, monospace, sans-serif;
+             text-align: justify;
+
              }
            .image_upload > form > input
            {
@@ -144,6 +174,9 @@
          $sessname = $_SESSION['username'];
          $sessid= $_SESSION['userid'];
          $adminNum = '9';
+
+         // $gitsessName = $_SESSION['UserName'];
+         // $gitsessID = $_SESSION['UserId'];
           //check to see if user is logged in first
          if (isset($_SESSION['username'])){echo "Hello  " . $sessname." #".$sessid; }
             else { echo "not logged in";
@@ -231,14 +264,23 @@ else {
         if (!$currentgroup) {
           echo "pick a group fam";
         }else if($currentgroup) {
-          //Enter Comment HERE
+//verify if user is in the current group selected if he is not in it user can't get in the chat
+          $checkq = "SELECT grpid From membership where userid = '$sessid' and grpid = '$currentgroup'";
+          $check= mysqli_query($conn, $checkq);
+          if(mysqli_num_rows($check) == 0){
+            echo "<h2>You do not have access to this group.</h2>";
+          }else {
+            // code...
+
           ?>
 
+          <!-- //Enter Comment HERE -->
   <div class='container'>
   <form id='comment_form' class="w3-form-post" enctype="multipart/form-data" >
    <div class="form-group">
-     <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='5' required>
-     </textarea>
+     <input type="text" maxlength="250" name='comment_content' id='comment_content' class='form-control' placeholder='Enter Comment' rows='2' onkeyup="showResult(this.value)" required>
+   </input>
+     <div id = "slashcommand"></div>
    </div>
     <div class="form-group">
      <input type="hidden" name='comment_name' id='comment_name' class='form-control' value='<?php echo $sessname?>' >
@@ -249,9 +291,10 @@ else {
       Code: <input type="checkbox" name="code_upload" value="1">
      </div>
      <input type="hidden" name="comment_id" id="comment_id" class='form-control' value='<?php echo $commentvalue ?>' >
-     <input type='submit' name='submit' id='submit'   value='Post'>
+     <input type='submit' name='submit' id='submit' value='Post'>
      </div>
    </form>
+
    <!-- Trigger/Open The Modal -->
      <button id="myBtn">Post Pictures Using URL</button>
     <!-- The Modal -->
@@ -317,7 +360,7 @@ else
 
 
    <!-- Trigger/Open The Modal -->
-    <button id="myBtntwo">Post Pictures</button>
+    <button id="myBtntwo">Post Files</button>
     <!-- The Modal -->
     <div id="myModaltwo" class="modal">
      <!-- Modal content -->
@@ -357,7 +400,7 @@ $(document).ready(function(){
   form_data.append('grouppic',<?php echo $currentgroup;  ?>);
   var ext = name.split('.').pop().toLowerCase();
    // var grouppic = $('#grouppic').val();
-  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
+  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg','txt']) == -1)
   {
    alert("Invalid Image File");
   }
@@ -370,7 +413,7 @@ $(document).ready(function(){
    alert("Image File Size is very big");
   }
   else
-  {
+  { //if everything worked out lets show a success message
    form_data.append("file", document.getElementById('file').files[0]);
    //form_data.append("grouppic", document.getElementById('grouppic'));
    $.ajax({
@@ -385,8 +428,18 @@ $(document).ready(function(){
     },
     success:function(data)
     {
-     $('#uploaded_image').html(data);
-     alert("you won").html("<p>Bye</p>");
+      if (jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+        var a = document.createElement("img");
+        a.src = "assets/text.png";
+
+        $('#uploaded_image').html(a);
+        // alert("you won").html("<p>Bye</p>");
+      }
+      else{
+        $('#uploaded_image').html(data);
+        // alert("you won").html("<p>Bye</p>");
+      }
+
     }
    });
   }
@@ -404,7 +457,8 @@ $(document).ready(function(){
 </div>
 <!-- </div> -->
     <?php
-  } else {
+  }
+} else {
     echo "No group exist";
     }
   ?>

@@ -22,15 +22,21 @@
         </div>
       </div>
     </header>
-    <form action= "login.php" method="POST" >
       <div id="login-box">
+        <form action= "login.php" method="POST" >
+
         <div>
                 <h1>Login</h1>
                 <input type="text" name="username" id="uname" placeholder="@Username">
                 <input type="password" name="password" id="pword" placeholder="Password">
                 <input type="submit" name="submit" value="Submit">
         </div>
+        <div>
+            <button><a href="gitlogin.php">Sign In with GitHub</a></button>
+        </div>
+         </form>
+
       </div>
-    </form>
+
   </body>
 </html>

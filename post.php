@@ -3,7 +3,7 @@ session_start();
 $sessid = $_SESSION["userid"];
 $sessname = $_SESSION["username"];
 $group = $_POST['grouppic'];
-echo $group;
+// echo $group;
 // $data = isset($_REQUEST['grouppic'])?$_REQUEST['grouppic']:"";
 //     echo $data;
 $db = mysqli_connect("localhost", "root", "", "university");
