@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2019 at 12:47 PM
+-- Generation Time: Jul 02, 2019 at 05:37 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -46,7 +46,12 @@ INSERT INTO `groups` (`grpid`, `grpname`, `owner`, `access`, `archive`) VALUES
 (1, 'Basketball', 'admin', 'public', 0),
 (5, 'Football', 'admin', 'public', 0),
 (6, 'SportsCenter', 'admin', 'public', 0),
-(12, 'Free Rides', '@sally', 'public', 0);
+(12, 'Free Rides', '@sally', 'public', 0),
+(13, 'players', '@doc', 'public', 0),
+(14, 'Test Group', 'admin', 'public', 0),
+(15, 'Another Test', '', 'public', 0),
+(16, 'Project', 'admin', 'public', 0),
+(17, 'Project Two', 'admin', 'private', 0);
 
 -- --------------------------------------------------------
 
@@ -142,7 +147,14 @@ INSERT INTO `images` (`id`, `image`, `image_text`) VALUES
 (93, './upload/703.jpg', ''),
 (94, './upload/862.jpg', ''),
 (95, './upload/918.jpg', ''),
-(96, './upload/470.jpg', '');
+(96, './upload/470.jpg', ''),
+(97, './upload/881.jpg', ''),
+(98, './upload/125.txt', ''),
+(99, './upload/745.txt', ''),
+(100, './upload/226.png', ''),
+(101, './upload/290.jpg', ''),
+(102, './upload/429.jpg', ''),
+(103, './upload/576.txt', '');
 
 -- --------------------------------------------------------
 
@@ -199,27 +211,58 @@ INSERT INTO `membership` (`grpid`, `userid`, `uname`, `active`) VALUES
 (1, 4, '@sally', 0),
 (5, 1, '@doc', 0),
 (5, 3, '@mcqueen', 0),
-(12, 4, '@sally', 0),
 (5, 4, '@sally', 0),
 (1, 9, 'admin', 0),
 (5, 9, 'admin', 0),
 (6, 9, 'admin', 0),
-(12, 9, 'admin', 0);
+(12, 9, 'admin', 0),
+(13, 1, '@doc', 0),
+(1, 1, '@doc', 0),
+(14, 9, 'admin', 0),
+(14, 9, 'admin', 0),
+(15, 9, 'admin', 0),
+(16, 9, 'admin', 0),
+(16, 9, 'admin', 0),
+(17, 9, 'admin', 0),
+(12, 2, '@mcmissile', 0),
+(12, 1, '@doc', 0),
+(13, 2, '@mcmissile', 0),
+(6, 10, '', 0),
+(6, 11, '', 0),
+(6, 12, '', 0),
+(6, 12, 'fireman', 1),
+(6, 4, '@sally', 1),
+(6, 12, 'fireman', 1),
+(6, 12, 'fireman', 1),
+(6, 4, '@sally', 1),
+(6, 12, 'fireman', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Table structure for table `messagecontrol`
 --
 
-CREATE TABLE `message` (
-  `messID` int(11) NOT NULL,
-  `parent_commentID` int(11) DEFAULT NULL,
-  `comment` text NOT NULL,
-  `grpID` int(11) NOT NULL,
-  `userid` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE `messagecontrol` (
+  `threadId` int(11) NOT NULL,
+  `userOne` varchar(225) NOT NULL,
+  `userTwo` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `messagecontrol`
+--
+
+INSERT INTO `messagecontrol` (`threadId`, `userOne`, `userTwo`) VALUES
+(551, '@sally', '@doc'),
+(551, '@sally', '@doc'),
+(858, '@mcqueen', '@sally'),
+(42, '@doc', 'admin'),
+(761, '@doc', '@mater'),
+(858, '@mcqueen', '@sally'),
+(42, '@doc', 'admin'),
+(761, '@doc', '@mater'),
+(726, '@mcqueen', '@doc');
 
 -- --------------------------------------------------------
 
@@ -231,8 +274,8 @@ CREATE TABLE `messageroom` (
   `commentID` int(111) NOT NULL,
   `message` text NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `recip` int(11) NOT NULL,
-  `sender` int(25) NOT NULL,
+  `senderID` int(25) NOT NULL,
+  `fromUser` varchar(225) NOT NULL,
   `threadID` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -240,12 +283,20 @@ CREATE TABLE `messageroom` (
 -- Dumping data for table `messageroom`
 --
 
-INSERT INTO `messageroom` (`commentID`, `message`, `timestamp`, `recip`, `sender`, `threadID`) VALUES
-(43, 'testing', '2019-04-01 22:02:16', 4, 1, 551),
-(48, 'got it', '2019-04-01 23:54:17', 1, 4, 551),
-(49, 'hello sir', '2019-04-02 00:25:56', 3, 4, 858),
-(50, 'what are you doing test', '2019-04-11 15:37:06', 1, 9, 42),
-(51, 'testing', '2019-04-11 15:37:57', 9, 1, 42);
+INSERT INTO `messageroom` (`commentID`, `message`, `timestamp`, `senderID`, `fromUser`, `threadID`) VALUES
+(43, 'testing', '2019-05-21 17:26:10', 1, '@doc', 551),
+(48, 'got it', '2019-05-21 17:26:10', 4, '@sally', 551),
+(49, 'hello sir', '2019-05-21 17:26:10', 4, '@sally', 858),
+(50, 'what are you doing test', '2019-05-21 17:26:10', 9, 'admin', 42),
+(51, 'testing', '2019-05-21 17:26:11', 1, '@doc', 42),
+(52, 'sdfnmdsf ', '2019-05-21 17:26:11', 1, '@doc', 761),
+(53, 'should you reply, im testing', '2019-05-21 17:59:36', 1, '1', 761),
+(54, 'this too', '2019-05-21 18:01:54', 1, '@doc', 551),
+(55, 'bam', '2019-05-23 15:44:48', 1, '@doc', 551),
+(56, 'yo', '2019-05-23 15:59:10', 1, '@doc', 145),
+(57, 'final', '2019-05-23 16:00:21', 1, '@doc', 726),
+(58, 'still testing', '2019-05-24 14:39:33', 1, '@doc', 42),
+(59, 'can you recommend me some groups', '2019-06-20 14:45:05', 5, '@mater', 761);
 
 -- --------------------------------------------------------
 
@@ -266,12 +317,15 @@ CREATE TABLE `profileimage` (
 --
 
 INSERT INTO `profileimage` (`picid`, `locate`, `userid`, `status`, `keep`) VALUES
-(1, 'assets/profile1.png', 1, 0, 1),
+(1, 'assets/profile1818.jpg', 1, 0, 1),
 (2, 'assets/profile.png', 2, 1, 0),
 (3, 'assets/profile.png', 3, 1, 0),
 (4, 'assets/profile.png', 4, 1, 0),
 (5, 'assets/profile.png', 5, 1, 0),
-(6, 'assets/profile9618.jpg', 9, 0, 1);
+(6, 'https://www.gravatar.com/avatar/38ece33ee8899b9cd585b4bbebb02755?d=assets%2Fprofile9618.jpg&s=180', 9, 0, 0),
+(7, 'assets/profile.png', 10, 0, 1),
+(8, 'assets/profile.png', 11, 1, 0),
+(9, 'assets/profile.png', 12, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -394,7 +448,7 @@ INSERT INTO `tbl_comment` (`comment_id`, `parent_comment_id`, `message`, `image`
 (97, 0, '', './upload/862.jpg', 9, 'admin', '2019-05-10 10:17:00', 5, -1, 2, 0),
 (98, 0, '', 'upload/url355.jpg', 9, 'admin', '2019-05-08 23:44:27', 1, 0, 0, 0),
 (99, 0, '', 'upload/url679.jpg', 9, 'admin', '2019-05-09 01:09:30', 1, 0, 0, 0),
-(100, 0, '', './upload/918.jpg', 9, 'admin', '2019-05-10 10:39:17', 6, 1, 0, 0),
+(100, 0, '', './upload/918.jpg', 9, 'admin', '2019-05-10 11:07:53', 6, 0, 2, 0),
 (101, 0, '', 'upload/url867.jpg', 9, 'admin', '2019-05-09 01:33:29', 1, 0, 0, 0),
 (102, 0, '     1', '', 9, 'admin', '2019-05-09 01:40:25', 1, 0, 0, 0),
 (103, 0, '     2', '', 9, 'admin', '2019-05-09 01:40:28', 1, 0, 0, 0),
@@ -410,7 +464,41 @@ INSERT INTO `tbl_comment` (`comment_id`, `parent_comment_id`, `message`, `image`
 (113, 0, '     hello world;', '', 9, 'admin', '2019-05-09 23:40:06', 1, 0, 0, 1),
 (114, 0, '     hello world', '', 9, 'admin', '2019-05-09 23:40:16', 1, 0, 0, 0),
 (115, 0, '', './upload/470.jpg', 9, 'admin', '2019-05-09 23:42:24', 1, 0, 0, 0),
-(116, 0, '', 'upload/url322.png', 9, 'admin', '2019-05-10 02:53:58', 1, 7, 0, 0);
+(116, 0, '', 'upload/url322.png', 9, 'admin', '2019-05-10 02:53:58', 1, 7, 0, 0),
+(117, 0, '     showing you', '', 1, '@doc', '2019-05-11 21:17:26', 5, 0, 0, 0),
+(118, 0, '     showing you', '', 1, '@doc', '2019-05-11 21:18:18', 5, 0, 0, 1),
+(119, 0, '', 'upload/url650.jpg', 1, '@doc', '2019-05-11 21:20:20', 5, 0, 0, 0),
+(120, 0, '', './upload/881.jpg', 1, '@doc', '2019-05-11 21:21:00', 5, 0, 0, 0),
+(121, 0, '     what does <!-- mean', '', 1, '@doc', '2019-05-30 17:35:25', 5, 0, 0, 0),
+(122, 0, '     what does <!-- mean', '', 1, '@doc', '2019-05-30 17:40:47', 5, 0, 0, 0),
+(123, 0, '     what does <!-- do ', '', 1, '@doc', '2019-05-30 17:46:00', 5, 0, 0, 0),
+(124, 0, '     What does <!-- do', '', 1, '@doc', '2019-05-30 17:47:25', 5, 0, 0, 0),
+(125, 0, '     what does <!-- do', '', 1, '@doc', '2019-05-30 17:54:57', 1, 0, 0, 1),
+(126, 0, '     <?php\r\n\r\n$connect = mysqli_connect(\"localhost\", \"root\", \"\") or die(\"Could not connect to server!\");\r\nmysqli_select_db($connect, \"php_forum\") or die(\"Could not connect to database!\");\r\n\r\n?>', '', 9, 'admin', '2019-05-31 17:53:36', 1, 0, 0, 1),
+(127, 0, '     <!DOCTYPE HTML>\r\n<html>\r\n    <head>\r\n        <title>Register</title>\r\n    </head>\r\n    <body>\r\n        <form action=\"register.php\" method=\"POST\">\r\n            Username: <input type=\"text\" name=\"username\">\r\n            <br/>\r\n            Password: <input type=\"password\" name=\"password\">\r\n            <br/>\r\n            Confirm Password: <input type=\"password\" name=\"confirmPassword\">\r\n            <br/>\r\n            Email: <input type=\"text\" name=\"email\">\r\n            <br/>\r\n            <input type=\"submit\" name=\"submit\" value=\"Register\"> or <a href=\"login.php\">Log in</a>\r\n        </form>\r\n    </body>\r\n</html>', '', 9, 'admin', '2019-05-31 18:06:25', 1, 0, 0, 1),
+(128, 0, '     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. ', '', 9, 'admin', '2019-05-31 18:07:28', 1, 0, 0, 0),
+(129, 0, '', './upload/125.txt', 1, '@doc', '2019-06-05 16:06:51', 6, 0, 0, 0),
+(130, 0, '', './upload/745.txt', 1, '@doc', '2019-06-05 16:56:48', 6, 0, 0, 0),
+(131, 0, '', './upload/226.png', 1, '@doc', '2019-06-05 16:57:04', 6, 0, 0, 0),
+(132, 0, '', './upload/290.jpg', 1, '@doc', '2019-06-05 16:57:43', 6, 0, 0, 0),
+(133, 0, '', './upload/429.jpg', 1, '@doc', '2019-06-05 16:59:20', 6, 0, 0, 0),
+(134, 0, '', './upload/576.txt', 1, '@doc', '2019-06-05 16:59:36', 6, 0, 0, 0),
+(135, 0, 'hi', '', 1, '@doc', '2019-06-13 21:26:37', 6, 0, 0, 0),
+(136, 0, '/fire', '', 1, '@doc', '2019-06-13 21:27:56', 6, 0, 0, 0),
+(137, 0, '/who', '', 1, '@doc', '2019-06-14 14:22:37', 6, 0, 0, 0),
+(138, 0, '/who', '', 1, '@doc', '2019-06-14 14:26:52', 6, 0, 0, 0),
+(139, 0, 'who', '', 1, '@doc', '2019-06-14 14:46:36', 6, 0, 0, 0),
+(140, 0, '/msg @dan', '', 1, '@doc', '2019-06-14 14:54:45', 6, 0, 0, 0),
+(141, 0, '/archive', '', 1, '@doc', '2019-06-14 15:21:07', 6, 0, 0, 0),
+(142, 0, 'archive', '', 1, '@doc', '2019-06-14 15:21:26', 6, 0, 0, 0),
+(143, 0, '/invite @fireman', '', 1, '@doc', '2019-06-14 15:52:10', 6, 0, 0, 0),
+(144, 0, '/invite fireman', '', 1, '@doc', '2019-06-14 15:53:11', 6, 0, 0, 0),
+(145, 0, '/invite @sally', '', 1, '@doc', '2019-06-14 17:35:21', 6, 0, 0, 0),
+(146, 0, '/invite fireman', '', 1, '@doc', '2019-06-14 17:40:31', 6, 0, 0, 0),
+(147, 0, '/who', '', 2, '@mcmissile', '2019-06-14 17:54:03', 13, 0, 0, 0),
+(148, 0, '/invite @sally', '', 2, '@mcmissile', '2019-06-14 17:54:20', 13, 0, 0, 0),
+(149, 0, '/invite @sally', '', 2, '@mcmissile', '2019-06-14 17:56:27', 13, 0, 0, 0),
+(150, 0, '/msg fireman', '', 4, '@sally', '2019-06-14 18:23:40', 6, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -438,7 +526,10 @@ INSERT INTO `users` (`userid`, `fname`, `lname`, `uname`, `email`, `pword`) VALU
 (4, 'Sally', 'Carrera', '@sally', 'porsche@rsprings.gov', 'sallyc'),
 (5, 'Tom', 'Mater', '@mater', 'mater@rsprings.gov', 'matert'),
 (6, 'don', 'test', '@peach', 'test@test.org', '$2y$10$SUK/ZDny.ERn7bZqmSa.KOKjozZRMUn3.CK1ooVDWZLRnLupyQGoe'),
-(9, 'Dontavus', 'Riddick', 'admin', 'dridd013@odu.edu', 'admin');
+(9, 'Dontavus', 'Riddick', 'admin', 'dridd013@odu.edu', 'admin'),
+(10, 'Justin', 'Bee', '@justin', 'jfbrunel@odu.edu', 'justin'),
+(11, 'Don', 'Letssee', '@dtesty', 'justaemail@email.com', 'testman'),
+(12, 'Mister', 'Fire', 'fireman', 'fireman@fire.com', 'fireman');
 
 -- --------------------------------------------------------
 
@@ -473,7 +564,8 @@ INSERT INTO `voter` (`id`, `userid`, `commentid`, `up`, `down`) VALUES
 (12, 9, 71, 0, 0),
 (13, 1, 97, -1, 2),
 (14, 1, 75, 2, -1),
-(15, 1, 100, 1, 0);
+(15, 1, 100, 0, 1),
+(16, 9, 100, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -490,13 +582,6 @@ ALTER TABLE `groups`
 --
 ALTER TABLE `images`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `message`
---
-ALTER TABLE `message`
-  ADD PRIMARY KEY (`messID`),
-  ADD KEY `GRPID` (`grpID`);
 
 --
 -- Indexes for table `messageroom`
@@ -537,59 +622,43 @@ ALTER TABLE `voter`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `grpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `grpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
-
---
--- AUTO_INCREMENT for table `message`
---
-ALTER TABLE `message`
-  MODIFY `messID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT for table `messageroom`
 --
 ALTER TABLE `messageroom`
-  MODIFY `commentID` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `commentID` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `profileimage`
 --
 ALTER TABLE `profileimage`
-  MODIFY `picid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `picid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_comment`
 --
 ALTER TABLE `tbl_comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `userid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `voter`
 --
 ALTER TABLE `voter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `message`
---
-ALTER TABLE `message`
-  ADD CONSTRAINT `MESSAGE_ibfk_1` FOREIGN KEY (`GRPID`) REFERENCES `members` (`GRPID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

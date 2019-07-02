@@ -44,9 +44,9 @@ if(isset ($_POST['submit']))
 
                                  //$_SESSION['logged_in']= true;
                                  //for testing
-                                 header("Location: homepage.php");
+                                // header("Location: homepage.php");
                                  //for real
-                                 // header("Location: authenic.php");
+                                 header("Location: authenic.php");
                                  exit();
                        }
 
