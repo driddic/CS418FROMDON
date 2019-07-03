@@ -9,6 +9,19 @@
       .github
       {
         background-color: #4CAF50; /* Green */
+        display: block;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        padding:4px;
+        width: 220px;
+        height: 32px;
+        border: none;
+        outline:none;
+        border-bottom: 1px solid navy;
+        font-family: sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+        transition: 0.2s ease;
       }
 
     </style>
@@ -39,7 +52,7 @@
                 <input type="submit" name="submit" value="Submit">
         </div>
         <br>
-        <br>
+        
         <div>
             <button class="github"><a href="gitlogin.php">Sign In with GitHub</a></button>
         </div>
