@@ -30,8 +30,9 @@ if(isset ($_POST['submit']))
             }
 
             else {
-                      //trying this but it does not work in docker
-                       $sql = "SELECT * FROM users WHERE uname='".$uname."' and pword= '".$pwd."';";
+
+                       $sql = "SELECT * FROM users
+                               WHERE uname='".$uname."' and pword= '".$pwd."';";
                        $result = mysqli_query($conn,$sql);
 
                        if ($row = mysqli_fetch_assoc($result))   {

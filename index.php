@@ -5,6 +5,13 @@
     <link rel="stylesheet" type="text/css" href="./assets/index.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <style media="screen">
+      .github
+      {
+        background-color: #4CAF50; /* Green */
+      }
+
+    </style>
     <?php
     session_start();
     //include 'homehead.php';
@@ -31,8 +38,10 @@
                 <input type="password" name="password" id="pword" placeholder="Password">
                 <input type="submit" name="submit" value="Submit">
         </div>
+        <br>
+        <br>
         <div>
-            <button><a href="gitlogin.php">Sign In with GitHub</a></button>
+            <button class="github"><a href="gitlogin.php">Sign In with GitHub</a></button>
         </div>
          </form>
 

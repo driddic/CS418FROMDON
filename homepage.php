@@ -171,6 +171,7 @@ function showResult(str) {
     <div id= "sidebar" class="w3-sidebar s3 w3-dark-blue w3-bar-block" style= "width:15%">
       <h3 class ="w3-bar-item">
          <?php
+
          $sessname = $_SESSION['username'];
          $sessid= $_SESSION['userid'];
          $adminNum = '9';

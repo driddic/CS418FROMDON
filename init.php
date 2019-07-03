@@ -69,6 +69,7 @@ function fetchData()
         $_SESSION['payload'] = $userPayload;
         $_SESSION['user'] = $username;
         $_SESSION['githubUser'] = "true";
+        $_SESSION['email'] = $email;
         return $userPayload;
 
     }

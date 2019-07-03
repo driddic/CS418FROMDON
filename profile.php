@@ -193,6 +193,8 @@ if ($sessid == $pickid) {
             </div>";
 
         ?>
+        <div class="" align = "center">
+
         <form action="upload.php" method="post">
           <p>Would you like to have your gravatar as your default profile image?</p>
           <input type="radio" name="option" value="yes" checked>Yes!
@@ -201,6 +203,7 @@ if ($sessid == $pickid) {
           <input type="submit" name="gravpick" value="Submit">
         </form>
 
+      </div>
         <?php
             }}
         else {
