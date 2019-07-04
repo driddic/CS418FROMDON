@@ -2,9 +2,9 @@
     session_start();
     require_once 'testconn.php';
     include 'header.php';
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+    // ini_set('display_errors', 1);
+    // ini_set('display_startup_errors', 1);
+    // error_reporting(E_ALL);
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -201,7 +201,16 @@
           }
           .waitingScreen{
             background-image: url("assets/newballard.jpg");
-            height: 100%;
+            /* height: 100; */
+            position: absolute;
+            top: 55px; /* Header Height */
+            bottom: 10px; /* Footer Height */
+            width: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            overflow: hidden;
           }
      </style>
   </head>
@@ -270,8 +279,8 @@ else {
 
 
     <!-- MESSAGE BOARD -->
-    <div style="margin-left:15% ">
-     <div id = "groupcontent" class="w3-container w3-grey w3-center">
+    <div id = "groupcontent" class="w3-container w3-grey w3-center" style="margin-left:15%">
+
        <?php
          $comment = "";
          $commenterror = "";
@@ -302,7 +311,7 @@ else {
           }
         }//end of open search stuff
         if (!$currentgroup) {
-          echo "<div class='waitingScreen'></div>";
+echo "<div class = 'waitingScreen' ></div>";
 
         }else if($currentgroup) {
 //verify if user is in the current group selected if he is not in it user can't get in the chat
@@ -494,7 +503,7 @@ $(document).ready(function(){
 
    <div class="table-responsive" id="pagination_data"></div>
 
- </div>
+
 </div>
 <!-- </div> -->
     <?php

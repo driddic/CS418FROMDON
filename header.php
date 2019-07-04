@@ -79,39 +79,5 @@ function showResultUser(str) {
         </div>
        </div>
      </header>
-
-<?php
-
-
-//  if (!isset($_SESSION['username']))
-// {
-//   echo "not logged in";
-//   header("Location: index.php?error=loginfirsthdr");
-//   exit();
-// }
-
-// function get_photo($conn){
-// $sessname= $_SESSION['username'];
-// $sessid= $_SESSION['userid'];
-// $sqlone = "SELECT * FROM users WHERE uname = '".$sessname."' ";
-// $result = mysqli_query($conn, $sqlone);
-//
-//  if(mysqli_num_rows($result) > 0){
-//
-//      while ($results = mysqli_fetch_assoc($result)){
-//        //would be sessname
-//        $sqlImg =" SELECT * FROM profileimage WHERE userid = '$sessid' ";
-//        $resultImg = mysqli_query($conn, $sqlImg);
-//        while ($rowImg = mysqli_fetch_assoc($resultImg)){
-//
-//                if ($rowImg['status'] == 0) {
-//                  echo "<img src = 'assets/profile".$sessid.".jpg' width= '90' height= '50'>";
-//                  echo "<img src = 'assets/profile".$sessid.".png' width= '90' height= '50'>";
-//                }else {
-//                  echo "<img src = 'assets/profile.png' width= '70' height= '60'>";
-//                }
-// }}}}
-
-?>
 </body>
 </html>
