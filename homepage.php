@@ -20,6 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <!--
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -28,27 +29,27 @@
     <script src="./assets/index.js"></script>
 
     <script>
-function showResult(str) {
-  if (str.length==0) {
-    document.getElementById("slashcommand").innerHTML="";
-    document.getElementById("slashcommand").style.border="0px";
-    return;
-  }
-  if (window.XMLHttpRequest) {
-    // code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  } else {  // code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xmlhttp.onreadystatechange=function() {
-    if (this.readyState==4 && this.status==200) {
-      document.getElementById("slashcommand").innerHTML=this.responseText;
-      document.getElementById("slashcommand").style.border="1px solid #A5ACB2";
-    }
-  }
-  xmlhttp.open("GET","slashcommand.php?q="+str,true);
-  xmlhttp.send();
-}
+              function showResult(str) {
+                if (str.length==0) {
+                  document.getElementById("slashcommand").innerHTML="";
+                  document.getElementById("slashcommand").style.border="0px";
+                  return;
+                }
+                if (window.XMLHttpRequest) {
+                  // code for IE7+, Firefox, Chrome, Opera, Safari
+                  xmlhttp=new XMLHttpRequest();
+                } else {  // code for IE6, IE5
+                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange=function() {
+                  if (this.readyState==4 && this.status==200) {
+                    document.getElementById("slashcommand").innerHTML=this.responseText;
+                    document.getElementById("slashcommand").style.border="1px solid #A5ACB2";
+                  }
+                }
+                xmlhttp.open("GET","slashcommand.php?q="+str,true);
+                xmlhttp.send();
+              }
  </script>
      <style media="screen">
            .avatar {
@@ -164,6 +165,44 @@ function showResult(str) {
            width:600px;
            margin:0 auto;
           }
+
+          /* Style the submit button */
+          form.openS button {
+            float: left;
+            width: 20%;
+            padding: 10px;
+            background: #2196F3;
+            color: white;
+            font-size: 7px;
+            border: 1px solid grey;
+            border-left: none; /* Prevent double borders */
+            cursor: pointer;
+          }
+
+          form.openS button:hover {
+            background: #0b7dda;
+          }
+
+          /* Clear floats */
+          form.openS::after {
+            content: "";
+            clear: both;
+            display: table;
+
+          }
+          /* Style the search field */
+          form.openS input[type=text] {
+            padding: 10px;
+            font-size: 17px;
+            border: 1px solid grey;
+            float: left;
+            width: 80%;
+            background: #f1f1f1;
+          }
+          .waitingScreen{
+            background-image: url("assets/newballard.jpg");
+            height: 100%;
+          }
      </style>
   </head>
   <body>
@@ -179,14 +218,14 @@ function showResult(str) {
          // $gitsessName = $_SESSION['UserName'];
          // $gitsessID = $_SESSION['UserId'];
           //check to see if user is logged in first
-         if (isset($_SESSION['username'])){echo "Hello  " . $sessname." #".$sessid; }
+         if (isset($_SESSION['username'])){echo "Hello  " . $sessname; }
             else { echo "not logged in";
                   header("Location: index.php?error=loginfirsthp");  }
            ?>
          </h3>
-         <form class="" action="homepage.php" method="post">
-           <input type="text" name="opensearch" placeholder="OpenSearch for all posts">
-             <input type="submit" name="opens" value="Search">
+         <form class="openS" action="homepage.php" method="post">
+           <input class="openS" type="text" name="opensearch" placeholder="OpenSearch...">
+             <button type="submit" name="opens" value="Search"><i class="fa fa-search"></i></button>
            </form>
 
       <!-- //listing groups the user is in -->
@@ -263,7 +302,8 @@ else {
           }
         }//end of open search stuff
         if (!$currentgroup) {
-          echo "pick a group fam";
+          echo "<div class='waitingScreen'></div>";
+
         }else if($currentgroup) {
 //verify if user is in the current group selected if he is not in it user can't get in the chat
           $checkq = "SELECT grpid From membership where userid = '$sessid' and grpid = '$currentgroup'";

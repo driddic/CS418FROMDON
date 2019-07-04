@@ -23,7 +23,19 @@
         font-size: 15px;
         transition: 0.2s ease;
       }
+      /* Add styles to the form container */
+      .credsgoHere {
+        position: absolute;
+        left:  0;
+        margin: 20px;
+        max-width: 300px;
+        padding: 16px;
+        background-color: white;
+      }
 
+      .credsgoHere h1{
+        color: inherit;
+      }
     </style>
     <?php
     session_start();
@@ -43,16 +55,17 @@
       </div>
     </header>
       <div id="login-box">
-        <form action= "login.php" method="POST" >
+        <form action= "login.php" method="POST" class="credsgoHere">
 
         <div>
                 <h1>Login</h1>
+
                 <input type="text" name="username" id="uname" placeholder="@Username">
                 <input type="password" name="password" id="pword" placeholder="Password">
                 <input type="submit" name="submit" value="Submit">
         </div>
         <br>
-        
+
         <div>
             <button class="github"><a href="gitlogin.php">Sign In with GitHub</a></button>
         </div>

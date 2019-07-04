@@ -5,12 +5,23 @@ include 'homehead.php'; ?>
   {
     background-color: #4CAF50; /* Green */
   }
+  .credsgoHere {
+    position: absolute;
+    left:  0;
+    margin: 20px;
+    max-width: 350px;
+    padding: 16px;
+    background-color: white;
+  }
 
+  .credsgoHere h1{
+    color: inherit;
+  }
 </style>
 <main>
 
-  <form action= "register.php" method="POST" >
     <div id="login-box">
+      <form action= "register.php" method="POST" class="credsgoHere">
       <div align="center">
         <h1>Sign Up</h1>
           <input type="text" name="username" id="uname" placeholder="@Username">
@@ -22,11 +33,7 @@ include 'homehead.php'; ?>
           <div class="g-recaptcha"  data-sitekey="6LcugX8UAAAAAKBN8xRtZk_IIC_zM5jJ0VXoCI1N"></div>
           <input type="submit" name="su-submit" value="Submit">
       </div>
-      <br>
-      <br>
-      <div align = "center">
-          <!-- <button class="github"><a href="gitsignup.php">Sign Up with GitHub</a></button> -->
-      </div>
+
     </div>
   </form>
 </main>
