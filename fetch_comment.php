@@ -5,7 +5,37 @@ session_start();
 $sessid=$_SESSION['userid'];
 $sessname=$_SESSION['username'];
 $group = $_POST['groupajax'];
+?>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    .pagination_link {
+display: inline-block;
+}
 
+.pagination_link span {
+color: black;
+float: left;
+padding: 8px 16px;
+text-decoration: none;
+}
+
+.pagination_link span.active {
+background-color: red;
+color: white;
+}
+
+.pagination_link span:hover:not(.active)
+ {
+   background-color: #ddd;
+ }
+    </style>
+  </head>
+  <body>
+<?php
 
 //
 ///
@@ -530,6 +560,9 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 
 ?>
+
+</body>
+</html>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">

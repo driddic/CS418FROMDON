@@ -17,10 +17,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
       <!--
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -52,6 +52,30 @@
               }
  </script>
      <style media="screen">
+          #bigMdl{
+            background-color: lightblue;
+            display: block;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            padding:4px;
+            width: 220px;
+            height: 32px;
+            border: none;
+            outline:none;
+            /* border-bottom: 1px solid navy; */
+            font-style: normal;
+            color: white;
+            font-family: sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            transition: 0.2s ease;
+          }
+          /* #comment_form input, button{
+            width: auto;
+          }
+          #comment_form button{
+            width: auto;
+          } */
            .avatar {
            vertical-align: middle;
            width: 50px;
@@ -212,6 +236,23 @@
             background-attachment: fixed;
             overflow: hidden;
           }
+          .table_responsive {
+      display: inline-block;
+      }
+
+      .table_responsive div {
+      color: black;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      }
+
+      .table_responsive div.active {
+      background-color: #4CAF50;
+      color: white;
+      }
+
+      .pagination_link span:hover:not(.active) {background-color: #ddd;}
      </style>
   </head>
   <body>
@@ -311,6 +352,7 @@ else {
           }
         }//end of open search stuff
         if (!$currentgroup) {
+          //display a picture while waiting for user to select a group
 echo "<div class = 'waitingScreen' ></div>";
 
         }else if($currentgroup) {
@@ -341,9 +383,13 @@ echo "<div class = 'waitingScreen' ></div>";
       Code: <input type="checkbox" name="code_upload" value="1">
      </div>
      <input type="hidden" name="comment_id" id="comment_id" class='form-control' value='<?php echo $commentvalue ?>' >
-     <input type='submit' name='submit' id='submit' value='Post'>
+     <input type='submit' name='submit' id='submit' value='Post'><button id = "bigMdl" type="button" name="upload">Upload</button>
      </div>
    </form>
+<div class="modal" id="bigModal">
+  <div class="modal-content">
+     <button class="closebig">&times;</button>
+     <div class="container box">
 
    <!-- Trigger/Open The Modal -->
      <button id="myBtn">Post Pictures Using URL</button>
@@ -351,7 +397,7 @@ echo "<div class = 'waitingScreen' ></div>";
     <div id="myModal" class="modal">
      <!-- Modal content -->
      <div class="modal-content">
-       <span class="close">&times;</span>
+       <button class="close">&times;</button>
        <div class="container box">
 
        <div class="form-group">
@@ -415,7 +461,7 @@ else
     <div id="myModaltwo" class="modal">
      <!-- Modal content -->
      <div class="modal-content">
-       <span class="closetwo">&times;</span>
+       <button class="closetwo">&times;</button>
        <p>Select a file to post</p>
        <!-- <form class="w3-form-post" >
          <input id="whatpic" type="file" name="see" required>
@@ -496,7 +542,10 @@ $(document).ready(function(){
  });
 });
 </script>
+</div>
+</div>
     </div>
+  </div>
     </div>
    <span id='comment_message'></span>
    <br>
@@ -571,14 +620,18 @@ $(document).ready(function(){
 // Get the modal
 var modal = document.getElementById('myModal');
 var Modaltwo = document.getElementById('myModaltwo');
+var huge = document.getElementById('bigModal');
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
 var btnTwo = document.getElementById("myBtntwo");
+var mainbtn = document.getElementById('bigMdl');
+// var big = document.getElementById('bigModal')
 
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 var spanTwo = document.getElementsByClassName("closetwo")[0];
+var bigspan = document.getElementsByClassName('closebig')[0];
 
 // When the user clicks the button, open the modal
 btn.onclick = function() {
@@ -587,6 +640,9 @@ btn.onclick = function() {
 btnTwo.onclick = function() {
   Modaltwo.style.display = "block";
 }
+mainbtn.onclick = function(){
+  huge.style.display = "block";
+}
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
@@ -594,6 +650,11 @@ span.onclick = function() {
 spanTwo.onclick = function() {
   Modaltwo.style.display = "none";
 }
+bigspan.onclick = function(){
+
+  huge.style.display = "none";
+}
+
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
@@ -603,6 +664,11 @@ window.onclick = function(event) {
 window.onclick = function(event) {
   if (event.target == Modaltwo) {
     Modaltwo.style.display = "none";
+  }
+}
+window.onclick = function(event){
+  if (event.target == huge) {
+huge.style.display = "none";
   }
 }
 </script>
