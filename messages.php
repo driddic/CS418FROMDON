@@ -7,6 +7,14 @@ padding: 10px;
 margin: 10px 0;
 width: 60%;
 }
+.containerUser {
+border: 2px solid #dedede;
+background-color: lightgrey;
+border-radius: 5px;
+padding: 10px;
+margin: 10px 0;
+width: 60%;
+}
 .container::after {
   content: "";
   clear: both;
@@ -50,6 +58,9 @@ width: 60%;
   padding: 100px 20px;
   height: 100%;
 }
+.textstyle a{
+  color: white;
+}
 </style>
 
  <?php
@@ -90,12 +101,12 @@ width: 60%;
 
             if ($results["userOne"] == $sessname) {
               // <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
-              echo "<div>
+              echo "<div class = 'textstyle'>
                    <a href='messages.php?treadid=".$results["threadId"]."'name ='".$results["threadId"]."'class='w3-bar-item w3-button'>  ".$results["userTwo"]."</a>
                      </div>";
             }elseif ($results["userTwo"] == $sessname) {
 
-              echo "<div>
+              echo "<div class = 'textstyle'>
                      <a href='messages.php?treadid=".$results["threadId"]."'name ='".$results["threadId"]."'class='w3-bar-item w3-button'>  ".$results["userOne"]."</a>
                        </div>";
                }else {
@@ -117,18 +128,23 @@ width: 60%;
 
             if (mysqli_num_rows($reaching) > 0) {
               while ($toot = mysqli_fetch_array($reaching)) {
-
+                if ($sessname == $toot["fromUser"]) {
+              //we want to change the styling based on sender
               echo '<div class="container">
                        <div><b>'.$toot["fromUser"].'</b> </div>
                        <div>'.$toot["message"].'</div>
                        <div><i>'.$toot["timestamp"].'</i></div>
                  </div>';
+               }
+               else {
 
-                 //has to change
-                 // $receive = $toot["toUser"];
-                 // $receiveID = $toot["recip"];
-
-              }
+               echo '<div class="containerUser">
+                        <div><b>'.$toot["fromUser"].'</b> </div>
+                        <div>'.$toot["message"].'</div>
+                        <div><i>'.$toot["timestamp"].'</i></div>
+                  </div>';
+                }
+               }
             }
 
             echo "
@@ -153,16 +169,9 @@ width: 60%;
              <div id='display_comment'></div>
             </div>";
 
-          }
-
-            else {
+          }else {
               echo "No group exist";
             }
-
-
-
-
-
 
            ?>
       </div>
