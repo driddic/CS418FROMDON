@@ -5,6 +5,7 @@ background-color: #f1f1f1;
 border-radius: 5px;
 padding: 10px;
 margin: 10px 0;
+width: 60%;
 }
 .container::after {
   content: "";
@@ -116,6 +117,7 @@ margin: 10px 0;
 
             if (mysqli_num_rows($reaching) > 0) {
               while ($toot = mysqli_fetch_array($reaching)) {
+
               echo '<div class="container">
                        <div><b>'.$toot["fromUser"].'</b> </div>
                        <div>'.$toot["message"].'</div>
@@ -143,7 +145,7 @@ margin: 10px 0;
                <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Message' rows='1'></textarea>
               </div>
               <div class='form-group'>
-               <input type='submit' name='reply' value='Reply' />
+               <input type='submit' name='reply' value='Send' />
               </div>
              </form>
              <span id='comment_message'></span>
