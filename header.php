@@ -25,7 +25,29 @@
       height: 500px;
       width: 1000px;
         }
+    .notification {
+            background-color: #555;
+            color: white;
+            text-decoration: none;
+            padding: 15px 26px;
+            position: relative;
+            display: inline-block;
+            border-radius: 2px;
+}
 
+.notification:hover {
+  background: red;
+}
+
+ /* .w3-bar-itemw3-buttonw3-mobile .badge span{
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+} */
     </style>
     <link rel="stylesheet" type="text/css" href="./assets/index.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -53,6 +75,8 @@ function showResultUser(str) {
   xmlhttp.open("GET","livesearch.php?q="+str,true);
   xmlhttp.send();
 }
+
+
  </script>
   </head>
   <body>
@@ -60,6 +84,7 @@ function showResultUser(str) {
      <header>
        <div id="container">
          <div class="w3-bar w3-light-grey w3-border w3-padding" >
+
              <a href="homepage.php" class="w3-bar-item w3-button w3-mobile">Home</a>
              <?php
              $sessid= $_SESSION['userid'];

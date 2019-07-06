@@ -1,3 +1,56 @@
+<style media="screen">
+.container {
+border: 2px solid #dedede;
+background-color: #f1f1f1;
+border-radius: 5px;
+padding: 10px;
+margin: 10px 0;
+}
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.form-group textarea{
+  border-radius: 15px;
+  border: 2px solid lightblue;
+  padding: 20px;
+  width: 700px;
+  height: 150px;
+}
+.form-group input{
+  border-radius: 15px;
+  border: 2px solid lightblue;
+  width: 80px;
+  height: 50px;
+  position: relative;
+}
+/* Style tab links */
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+</style>
+
  <?php
       //Messenger Page
       //start php code
@@ -6,7 +59,6 @@
       require 'testconn.php';
       include 'header.php';
       //initialize variables
-
       $arrival = new DateTime();
       $arrivalString = $arrival->format("Y-m-d H:i:s");
       $direct=$_GET["treadid"];
@@ -36,6 +88,7 @@
           while ($results = mysqli_fetch_assoc($dmconn)){
 
             if ($results["userOne"] == $sessname) {
+              // <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
               echo "<div>
                    <a href='messages.php?treadid=".$results["threadId"]."'name ='".$results["threadId"]."'class='w3-bar-item w3-button'>  ".$results["userTwo"]."</a>
                      </div>";
@@ -50,6 +103,8 @@
 
               }
             }
+
+            //Seperate
             //Selcting the threadID
           if (!$direct) {
             echo "Which chat would you like ?";
@@ -61,11 +116,10 @@
 
             if (mysqli_num_rows($reaching) > 0) {
               while ($toot = mysqli_fetch_array($reaching)) {
-              echo '<div class="panel panel-default">
-                 <div class="panel-heading"></div>
-                 <div class="panel-heading">By <b>'.$toot["fromUser"].'</b> on <i>'.$toot["timestamp"].'</i></div>
-                 <div class="panel-body">'.$toot["message"].'</div>
-                 <div class="panel-footer" align = "center">
+              echo '<div class="container">
+                       <div><b>'.$toot["fromUser"].'</b> </div>
+                       <div>'.$toot["message"].'</div>
+                       <div><i>'.$toot["timestamp"].'</i></div>
                  </div>';
 
                  //has to change
@@ -73,9 +127,10 @@
                  // $receiveID = $toot["recip"];
 
               }
+            }
 
             echo "
-            <div class='container'>
+            <div class='container-type'>
              <form action= 'postmessages.php' method='POST' id='comment_form'>
               <div class='form-group'>
               <input type='hidden' name='comment_number' id='comment_number' class='form-control' value= '$commentvalue' />
@@ -85,7 +140,7 @@
                <input type='hidden' name='comment_time' id='comment_time' class='form-control' value='$arrivalString' />
               </div>
               <div class='form-group'>
-               <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Message' rows='5'></textarea>
+               <textarea name='comment_content' id='comment_content' class='form-control' placeholder='Enter Message' rows='1'></textarea>
               </div>
               <div class='form-group'>
                <input type='submit' name='reply' value='Reply' />
@@ -95,7 +150,6 @@
              <br />
              <div id='display_comment'></div>
             </div>";
-            }
 
           }
 
@@ -146,3 +200,21 @@
 
 ?>
   </div>
+  <script>
+  function openPage(pageName,elmnt,color) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].style.backgroundColor = "";
+    }
+    document.getElementById(pageName).style.display = "block";
+    elmnt.style.backgroundColor = color;
+  }
+
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
+  </script>

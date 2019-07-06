@@ -12,225 +12,120 @@ $sessid = $_SESSION['userid'];
 
 $five = "SELECT * FROM users";
 $fiveyes = mysqli_query($conn, $five);
-
  ?>
+
+ <style media="screen">
+   h1 {
+     font-family: "Times New Roman", Times, serif;
+     font-size:1.5vw;
+   }
+  .swap{
+    border-radius: 15px;
+    border: 2px solid lightblue;
+    padding: 20px;
+    width: 700px;
+    height: auto;
+  }
+  .swap input{
+    border-radius: 5px;
+  }
+
+  form.openS button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 7px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+  }
+  #bigbox {
+    /* Header Height */
+    /* bottom: 10px; /* Footer Height */
+
+    width: 36.8%;
+    height: auto;
+  }
+  /* The container */
+  .contract {
+   display: block;
+   position: relative;
+   padding-left: 35px;
+   margin-bottom: 12px;
+   cursor: pointer;
+   font-size: 22px;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+ }
+
+ /* Hide the browser's default radio button */
+ .contract input {
+   position: absolute;
+   opacity: 0;
+   cursor: pointer;
+ }
+
+ /* Create a custom radio button */
+ .checkmark {
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 25px;
+   width: 25px;
+   background-color: #eee;
+   border-radius: 50%;
+ }
+
+ /* On mouse-over, add a grey background color */
+ .contract:hover input ~ .checkmark {
+   background-color: #ccc;
+ }
+
+ /* When the radio button is checked, add a blue background */
+ .contract input:checked ~ .checkmark {
+   background-color: #2196F3;
+ }
+
+ /* Create the indicator (the dot/circle - hidden when not checked) */
+ .checkmark:after {
+   content: "";
+   position: absolute;
+   display: none;
+ }
+
+ /* Show the indicator (dot/circle) when checked */
+ .contract input:checked ~ .checkmark:after {
+   display: block;
+ }
+
+ /* Style the indicator (dot/circle) */
+ .contract .checkmark:after {
+  	top: 9px;
+ 	left: 9px;
+ 	width: 8px;
+ 	height: 8px;
+ 	border-radius: 50%;
+ 	background: white;
+ }
+ </style>
+
      <main>
        <div id= "bigbox">
-         <div align=center>
+         <div class="margin1">
+         <div class="swap">
            <h1>Recommended Groups</h1>
-           <br>
            <?php
-          //this is the recommended group ideas
-          // if a user is in a direct message with one they are not in a group with,
-          // recommend the group with the largest member list for each conversation
-          //get conversations.
-          $dmq = "SELECT Distinct * FROM messagecontrol WHERE userOne = '$sessname' or userTwo = '$sessname'";
-          $dmconn = mysqli_query($conn, $dmq);
-          if(mysqli_num_rows($dmconn) > 0){
-             // if one or more rows are returned do following
-          while ($results = mysqli_fetch_assoc($dmconn)){
-            //i can see the groups from both if and else if conditions
-            if ($results["userOne"] == $sessname) {  //what groups are usertwo in???
-              $uTwo = $results["userTwo"]; //uname format
-
-                            // $uOne = $results["userOne"]; //uname form//the other user in the message
-                            // $depth = array();
-                            // $gList = array();
-                            //run query and exclude the global group
-                            $sql = " SELECT * FROM membership where uname = '$uTwo' and not grpid = '6' Order by grpid ";
-                            $sqlrun = mysqli_query($conn,$sql);
-                            // echo "<br>";
-                            //if there are results we want the group id from the query
-                            if(mysqli_num_rows($sqlrun) > 0 ){
-                              while ($k = mysqli_fetch_assoc($sqlrun)) {
-                                $groupID = $k['grpid'];
-                                $gList[] = $groupID;//store all the group id in a list
-                                }
-
-                              // now we want a query that will look to see if the session user is in
-                              // each group with SQL In function from the grpid array $gList
-                              $newgList = implode(", ",$gList);//make a new list with commas
-                              $gQuery = "SELECT * FROM membership where uname ='$sessname' and grpid IN ($newgList) "; //run query with new list
-                              $gqRun = mysqli_query($conn, $gQuery);
-                              if (mysqli_num_rows($gqRun) == 0) {
-                                // if user is not in any groups, grab how many members are in each group
-                                // run it again now to get the people in each group
-                                  $bam = "select grpid, count(*) as NewCount from membership WHERE grpid in(1,5,12,13) group by grpid ";
-                                  $bamrun = mysqli_query($conn,$bam);
-                                  $new_groups =array();
-                                  //if there are results, we want the group id for the next query
-                                  if(mysqli_num_rows($bamrun) > 0 ){
-                                    while ($m = mysqli_fetch_assoc($bamrun)) {
-                                      $groupIDagain = $m['grpid'];// get grpid
-                                      array_push($new_groups,$m);
-                                    }
-
-                                  $biggestGroup = -1;
-                                  $biggestCount = -1;
-                                  foreach($new_groups as $theElement){
-                                     if($theElement['NewCount'] > $biggestCount){
-
-                                      $biggestGroup = $theElement['grpid'];
-                                      $biggestCount = $theElement['NewCount'];
-                                       // echo "grpid";
-                                         $theElement['grpid'];
-                                       // echo "NewCount";
-                                        $theElement['NewCount'];
-                                       // echo "<br>";
-                                     }
-
-                                  }
-                                  // echo "the biggestCount:  ". $biggestCount." the biggest grp : ".$biggestGroup;
-                                  $final_query = "SELECT * From groups where grpid = $biggestGroup";
-                                  $final_run = mysqli_query($conn,$final_query);
-
-                                  if (mysqli_num_rows($final_run)>0) {
-                                    while ($result = mysqli_fetch_assoc($final_run)) {
-                                      // echo "<br>";
-                                      // echo " Want to join this Group?:  ";
-                                      // echo $result['grpname'];
-                                      if ($result['access'] == 'public') {
-                                          echo "
-                                                <p><h3>".$result['grpname']."</h3> Owner: ".$result['owner']."</p>
-                                                <form action='groupadd.php' method ='post'>
-                                                <input type='hidden' name= 'groupid' value='".$result['grpid']."'>
-                                                <input type='hidden' name= 'uname' value='".$sessname."'>
-                                                <input type='hidden' name= 'uid' value='".$sessid."'>
-                                                <button type='submit' name='join'>Join</button>
-                                                </form>
-                                              ";
-                                            }
-                                      else {
-                                        echo "<p><h3>".$result['grpname']."</h3></p>
-                                              <p>".$result['owner']."</p>
-                                              <form action='groupadd.php' method ='post'>
-                                              <input type='hidden' name= 'groupid' value='".$result['grpid']."'>
-                                              <input type='hidden' name= 'uname' value='".$sessname."'>
-                                              <input type='hidden' name= 'uid' value='".$sessid."'>
-                                              <button type='submit' name='request'>Request</button>
-                                              </form>
-                                            ";
-                                          }
-                                    }
-                                  }
-
-                                  }
-                                  echo "<br>";
-                                }//end of if statement
-                                  }//end of if statement
-                              else {
-                                echo " ";
-                              }
-
-            }elseif ($results["userTwo"] == $sessname) {
-
-              $uOne = $results["userOne"]; //uname form//the other user in the message
-              // $depth = array();
-              // $gList = array();
-              //run query and exclude the global group
-              $sql = " SELECT * FROM membership where uname = '$uOne' and not grpid = '6' Order by grpid ";
-              $sqlrun = mysqli_query($conn,$sql);
-              // echo "<br>";
-              //if there are results we want the group id from the query
-              if(mysqli_num_rows($sqlrun) > 0 ){
-                while ($k = mysqli_fetch_assoc($sqlrun)) {
-                  $groupID = $k['grpid'];
-                  $gList[] = $groupID;//store all the group id in a list
-                  }
-
-                // now we want a query that will look to see if the session user is in
-                // each group with SQL In function from the grpid array $gList
-                $newgList = implode(", ",$gList);//make a new list with commas
-                $gQuery = "SELECT * FROM membership where uname ='$sessname' and grpid IN ($newgList) "; //run query with new list
-                $gqRun = mysqli_query($conn, $gQuery);
-                if (mysqli_num_rows($gqRun) == 0) {
-                  // if user is not in any groups, grab how many members are in each group
-                  // run it again now to get the people in each group
-                    $bam = "select grpid, count(*) as NewCount from membership WHERE grpid in(1,5,12,13) group by grpid ";
-                    $bamrun = mysqli_query($conn,$bam);
-                    $new_groups =array();
-                    //if there are results, we want the group id for the next query
-                    if(mysqli_num_rows($bamrun) > 0 ){
-                      while ($m = mysqli_fetch_assoc($bamrun)) {
-                        $groupIDagain = $m['grpid'];// get grpid
-                        array_push($new_groups,$m);
-
-                      }
-                    // print_r($m);
-                    // echo "<br>";
-                    // print_r($new_groups);
-                    $biggestGroup = -1;
-                    $biggestCount = -1;
-                    foreach($new_groups as $theElement){
-                       if($theElement['NewCount'] > $biggestCount){
-
-                        $biggestGroup = $theElement['grpid'];
-                        $biggestCount = $theElement['NewCount'];
-                        // echo "grpid";
-                           $theElement['grpid'];
-                         // echo "NewCount";
-                          $theElement['NewCount'];
-                         // echo "<br>";
-                       }
-
-                    }
-                    // echo "the biggestCount:  ". $biggestCount." the biggest grp : ".$biggestGroup;
-                    $final_query = "SELECT * From groups where grpid = $biggestGroup";
-                    $final_run = mysqli_query($conn,$final_query);
-
-                    if (mysqli_num_rows($final_run)>0) {
-                      while ($result = mysqli_fetch_assoc($final_run)) {
-                        // echo "<br>";
-                        // echo " Want to join this Group?:  ";
-                        // echo $result['grpname'];
-                        if ($result['access'] == 'public') {
-                            echo "
-                                  <p><h3>".$result['grpname']."</h3> Owner: ".$result['owner']."</p>
-                                  <form action='groupadd.php' method ='post'>
-                                  <input type='hidden' name= 'groupid' value='".$result['grpid']."'>
-                                  <input type='hidden' name= 'uname' value='".$sessname."'>
-                                  <input type='hidden' name= 'uid' value='".$sessid."'>
-                                  <button type='submit' name='join'>Join</button>
-                                  </form>
-                                ";
-                              }
-                        else {
-                          echo "<p><h3>".$result['grpname']."</h3></p>
-                                <p>".$result['owner']."</p>
-                                <form action='groupadd.php' method ='post'>
-                                <input type='hidden' name= 'groupid' value='".$result['grpid']."'>
-                                <input type='hidden' name= 'uname' value='".$sessname."'>
-                                <input type='hidden' name= 'uid' value='".$sessid."'>
-                                <button type='submit' name='request'>Request</button>
-                                </form>
-                              ";
-                            }
-                      }
-                    }
-
-                    }
-                    echo "<br>";
-                  }//end of if statement
-                    }//end of if statement
-                else {
-                  echo " ";
-                }
-            }//end of else if statement
-              //can we get the group id to go with it so we can link it to a join link
-               else {
-                 echo "What threads exists?";
-               }
-             }//end of while loop for thread query
-           }//end of if loop for thread query
-
-
-
-
+                include 'recommended.php';
             ?>
-<h1>Notifications</h1>
+          </div>
+            <div class="swap">
+              <h1>Notifications</h1>
            <!-- If a user is invited to join a group the button to join will show here -->
            <?php
-                //may have to inner join
                 $query = "SELECT active, grpid FROM membership WHERE userid = ".$sessid."";
                 $yo = mysqli_query($conn, $query);
                 if(mysqli_num_rows($yo) > 0){
@@ -240,8 +135,6 @@ $fiveyes = mysqli_query($conn, $five);
                   $id = $results["grpid"];
                 }
               }
-                // echo "    ".$hello;
-                  // echo "The number is: ".$hello;
                   if ($hello == 1) {
                     // show the group number, name and join button
                     $selection = "SELECT grpname FROM groups WHERE grpid = '$id' ";
@@ -250,7 +143,6 @@ $fiveyes = mysqli_query($conn, $five);
                        // if one or more rows are returned do following
                     while ($results = mysqli_fetch_assoc($sele)){
                       $groupE = $results["grpname"];
-
                     }
                   }
                     ?>
@@ -260,28 +152,71 @@ $fiveyes = mysqli_query($conn, $five);
                       <button type='submit' name='status' >Join</button>
                       </form>
                     <?php
-                    //closing brackets
-                  }
-              // }
-           ?>
-         <div align= center>
+                      }//closing brackets
+                     ?>
+         </div>
+       </div>
+
+
+         <div class="margin2">
+           <div class="swap">
          <h1 align=center>Create a Group</h1>
          <form action="groupmake.php" method="post">
            <input type="text" name="groupname" placeholder="Name the Group">
-           <input type="radio" name="access" value="private" >private
+           <input class="contract" type="radio" name="access" value="private" >private
            <input type="radio" name="access" value="public" checked>public
            <input type="hidden" name = "user" value="<?php $sessname ?>">
            <input type="submit" name="groupsubmit" value="Submit">
          </form>
-         </div>
-         <div align=center>
+       </div>
+
+         <div class="swap">
            <h1>Search a Group</h1>
            <form action="group.php" method="post">
              <input type="text" name="grpsearch" placeholder="Search for groups">
              <input type="submit" name="grphit" value="Search">
            </form>
+           <div style="background-color: lightgrey;">
+             <?php ///List results for groups searched
+             if(mysqli_num_rows($rawresults) > 0){ // if one or more rows are returned do following
+                 while($results = mysqli_fetch_array($rawresults)){
+                   if(!empty($_POST['grpsearch'])){
+                       if ($results['access'] == 'public') {
+                           echo "
+                                 <p><h3>".$results['grpname']."</h3></p>
+                                 <p> Owner: ".$results['owner']."</p>
+                                 <form action='groupadd.php' method ='post'>
+                                 <input type='hidden' name= 'groupid' value='".$results['grpid']."'>
+                                 <input type='hidden' name= 'uname' value='".$sessname."'>
+                                 <input type='hidden' name= 'uid' value='".$sessid."'>
+                                 <button type='submit' name='join'>Join</button>
+                                 </form>
+                               ";
+                             }
+                       else {
+                         echo "<p><h3>".$results['grpname']."</h3></p>
+                               <p> Owner: ".$results['owner']."</p>
+                             ";
+                           }
+                 }
+                 else {
+                   header("location:group.php?error=emptyfield");
+                   exit();
+                 }
+               }
+           }
+           else {
+             // if there is no matching rows do following
+                echo "No results";
+           }
+
+            ?>
+           </div>
          </div>
-         <div align=center>
+       </div>
+
+
+         <div class="swap">
            <h1>My Groups</h1>
            <!-- list groups -->
            <?php
@@ -392,11 +327,8 @@ $fiveyes = mysqli_query($conn, $five);
          }else {
            echo "No group exist";
          }
-                //
           ///Archived Groups
-
             ?>
-
             <div align=center>
               <?php
               if ($sessid == 9) {
@@ -416,77 +348,15 @@ $fiveyes = mysqli_query($conn, $five);
                      </form>";
                   }
                 }
-
             }
               ?>
-
+</div>
             <div align=center>
 
 
 
-           <?php ///List results for groups searched
-           if(mysqli_num_rows($rawresults) > 0){ // if one or more rows are returned do following
-               while($results = mysqli_fetch_array($rawresults)){
-                 if(!empty($_POST['grpsearch'])){
-                     if ($results['access'] == 'public') {
-                         echo "
-                               <p><h3>".$results['grpname']."</h3></p>
-                               <p>".$results['owner']."</p>
-                               <form action='groupadd.php' method ='post'>
-                               <input type='hidden' name= 'groupid' value='".$results['grpid']."'>
-                               <input type='hidden' name= 'uname' value='".$sessname."'>
-                               <input type='hidden' name= 'uid' value='".$sessid."'>
-                               <button type='submit' name='join'>Join</button>
-                               </form>
-                             ";
-                           }
-                     else {
-                       echo "<p><h3>".$results['grpname']."</h3></p>
-                             <p>".$results['owner']."</p>
-                           ";
-                         }
-               }
-               else {
-                 header("location:group.php?error=emptyfield");
-                 exit();
-               }
-             }
-         }
-         else {
-           // if there is no matching rows do following
-              echo "No results";
-         }
-         // print_r($l_group);
-          // print_r($fiveD);
-         //another if statement
-         //which group has the most members again
 
-
-                                   // print_r($fiveC);
-                                   // echo "<br>";
-
-                                    // $bam3 = " SELECT * FROM membership where uname = '$uOne' and not grpid = '6' Order by grpid ";
-                                    // $bamrun3 = mysqli_query($conn,$bam3);
-                                    //    //if there are results we want the group id from the query
-                                    //    if(mysqli_num_rows($bamrun3) > 0 ){
-                                    //      while ($mm = mysqli_fetch_assoc($bamrun3)) {
-                                    //         $groupIDagain3 = $mm['grpid'];
-                                    //         // echo "Group ".$mm['grpid']. " with ";
-                                    //         // echo "<br>";
-                                    //       }
-                                    //     }
-                                     //        $quereM3 = "SELECT COUNT(*) from membership where grpid = '$groupIDagain3' ";
-                                     //        $quereMRun3 = mysqli_query($conn, $quereM3);
-                                     // //count the rows now
-                                     //         $fiveD = array();
-                                     //         if ($gose3 = mysqli_num_rows($quereMRun3) > 0 ) {
-                                     //             while ($five3 = mysqli_fetch_assoc($quereMRun3)) {
-                                     //             $fiveD[] = $five3;
-                                     //             // echo $five3['COUNT(*)'] ." members";
-                                     //             // echo "<br>";
-                                     //               }
-                                     //             }
-          ?>
          </div>
        </div>
+
      </main>
