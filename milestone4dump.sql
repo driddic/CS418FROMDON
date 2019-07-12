@@ -344,7 +344,8 @@ CREATE TABLE `tbl_comment` (
   `grpid` int(11) NOT NULL,
   `voteup` int(11) NOT NULL,
   `votedown` int(11) NOT NULL,
-  `code` int(11) NOT NULL
+  `code` int(11) NOT NULL,
+  FULLTEXT(`message`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -600,7 +601,7 @@ ALTER TABLE `profileimage`
 --
 ALTER TABLE `tbl_comment`
   ADD PRIMARY KEY (`comment_id`);
-ALTER TABLE `tbl_comment` ADD FULLTEXT KEY `message` (`message`);
+--ALTER TABLE `tbl_comment` ADD FULLTEXT KEY `message` (`message`);
 
 --
 -- Indexes for table `users`

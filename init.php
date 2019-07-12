@@ -6,8 +6,8 @@ function goToAuthUrl()
       session_start();
     }
     $_SESSION['githubUser'] = true;
-    $client_id = "d3d2e6483b9bb947af87";
-    $redirect_url = "https://localhost/CS418FROMDON/callback.php";
+    $client_id = "1538eb404c91cdf586ba";
+    $redirect_url = "https://driddic.cs518.cs.odu.edu/callback.php";
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $url = 'https://github.com/login/oauth/authorize?client_id='. $client_id. "&redirect_url=".$redirect_url."&scope=user";
         header("location: $url");
@@ -17,14 +17,14 @@ function goToAuthUrl()
 function fetchData()
 {
     $client_id = "d3d2e6483b9bb947af87";
-    $redirect_url = "https://localhost/CS418FROMDON/callback.php";
+    $redirect_url = "https://driddic.cs518.cs.odu.edu/callback.php";
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (isset($_GET['code'])) {
             $code = $_GET['code'];
             $post = http_build_query(array(
                     'client_id' => $client_id,
                     'redirect_url' => $redirect_url,
-                    'client_secret' => '4e364ff6ba796a600e800538ad991bf26b07c567',
+                    'client_secret' => '199580542352ba420aa2bf7ccb96027b6baa62e2',
                     'code' => $code,
 
                 ));
