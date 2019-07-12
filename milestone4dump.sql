@@ -336,7 +336,7 @@ INSERT INTO `profileimage` (`picid`, `locate`, `userid`, `status`, `keep`) VALUE
 CREATE TABLE `tbl_comment` (
   `comment_id` int(11) NOT NULL,
   `parent_comment_id` int(11) DEFAULT NULL,
-  `message` text CHARACTER SET latin1 NOT NULL,
+  `message`varchar(200)  CHARACTER SET latin1 NOT NULL,
   `image` varchar(200) CHARACTER SET latin1 NOT NULL,
   `uid` int(11) NOT NULL,
   `comment_sender_name` varchar(40) NOT NULL,
@@ -345,7 +345,6 @@ CREATE TABLE `tbl_comment` (
   `voteup` int(11) NOT NULL,
   `votedown` int(11) NOT NULL,
   `code` int(11) NOT NULL,
-  FULLTEXT(`message`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -601,7 +600,7 @@ ALTER TABLE `profileimage`
 --
 ALTER TABLE `tbl_comment`
   ADD PRIMARY KEY (`comment_id`);
---ALTER TABLE `tbl_comment` ADD FULLTEXT KEY `message` (`message`);
+ALTER TABLE `tbl_comment` ADD FULLTEXT KEY `message` (`message`);
 
 --
 -- Indexes for table `users`
