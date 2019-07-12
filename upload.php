@@ -75,7 +75,7 @@ if(isset($_POST['upload']))
             if ($file_size < 1000000) {
               //change the status of the users profile image
              $file_name_new = "profile".$sessid."".rand(100,999).".".$fileActualExt;
-            echo   $file_destination = 'assets/'.$file_name_new;
+            echo   $file_destination = './assets/'.$file_name_new;
               $sqlupdate = "UPDATE profileimage SET keep = 1 WHERE userid = '$sessid' ";
               $result = mysqli_query($conn, $sqlupdate);
               $sqlupdatetwo = "UPDATE profileimage SET status = 0 WHERE userid = '$sessid' ";

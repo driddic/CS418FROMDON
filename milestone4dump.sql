@@ -336,7 +336,7 @@ INSERT INTO `profileimage` (`picid`, `locate`, `userid`, `status`, `keep`) VALUE
 CREATE TABLE `tbl_comment` (
   `comment_id` int(11) NOT NULL,
   `parent_comment_id` int(11) DEFAULT NULL,
-  `message`varchar(200)  CHARACTER SET latin1 NOT NULL,
+  `message` text CHARACTER SET latin1 NOT NULL,
   `image` varchar(200) CHARACTER SET latin1 NOT NULL,
   `uid` int(11) NOT NULL,
   `comment_sender_name` varchar(40) NOT NULL,
