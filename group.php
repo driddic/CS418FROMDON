@@ -2,9 +2,9 @@
 include 'header.php';
 require_once 'groupsearch.php';
 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+    // ini_set('display_errors', 1);
+    // ini_set('display_startup_errors', 1);
+    // error_reporting(E_ALL);
 //require_once 'groupadd.php';
 //include_once 'groupadd.php';
 $sessname =$_SESSION['username'];

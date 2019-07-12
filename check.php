@@ -16,7 +16,7 @@ $checkResult = $Authenticator->verifyCode($_SESSION['auth_secret'], $_POST['code
 
 if (!$checkResult) {
     $_SESSION['failed'] = true;
-    header("location: authenic.php");
+    header("location: authentic.php");
     die();
 } else {
   header("location: homepage.php");
@@ -63,7 +63,7 @@ if (!$checkResult) {
                            <a href="#">Proceed</a>
                     </div>
                 <hr>
-                    <!-- <a target="_blank" href="https://www.myphpnotes.com"><p style="text-align: center;;">Learn more about <br>     How it Works? <br>  Why is it Necessary? <br>   and How to Build it?</p></a> -->
+                    
             </div>
         </div>
     </div>

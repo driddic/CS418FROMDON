@@ -2,9 +2,9 @@
 session_start();
 require 'testconn.php';
 include 'header.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+error_reporting(E_ALL & ~E_NOTICE);
 // in this file i will be making space for the admin
 // to remove users from groups
 // invite users to groups

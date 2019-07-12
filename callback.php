@@ -55,7 +55,7 @@ $data = fetchData();
                       //for testing
                      // header("Location: homepage.php");
                       //for real(2FA)
-                     header("Location: authenic.php");
+                     header("Location: authentic.php");
                       exit();
             }
             else { //incase of a mistake , safe case
@@ -151,7 +151,7 @@ $data = fetchData();
            //forward to homepage
            // Header("location: homepage.php");
            //for 2FA
-           header("Location: authenic.php");
+           header("Location: authentic.php");
 
            exit();
           }

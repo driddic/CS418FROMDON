@@ -351,9 +351,12 @@ else {
             echo "</div>";
           }
         }//end of open search stuff
-        if (!$currentgroup) {
+        else {
+          // code...
+        }
+        if (!$currentgroup && !$_POST["opens"]) {
           //display a picture while waiting for user to select a group
-echo "<div class = 'waitingScreen' ></div>";
+          echo "<div class = 'waitingScreen' ></div>";
 
         }else if($currentgroup) {
 //verify if user is in the current group selected if he is not in it user can't get in the chat
