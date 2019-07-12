@@ -123,7 +123,7 @@ while ($row = mysqli_fetch_assoc($result)) {
           $output .= '
              <div class="panel panel-default">
               <div class="panel-heading">
-              <img class= "avatar" src = "app/assets/bot.png">
+              <img class= "avatar" src = "assets/bot.png">
               By <b>Coach Bot</b> on <i>'.$row["date"].'</i></div>
               <div class="panel-body">'.htmlspecialchars($row["message"]).'</div>
               <div class="panel-body">'.htmlspecialchars($row["message"]).'</div>
@@ -166,7 +166,7 @@ while ($row = mysqli_fetch_assoc($result)) {
           $output .= '
              <div class="panel panel-default">
               <div class="panel-heading">
-              <img class= "avatar" src = "app/assets/bot.png">
+              <img class= "avatar" src = "assets/bot.png">
               By <b>Coach Bot</b> on <i>'.$row["date"].'</i></div>
               <div class="panel-body">'.$row["message"].'</div>
               <div class="panel-body" align = center>
@@ -185,7 +185,7 @@ while ($row = mysqli_fetch_assoc($result)) {
           $output .= '
              <div class="panel panel-default">
               <div class="panel-heading">
-              <img class= "avatar" src = "app/assets/bot.png">
+              <img class= "avatar" src = "assets/bot.png">
               By <b>Coach Bot</b> on <i>'.$row["date"].'</i></div>
               <div class="panel-body">'.$row["message"].'</div>
               <div class="panel-body"><p>"Is that a new guy? User is not found"</p></div>
@@ -219,7 +219,7 @@ while ($row = mysqli_fetch_assoc($result)) {
           $output .= '
              <div class="panel panel-default">
               <div class="panel-heading">
-              <img class= "avatar" src = "app/assets/bot.png">
+              <img class= "avatar" src = "assets/bot.png">
               By <b>Coach Bot</b> on <i>'.$row["date"].'</i></div>
               <div class="panel-body"><p>"inviting '.$userCheck.'"</p></div>
               <div class="panel-footer" align="right"></div>
@@ -232,7 +232,7 @@ while ($row = mysqli_fetch_assoc($result)) {
           $output .= '
              <div class="panel panel-default">
               <div class="panel-heading">
-              <img class= "avatar" src = "app/assets/bot.png">
+              <img class= "avatar" src = "assets/bot.png">
               By <b>Coach Bot</b> on <i>'.$row["date"].'</i></div>
               <div class="panel-body">'.$row["message"].'</div>
               <div class="panel-body"><p>"User is not found"</p></div>
@@ -259,7 +259,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         $output .= '
            <div class="panel panel-default">
             <div class="panel-heading">
-            <img class= "avatar" src = "app/assets/bot.png">
+            <img class= "avatar" src = "assets/bot.png">
             By <b>Coach Bot</b> on <i>'.$row["date"].'</i></div>
             <div class="panel-body">'.htmlspecialchars($row["message"]).'</div>
             <div class="panel-body"><pre>'.file_get_contents($file).'</pre></div>

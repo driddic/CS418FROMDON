@@ -16,7 +16,7 @@ function goToAuthUrl()
 
 function fetchData()
 {
-    $client_id = "d3d2e6483b9bb947af87";
+    $client_id = "1538eb404c91cdf586ba";
     $redirect_url = "https://driddic.cs518.cs.odu.edu/callback.php";
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (isset($_GET['code'])) {
