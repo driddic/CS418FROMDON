@@ -127,11 +127,11 @@
 
   <br>
     <h2><a id="dm"></a>Sending Direct Messages</h2>
-    <img src="./app/assets/dm.jpg" alt="help1" height="500" width="1200">
+    <img src="./app/assets/dm.png" alt="help1" height="500" width="1200">
     <h3>New Message</h3>
     <p>Step 1: Navigate to the desired users profile page and click 'Message'</p><br>
     <p>Step 2: Type a message and click send</p>
-    <img src="./app/assets/dmchat.jpg" alt="help1" height="500" width="1200">
+    <img src="./app/assets/dmchat.png" alt="help1" height="500" width="1200">
     <h3>Existing Thread</h3>
     <p>Step 1: Click on Messenger</p><br>
     <p>Step 2: Click on desired thread</p><br>
@@ -141,7 +141,7 @@
 
   <br><br>
   <h2><a id="pic"></a>Upload/Change Profile Picture</h2>
-  <img src="./app/assets/pic.jpg" alt="help1" height="500" width="1200">
+  <img src="./app/assets/pic.png" alt="help1" height="500" width="1200">
   <h3>Uploading a Profile Picture</h3>
   <p>Step 1: Click upload</p><br>
   <p>Step 2: Select file and click ok</p><br>
@@ -154,7 +154,7 @@
   <a href="#top">Back to top</a>
 
   <br><br>
-  <img src="./app/assets/grouppage.jpg" alt="" height="500" width="1200">
+  <img src="./app/assets/grouppage.png" alt="" height="500" width="1200">
   <h2><a id="group"></a>Create a Group</h2>
   <p>Step 1: Go to Groups page</p><br>
   <p>Step 2: Type in the name of the group</p><br>
@@ -163,7 +163,7 @@
   <a href="#top">Back to top</a>
 
   <h2><a id="invite"></a>Invite Users to Group</h2>
-  <img src="./app/assets/invite.jpg" alt="" height="500" width="1200">
+  <img src="./app/assets/invite.png" alt="" height="500" width="1200">
   <p>Step 1: Go to Groups page</p><br>
   <p>Step 2: Select a group under 'My Groups'</p><br>
   <p>Step 3: Select a user </p><br>
@@ -175,14 +175,14 @@
   <a href="#top">Back to top</a>
 
   <h2><a id="search"></a>Search a Group</h2>
-  <img src="./app/assets/grpsearch.jpg" alt="" height="500" width="1200">
+  <img src="./app/assets/grpsearch.png" alt="" height="500" width="1200">
   <p>Step 1: Go to Group page</p><br>
   <p>Step 2: type a phrase or name of the group</p><br>
   <p>Step 3: Click Search</p><br>
   <p>Note: If the group if public you will have the option to join.</p><br>
   <br>
   <h2>Search a User</h2>
-  <img src="./app/assets/search.jpg" alt="" height="50" width="1200">
+  <img src="./app/assets/search.png" alt="" height="50" width="1200">
   <p>On the naviagation bar on the very top of the page <br>
   type in the name of a user. The live search will help you find an user.</p>
 
@@ -192,7 +192,7 @@
 
 
   <h2><a id="pictures"></a>Posting Pictures</h2>
-  <p>To Post pictures click on either "Post Pictures using URL" or "Post Pictures"</p><br>
+  <p>To Post pictures click the upload button then click on either "Post Pictures using URL" or "Post Pictures"</p><br>
   <p>Post Pictures using URL allows you to insert an URL into the textbox and upon submit your picture will be posted</p><br>
   <p>Post Pictures will allow you to upload a local file photo to post as a status</p><br>
 
