@@ -471,14 +471,14 @@ CREATE TABLE `profileimage` (
 
 INSERT INTO `profileimage` (`picid`, `locate`, `userid`, `status`, `keep`) VALUES
 (1, 'https://www.gravatar.com/avatar/936cb3b6e701c67af2337eac72f8451d?d=assets%2Fprofile1818.jpg&s=180', 1, 0, 0),
-(2, 'assets/profile.png', 2, 1, 0),
-(3, 'assets/profile.png', 3, 1, 0),
-(4, 'assets/profile.png', 4, 1, 0),
-(5, 'assets/profile.png', 5, 1, 0),
+(2, './assets/profile.png', 2, 1, 0),
+(3, './assets/profile.png', 3, 1, 0),
+(4, './assets/profile.png', 4, 1, 0),
+(5, './assets/profile.png', 5, 1, 0),
 (6, 'https://www.gravatar.com/avatar/38ece33ee8899b9cd585b4bbebb02755?d=assets%2Fprofile9618.jpg&s=180', 9, 0, 0),
-(7, 'assets/profile.png', 10, 0, 1),
-(8, 'assets/profile.png', 11, 1, 0),
-(9, 'assets/profile.png', 12, 1, 0);
+(7, './assets/profile.png', 10, 0, 1),
+(8, './assets/profile.png', 11, 1, 0),
+(9, './assets/profile.png', 12, 1, 0);
 
 -- --------------------------------------------------------
 
