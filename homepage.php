@@ -335,7 +335,7 @@ else {
           $search = $_POST["opensearch"];
           $search = htmlspecialchars($search);
           $search = mysqli_real_escape_string($conn, $search);
-          $raw_results = mysqli_query($conn,"SELECT * FROM tbl_comment WHERE MATCH(message) Against('$search')") or die(mysqli_error($conn));
+          $raw_results = mysqli_query($conn,"SELECT * FROM tbl_comment WHERE message like '%$search%'") or die(mysqli_error($conn));
           if(mysqli_num_rows($raw_results) > 0){ // if one or more rows are returned do following
             echo "<div id = 'bigbox'>
                    <h1 align = center> Search Results</h1>";

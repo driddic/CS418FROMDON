@@ -600,7 +600,7 @@ ALTER TABLE `profileimage`
 --
 ALTER TABLE `tbl_comment`
   ADD PRIMARY KEY (`comment_id`);
-ALTER TABLE `tbl_comment` ADD FULLTEXT KEY `message` (`message`);
+-- ALTER TABLE `tbl_comment` ADD FULLTEXT KEY `message` (`message`);
 
 --
 -- Indexes for table `users`
