@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2019 at 09:01 PM
+-- Generation Time: Jul 02, 2019 at 05:37 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -51,8 +51,7 @@ INSERT INTO `groups` (`grpid`, `grpname`, `owner`, `access`, `archive`) VALUES
 (14, 'Test Group', 'admin', 'public', 0),
 (15, 'Another Test', '', 'public', 0),
 (16, 'Project', 'admin', 'public', 0),
-(17, 'Project Two', 'admin', 'private', 0),
-(18, 'Style', '@doc', 'public', 0);
+(17, 'Project Two', 'admin', 'private', 0);
 
 -- --------------------------------------------------------
 
@@ -155,8 +154,7 @@ INSERT INTO `images` (`id`, `image`, `image_text`) VALUES
 (100, './upload/226.png', ''),
 (101, './upload/290.jpg', ''),
 (102, './upload/429.jpg', ''),
-(103, './upload/576.txt', ''),
-(104, './upload/795.png', '');
+(103, './upload/576.txt', '');
 
 -- --------------------------------------------------------
 
@@ -237,158 +235,7 @@ INSERT INTO `membership` (`grpid`, `userid`, `uname`, `active`) VALUES
 (6, 12, 'fireman', 1),
 (6, 12, 'fireman', 1),
 (6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 0, '', 0),
-(6, 0, '', 0),
-(6, 13, '', 0),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(6, 12, 'fireman', 1),
-(6, 4, '@sally', 1),
-(6, 12, 'fireman', 1),
-(18, 1, '@doc', 0);
+(6, 12, 'fireman', 1);
 
 -- --------------------------------------------------------
 
@@ -443,7 +290,7 @@ INSERT INTO `messageroom` (`commentID`, `message`, `timestamp`, `senderID`, `fro
 (50, 'what are you doing test', '2019-05-21 17:26:10', 9, 'admin', 42),
 (51, 'testing', '2019-05-21 17:26:11', 1, '@doc', 42),
 (52, 'sdfnmdsf ', '2019-05-21 17:26:11', 1, '@doc', 761),
-(53, 'should you reply, im testing', '2019-07-06 14:42:54', 1, '@doc', 761),
+(53, 'should you reply, im testing', '2019-05-21 17:59:36', 1, '1', 761),
 (54, 'this too', '2019-05-21 18:01:54', 1, '@doc', 551),
 (55, 'bam', '2019-05-23 15:44:48', 1, '@doc', 551),
 (56, 'yo', '2019-05-23 15:59:10', 1, '@doc', 145),
@@ -470,7 +317,7 @@ CREATE TABLE `profileimage` (
 --
 
 INSERT INTO `profileimage` (`picid`, `locate`, `userid`, `status`, `keep`) VALUES
-(1, 'https://www.gravatar.com/avatar/936cb3b6e701c67af2337eac72f8451d?d=assets%2Fprofile1818.jpg&s=180', 1, 0, 0),
+(1, 'assets/profile1818.jpg', 1, 0, 1),
 (2, 'assets/profile.png', 2, 1, 0),
 (3, 'assets/profile.png', 3, 1, 0),
 (4, 'assets/profile.png', 4, 1, 0),
@@ -497,7 +344,7 @@ CREATE TABLE `tbl_comment` (
   `grpid` int(11) NOT NULL,
   `voteup` int(11) NOT NULL,
   `votedown` int(11) NOT NULL,
-  `code` int(11) NOT NULL
+  `code` int(11) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -651,9 +498,7 @@ INSERT INTO `tbl_comment` (`comment_id`, `parent_comment_id`, `message`, `image`
 (147, 0, '/who', '', 2, '@mcmissile', '2019-06-14 17:54:03', 13, 0, 0, 0),
 (148, 0, '/invite @sally', '', 2, '@mcmissile', '2019-06-14 17:54:20', 13, 0, 0, 0),
 (149, 0, '/invite @sally', '', 2, '@mcmissile', '2019-06-14 17:56:27', 13, 0, 0, 0),
-(150, 0, '/msg fireman', '', 4, '@sally', '2019-06-14 18:23:40', 6, 0, 0, 0),
-(151, 0, '', './upload/795.png', 1, '@doc', '2019-07-04 20:42:01', 6, 0, 0, 0),
-(152, 0, '', 'upload/url211.jpg', 1, '@doc', '2019-07-04 20:43:03', 6, 0, 0, 0);
+(150, 0, '/msg fireman', '', 4, '@sally', '2019-06-14 18:23:40', 6, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -667,26 +512,24 @@ CREATE TABLE `users` (
   `lname` char(25) NOT NULL,
   `uname` tinytext NOT NULL,
   `email` tinytext NOT NULL,
-  `pword` longtext NOT NULL,
-  `git` int(11) DEFAULT NULL
+  `pword` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userid`, `fname`, `lname`, `uname`, `email`, `pword`, `git`) VALUES
-(1, 'Doc', 'Hudson', '@doc', 'hornet@rsprings.gov', 'dhudson', NULL),
-(2, 'Finn', 'McMissile', '@mcmissile', 'topsercet@agent.org', 'fmcmissile', NULL),
-(3, 'Lightning', 'McQueen', '@mcqueen', 'kachow@rusteze.com', 'lmcqueen', NULL),
-(4, 'Sally', 'Carrera', '@sally', 'porsche@rsprings.gov', 'sallyc', NULL),
-(5, 'Tom', 'Mater', '@mater', 'mater@rsprings.gov', 'matert', NULL),
-(6, 'don', 'test', '@peach', 'test@test.org', '$2y$10$SUK/ZDny.ERn7bZqmSa.KOKjozZRMUn3.CK1ooVDWZLRnLupyQGoe', NULL),
-(9, 'Dontavus', 'Riddick', 'admin', 'dridd013@odu.edu', 'admin', NULL),
-(10, 'Justin', 'Bee', '@justin', 'jfbrunel@odu.edu', 'justin', NULL),
-(11, 'Don', 'Letssee', '@dtesty', 'justaemail@email.com', 'testman', NULL),
-(12, 'Mister', 'Fire', 'fireman', 'fireman@fire.com', 'fireman', NULL),
-(13, '', '', 'driddic', 'driddic@cs.odu.edu', ' ', 1);
+INSERT INTO `users` (`userid`, `fname`, `lname`, `uname`, `email`, `pword`) VALUES
+(1, 'Doc', 'Hudson', '@doc', 'hornet@rsprings.gov', 'dhudson'),
+(2, 'Finn', 'McMissile', '@mcmissile', 'topsercet@agent.org', 'fmcmissile'),
+(3, 'Lightning', 'McQueen', '@mcqueen', 'kachow@rusteze.com', 'lmcqueen'),
+(4, 'Sally', 'Carrera', '@sally', 'porsche@rsprings.gov', 'sallyc'),
+(5, 'Tom', 'Mater', '@mater', 'mater@rsprings.gov', 'matert'),
+(6, 'don', 'test', '@peach', 'test@test.org', '$2y$10$SUK/ZDny.ERn7bZqmSa.KOKjozZRMUn3.CK1ooVDWZLRnLupyQGoe'),
+(9, 'Dontavus', 'Riddick', 'admin', 'dridd013@odu.edu', 'admin'),
+(10, 'Justin', 'Bee', '@justin', 'jfbrunel@odu.edu', 'justin'),
+(11, 'Don', 'Letssee', '@dtesty', 'justaemail@email.com', 'testman'),
+(12, 'Mister', 'Fire', 'fireman', 'fireman@fire.com', 'fireman');
 
 -- --------------------------------------------------------
 
@@ -757,7 +600,7 @@ ALTER TABLE `profileimage`
 --
 ALTER TABLE `tbl_comment`
   ADD PRIMARY KEY (`comment_id`);
-ALTER TABLE `tbl_comment` ADD FULLTEXT KEY `message` (`message`);
+-- ALTER TABLE `tbl_comment` ADD FULLTEXT KEY `message` (`message`);
 
 --
 -- Indexes for table `users`
@@ -779,13 +622,13 @@ ALTER TABLE `voter`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `grpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `grpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT for table `messageroom`
@@ -803,13 +646,13 @@ ALTER TABLE `profileimage`
 -- AUTO_INCREMENT for table `tbl_comment`
 --
 ALTER TABLE `tbl_comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `userid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `voter`
