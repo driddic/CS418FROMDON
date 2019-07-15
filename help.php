@@ -113,8 +113,8 @@
       the homepage where you can see the groups you are apart of to the left<br>
     and a message on the right prompting you to select a group. Once you select an <br>
    group the message board of that group will be displayed.</p>
-   <img src="./app/assets/groups.PNG" alt="help1" height="500" width="1200">
-   <img src="./app/assets/chat.PNG" alt="help1" height="500" width="1200">
+   <img src="../assets/groups.PNG" alt="help1" height="500" width="1200">
+   <img src="../assets/chat.PNG" alt="help1" height="500" width="1200">
 
    <p>To add a comment to the page you can select the text box that says <br>
    enter comment. Once you have typed your message click submit and refresh the page<br>
@@ -127,11 +127,11 @@
 
   <br>
     <h2><a id="dm"></a>Sending Direct Messages</h2>
-    <img src="./app/assets/dm.PNG" alt="help1" height="500" width="1200">
+    <img src="../assets/dm.PNG" alt="help1" height="500" width="1200">
     <h3>New Message</h3>
     <p>Step 1: Navigate to the desired users profile page and click 'Message'</p><br>
     <p>Step 2: Type a message and click send</p>
-    <img src="./app/assets/dmchat.PNG" alt="help1" height="500" width="1200">
+    <img src="../assets/dmchat.PNG" alt="help1" height="500" width="1200">
     <h3>Existing Thread</h3>
     <p>Step 1: Click on Messenger</p><br>
     <p>Step 2: Click on desired thread</p><br>
