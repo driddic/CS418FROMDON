@@ -113,7 +113,7 @@
       the homepage where you can see the groups you are apart of to the left<br>
     and a message on the right prompting you to select a group. Once you select an <br>
    group the message board of that group will be displayed.</p>
-   <img src="../assets/groups.png" alt="groups" width="100" height="500">
+   <img src="../assets/groups.png" alt="groups" width="300" height="500">
    <br>
    <img src="../assets/chat.png" alt="chat" width="700" height="500">
 
@@ -142,7 +142,7 @@
 
   <br><br>
   <h2><a id="pic"></a>Upload/Change Profile Picture</h2>
-  <img src="../assets/pic.png" alt="pic" width="500" height="500">
+  <img src="../assets/pic.png" alt="pic" width="800" height="500">
   <h3>Uploading a Profile Picture</h3>
   <p>Step 1: Click upload</p><br>
   <p>Step 2: Select file and click ok</p><br>
@@ -155,7 +155,7 @@
   <a href="#top">Back to top</a>
 
   <br><br>
-  <img src="../assets/grouppage.png" alt="grouppage" width="500" height="500">
+  <img src="../assets/grouppage.png" alt="grouppage" width="700" height="500">
   <h2><a id="group"></a>Create a Group</h2>
   <p>Step 1: Go to Groups page</p><br>
   <p>Step 2: Type in the name of the group</p><br>
