@@ -176,7 +176,7 @@ $fiveyes = mysqli_query($conn, $five);
              <input type="text" name="grpsearch" placeholder="Search for groups">
              <input type="submit" name="grphit" value="Search">
            </form>
-           <div style="background-color: lightgrey;">
+           <div style="background-color: lightgrey; width:500px;">
              <?php ///List results for groups searched
              if(mysqli_num_rows($rawresults) > 0){ // if one or more rows are returned do following
                  while($results = mysqli_fetch_array($rawresults)){
