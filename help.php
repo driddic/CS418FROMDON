@@ -113,8 +113,9 @@
       the homepage where you can see the groups you are apart of to the left<br>
     and a message on the right prompting you to select a group. Once you select an <br>
    group the message board of that group will be displayed.</p>
-   <img src="../assets/groups.png" alt="groups" width="1000" height="500">
-   <img src="../assets/chat.png" alt="chat" width="1000" height="500">
+   <img src="../assets/groups.png" alt="groups" width="100" height="500">
+   <br>
+   <img src="../assets/chat.png" alt="chat" width="700" height="500">
 
    <p>To add a comment to the page you can select the text box that says <br>
    enter comment. Once you have typed your message click submit and refresh the page<br>
@@ -141,7 +142,7 @@
 
   <br><br>
   <h2><a id="pic"></a>Upload/Change Profile Picture</h2>
-  <img src="../assets/pic.png" alt="pic" width="1000" height="500">
+  <img src="../assets/pic.png" alt="pic" width="500" height="500">
   <h3>Uploading a Profile Picture</h3>
   <p>Step 1: Click upload</p><br>
   <p>Step 2: Select file and click ok</p><br>
@@ -154,7 +155,7 @@
   <a href="#top">Back to top</a>
 
   <br><br>
-  <img src="../assets/grouppage.png" alt="grouppage" width="1000" height="500">
+  <img src="../assets/grouppage.png" alt="grouppage" width="500" height="500">
   <h2><a id="group"></a>Create a Group</h2>
   <p>Step 1: Go to Groups page</p><br>
   <p>Step 2: Type in the name of the group</p><br>
@@ -163,7 +164,7 @@
   <a href="#top">Back to top</a>
 
   <h2><a id="invite"></a>Invite Users to Group</h2>
-  <img src="../assets/invite.png" alt="invite" width="1000" height="500">
+  <img src="../assets/invite.png" alt="invite" width="700" height="500">
   <p>Step 1: Go to Groups page</p><br>
   <p>Step 2: Select a group under 'My Groups'</p><br>
   <p>Step 3: Select a user </p><br>
@@ -175,7 +176,7 @@
   <a href="#top">Back to top</a>
 
   <h2><a id="search"></a>Search a Group</h2>
-  <img src="../assets/grpsearch.png" alt="groupsearch" height="500" width="1200">
+  <img src="../assets/grpsearch.png" alt="groupsearch" height="500" width="700">
   <p>Step 1: Go to Group page</p><br>
   <p>Step 2: type a phrase or name of the group</p><br>
   <p>Step 3: Click Search</p><br>
