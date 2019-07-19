@@ -312,7 +312,7 @@ CREATE TABLE `profileimage` (
 --
 
 INSERT INTO `profileimage` (`picid`, `locate`, `userid`, `status`, `keep`) VALUES
-(1, 'https://www.gravatar.com/avatar/936cb3b6e701c67af2337eac72f8451d?d=assets%2Fprofile1818.jpg&s=180', 1, 0, 0),
+(1, './assets/profile.png', 1, 0, 1),
 (2, './assets/profile.png', 2, 1, 0),
 (3, './assets/profile.png', 3, 1, 0),
 (4, './assets/profile.png', 4, 1, 0),

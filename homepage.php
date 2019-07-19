@@ -227,9 +227,11 @@
             background-image: url("assets/newballard.jpg");
             /* height: 100; */
             position: absolute;
-            top: 55px; /* Header Height */
-            bottom: 10px; /* Footer Height */
-            width: 100%;
+            /* top: 55px;  */
+            /* Header Height */
+            /* bottom: 10px;  */
+            /* Footer Height */
+            /* width: 100%; */
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -351,12 +353,10 @@ else {
             echo "</div>";
           }
         }//end of open search stuff
-        else {
-          // code...
-        }
+
         if (!$currentgroup && !$_POST["opens"]) {
           //display a picture while waiting for user to select a group
-          echo "<div class = 'waitingScreen' ></div>";
+          echo "  <img src = './assets/newballard.jpg' style= 'width:100%; height:100%;'/>";
 
         }else if($currentgroup) {
 //verify if user is in the current group selected if he is not in it user can't get in the chat
